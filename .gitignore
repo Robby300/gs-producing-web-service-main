@@ -33,6 +33,7 @@ dependency-reduced-pom.xml
 *.ipr
 *.iws
 *.idea
+*.env
 
 README.html
 
