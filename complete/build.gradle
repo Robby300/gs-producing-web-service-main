@@ -24,7 +24,7 @@ sourceSets {
 
 task genJaxb {
     ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
-    ext.schema = "src/main/resources/employees.xsd"
+    ext.schema = "src/main/resources/employee-details.xsd"
 
     outputs.dir sourcesDir
 
@@ -58,6 +58,9 @@ bootJar {
 
 // tag::dependencies[]
 dependencies {
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation 'org.postgresql:postgresql:42.3.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'wsdl4j:wsdl4j'

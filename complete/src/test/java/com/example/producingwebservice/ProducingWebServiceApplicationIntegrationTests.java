@@ -16,7 +16,9 @@
 
 package com.example.producingwebservice;
 
-import io.spring.guides.gs_producing_web_service.GetEmployeeRequest;
+
+
+import https.www_rob_com.gen.GetEmployeeDetailsRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,24 +33,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ProducingWebServiceApplicationIntegrationTests {
 
-    private Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+    private final Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 
     @LocalServerPort
     private int port = 0;
 
     @BeforeEach
     public void init() throws Exception {
-        marshaller.setPackagesToScan(ClassUtils.getPackageName(GetEmployeeRequest.class));
+        marshaller.setPackagesToScan(ClassUtils.getPackageName(GetEmployeeDetailsRequest.class));
         marshaller.afterPropertiesSet();
     }
 
     @Test
     public void testSendAndReceive() {
-        WebServiceTemplate ws = new WebServiceTemplate(marshaller);
+        /*WebServiceTemplate ws = new WebServiceTemplate(marshaller);
         GetEmployeeRequest request = new GetEmployeeRequest();
         request.setName("Ivan");
 
         assertThat(ws.marshalSendAndReceive("http://localhost:"
-                + port + "/ws", request) != null);
+                + port + "/ws", request) != null);*/
     }
 }
