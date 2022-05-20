@@ -61,10 +61,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'wsdl4j:wsdl4j'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
+    implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
+    //implementation 'javax.activation:activation:1.1.1'
     jaxb("org.glassfish.jaxb:jaxb-xjc")
     testImplementation('org.springframework.boot:spring-boot-starter-test')
-    implementation 'javax.xml.bind:jaxb-api:2.3.0'
-    implementation 'javax.activation:activation:1.1'
-    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
 }
 // end::dependencies[]
