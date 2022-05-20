@@ -2,9 +2,9 @@ version: "3.4"
 
 services:
   app:
-    build: ./Application
-    image: jnotes-image
-    container_name: jnotes
+    build: ./complete
+    image: web-service-image
+    container_name: web-service
     networks:
       - cloud
     ports:
