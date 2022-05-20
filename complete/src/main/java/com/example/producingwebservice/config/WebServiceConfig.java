@@ -1,4 +1,4 @@
-package com.example.producingwebservice;
+package com.example.producingwebservice.config;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;

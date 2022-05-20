@@ -1,4 +1,4 @@
-package com.example.producingwebservice;
+package com.example.producingwebservice.repository;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
