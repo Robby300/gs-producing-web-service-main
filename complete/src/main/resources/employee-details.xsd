@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://www.rob.com/gen"
            targetNamespace="https://www.rob.com/gen" elementFormDefault="qualified">
 
-    <xs:element name="getEmployeeDetailsRequest">
+    <xs:element name="GetEmployeeDetailsRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:long"/>
@@ -10,7 +10,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getEmployeeDetailsResponse">
+    <xs:element name="GetEmployeeDetailsResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="employeeDetails" type="tns:EmployeeDetails"/>
@@ -18,10 +18,70 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="createEmployeeDetailsRequest">
+
+    <xs:element name="GetAllEmployeeDetailsRequest">
+        <xs:complexType>
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllEmployeeDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="employeeDetails" type="tns:EmployeeDetails" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="CreateEmployeeDetailsRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="employeeDetails" type="tns:EmployeeDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CreateEmployeeDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="employeeDetails" type="tns:EmployeeDetails" />
+                <xs:element name="message" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="UpdateEmployeeDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="employeeDetails" type="tns:EmployeeDetails" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateEmployeeDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="employeeDetails" type="tns:EmployeeDetails" />
+                <xs:element name="message" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="DeleteEmployeeDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteEmployeeDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

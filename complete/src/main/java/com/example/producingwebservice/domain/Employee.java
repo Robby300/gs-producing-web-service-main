@@ -1,13 +1,14 @@
 package com.example.producingwebservice.domain;
 
 
-import https.www_rob_com.gen.EmployeeDetails;
 import https.www_rob_com.gen.Position;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Builder
 public class Employee {
     @Id
     @GeneratedValue
@@ -27,6 +28,7 @@ public class Employee {
     }
 
     public Employee() {
+
     }
 
     public Long getId() {
@@ -59,15 +61,6 @@ public class Employee {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public EmployeeDetails mapToEmployeeDetails() {
-        EmployeeDetails employeeDetails = new EmployeeDetails();
-        employeeDetails.setId(id);
-        employeeDetails.setName(name);
-        employeeDetails.setSalary(salary);
-        employeeDetails.setPosition(position);
-        return employeeDetails;
     }
 
     @Override

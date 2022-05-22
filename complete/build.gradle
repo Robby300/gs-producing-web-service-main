@@ -6,9 +6,10 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "11"
 
 repositories {
+    mavenLocal()
 	mavenCentral()
 }
 
@@ -59,6 +60,9 @@ bootJar {
 // tag::dependencies[]
 dependencies {
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation 'org.modelmapper:modelmapper:3.1.0'
     implementation 'org.postgresql:postgresql:42.3.4'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -71,3 +75,4 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 // end::dependencies[]
+targetCompatibility = JavaVersion.VERSION_11
