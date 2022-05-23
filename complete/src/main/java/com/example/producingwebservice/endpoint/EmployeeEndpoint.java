@@ -74,14 +74,18 @@ public class EmployeeEndpoint {
         }
         if (existingEmployee.isPresent()) {
 
-            Employee employee = existingEmployee.orElseThrow(RuntimeException::new);
-            employee.setName(request.getEmployeeDetails().getName());
-            employee.setSalary(request.getEmployeeDetails().getSalary());
-            employee.setEmployeePosition(EmployeePosition.valueOf(request.getEmployeeDetails().getEmployeeDetailsPosition().value()));
+            Employee employeeToUpdate = existingEmployee.orElseThrow(RuntimeException::new);
+            employeeToUpdate.setName(request.getEmployeeDetails().getName());
+            employeeToUpdate.setSalary(request.getEmployeeDetails().getSalary());
+            employeeToUpdate.setEmployeePosition(EmployeePosition.valueOf(request.getEmployeeDetails().getEmployeeDetailsPosition().value()));
 
-            employeeRepository.save(employee);
-            employeeDetailsResponse = mapEmployeeToUpdateResponse(employee, "Updated successfully");
-
+            EmployeePosition employeeToUpdatePosition = employeeToUpdate.getEmployeePosition();
+            if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
+                employeeRepository.save(employeeToUpdate);
+                employeeDetailsResponse = mapEmployeeToUpdateResponse(employeeToUpdate, "Updated successfully");
+            } else {
+                employeeDetailsResponse.setMessage(employeeToUpdatePosition.getNotValidMessage(employeeToUpdate.getSalary()));
+            }
         }
         return employeeDetailsResponse;
     }
