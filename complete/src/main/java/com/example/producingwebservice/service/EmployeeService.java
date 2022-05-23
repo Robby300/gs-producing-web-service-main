@@ -1,6 +1,9 @@
 package com.example.producingwebservice.service;
 
-public interface EmployeeService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmployeeService {
 
 
 }

@@ -17,6 +17,8 @@ public class Scheduler {
     @Scheduled(cron = "0 * * * * *")
     public void deleteOneEmployeePerMinute() {
         List<Employee> all = employeeRepository.findAll();
-        employeeRepository.delete(all.get(0));
+        if (all.size() > 0) {
+            employeeRepository.delete(all.get(0));
+        }
     }
 }

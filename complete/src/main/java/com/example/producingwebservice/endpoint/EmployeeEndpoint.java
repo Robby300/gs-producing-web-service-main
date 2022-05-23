@@ -24,6 +24,7 @@ public class EmployeeEndpoint {
         this.employeeMapper = employeeMapper;
     }
 
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetEmployeeDetailsRequest")
     @ResponsePayload
     public GetEmployeeDetailsResponse getEmployee(@RequestPayload GetEmployeeDetailsRequest request) {
@@ -49,6 +50,7 @@ public class EmployeeEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateEmployeeDetailsRequest")
     @ResponsePayload
     public CreateEmployeeDetailsResponse save(@RequestPayload CreateEmployeeDetailsRequest request) {
+
         EmployeeDetails employeeDetails = request.getEmployeeDetails();
         Employee employeeToSave = employeeMapper.mapToEmployee(employeeDetails);
 
