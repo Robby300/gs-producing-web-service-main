@@ -23,7 +23,7 @@ public class EmployeeService {
         return response;
     }
 
-    public GetAllEmployeeDetailsResponse getGetAllEmployeeDetails() {
+    public GetAllEmployeeDetailsResponse getAllEmployeeDetails() {
         GetAllEmployeeDetailsResponse allEmployeeDetailsResponse = new GetAllEmployeeDetailsResponse();
         Iterable<Employee> employees = employeeRepository.findAll();
         for (Employee employee : employees) {
@@ -57,12 +57,7 @@ public class EmployeeService {
             employeeDetailsResponse = mapEmployeeToUpdateResponse(null, "Id not found");
         }
         if (existingEmployee.isPresent()) {
-
-            Employee employeeToUpdate = existingEmployee.orElseThrow(RuntimeException::new);
-            employeeToUpdate.setName(request.getEmployeeDetails().getName());
-            employeeToUpdate.setSalary(request.getEmployeeDetails().getSalary());
-            employeeToUpdate.setEmployeePosition(EmployeePosition.valueOf(request.getEmployeeDetails().getEmployeeDetailsPosition().value()));
-
+            Employee employeeToUpdate = employeeMapper.mapToEmployee(request.getEmployeeDetails());
             EmployeePosition employeeToUpdatePosition = employeeToUpdate.getEmployeePosition();
             if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
                 employeeRepository.save(employeeToUpdate);
@@ -82,11 +77,9 @@ public class EmployeeService {
         return courseDetailsResponse;
     }
 
-
     private GetEmployeeDetailsResponse mapEmployeeToGetResponse(Employee employee) {
         EmployeeDetails employeeDetails = employeeMapper.mapToEmployeeDetails(employee);
         GetEmployeeDetailsResponse employeeDetailsResponse = new GetEmployeeDetailsResponse();
-
         employeeDetailsResponse.setEmployeeDetails(employeeDetails);
         return employeeDetailsResponse;
     }

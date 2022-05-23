@@ -3,10 +3,13 @@ package com.example.producingwebservice.endpoint;
 import com.example.producingwebservice.service.EmployeeService;
 import https.www_rob_com.gen.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import javax.validation.Valid;
 
 @Endpoint
 @RequiredArgsConstructor
@@ -17,14 +20,14 @@ public class EmployeeEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetEmployeeDetailsRequest")
     @ResponsePayload
-    public GetEmployeeDetailsResponse getEmployee(@RequestPayload GetEmployeeDetailsRequest request) {
+    public GetEmployeeDetailsResponse getEmployee(@RequestPayload @Valid GetEmployeeDetailsRequest request) {
         return employeeService.getEmployeeDetails(request);
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllEmployeeDetailsRequest")
     @ResponsePayload
     public GetAllEmployeeDetailsResponse findAll() {
-        return employeeService.getGetAllEmployeeDetails();
+        return employeeService.getAllEmployeeDetails();
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateEmployeeDetailsRequest")

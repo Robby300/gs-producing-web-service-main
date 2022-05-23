@@ -19,6 +19,7 @@ package com.example.producingwebservice;
 
 
 import https.www_rob_com.gen.GetEmployeeDetailsRequest;
+import https.www_rob_com.gen.GetEmployeeDetailsResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,17 +41,17 @@ public class ProducingWebServiceApplicationIntegrationTests {
 
     @BeforeEach
     public void init() throws Exception {
-        marshaller.setPackagesToScan(ClassUtils.getPackageName(GetEmployeeDetailsRequest.class));
+        marshaller.setPackagesToScan(ClassUtils.getPackageName(GetEmployeeDetailsResponse.class));
         marshaller.afterPropertiesSet();
     }
 
     @Test
     public void testSendAndReceive() {
-        /*WebServiceTemplate ws = new WebServiceTemplate(marshaller);
-        GetEmployeeRequest request = new GetEmployeeRequest();
-        request.setName("Ivan");
+/*        WebServiceTemplate ws = new WebServiceTemplate(marshaller);
+        GetEmployeeDetailsResponse response = new GetEmployeeDetailsResponse();
+        response.getEmployeeDetails().setName("Ivan");
 
         assertThat(ws.marshalSendAndReceive("http://localhost:"
-                + port + "/ws", request) != null);*/
+                + port + "/ws", response) != null).isTrue();*/
     }
 }
