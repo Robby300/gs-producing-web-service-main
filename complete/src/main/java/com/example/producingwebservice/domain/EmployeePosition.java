@@ -25,8 +25,8 @@ public enum EmployeePosition {
     }
 
     public String getNotValidMessage(int salary) {
-        return new String("у "+ ruName + " зп должна быть в диапазоне от "
-                + lowSalary + " до " + highSalary + ", в запросе прислали " + salary);
+        return "у позиции  \"" + ruName + "\" зп должна быть в диапазоне от "
+                + lowSalary + " до " + highSalary + ", в запросе прислали " + salary;
     }
 }
 

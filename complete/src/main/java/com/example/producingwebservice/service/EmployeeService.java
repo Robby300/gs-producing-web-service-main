@@ -51,8 +51,8 @@ public class EmployeeService {
     }
 
     public UpdateEmployeeDetailsResponse updateEmployeeDetails(UpdateEmployeeDetailsRequest request) {
-        UpdateEmployeeDetailsResponse employeeDetailsResponse = null;
-        Optional<Employee> existingEmployee = this.employeeRepository.findById(request.getEmployeeDetails().getId());
+        UpdateEmployeeDetailsResponse employeeDetailsResponse = new UpdateEmployeeDetailsResponse();
+        Optional<Employee> existingEmployee = employeeRepository.findById(request.getEmployeeDetails().getId());
         if (existingEmployee.isEmpty()) {
             employeeDetailsResponse = mapEmployeeToUpdateResponse(null, "Id not found");
         }
@@ -92,10 +92,11 @@ public class EmployeeService {
     }
 
     private UpdateEmployeeDetailsResponse mapEmployeeToUpdateResponse(Employee employee, String message) {
-        EmployeeDetails employeeDetails = employeeMapper.mapToEmployeeDetails(employee);
         UpdateEmployeeDetailsResponse employeeDetailsResponse = new UpdateEmployeeDetailsResponse();
-
-        employeeDetailsResponse.setEmployeeDetails(employeeDetails);
+        if (employee != null) {
+            EmployeeDetails employeeDetails = employeeMapper.mapToEmployeeDetails(employee);
+            employeeDetailsResponse.setEmployeeDetails(employeeDetails);
+        }
         employeeDetailsResponse.setMessage(message);
         return employeeDetailsResponse;
     }
