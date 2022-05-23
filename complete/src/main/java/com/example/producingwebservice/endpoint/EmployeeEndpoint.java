@@ -34,13 +34,13 @@ public class EmployeeEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllEmployeeDetailsRequest")
     @ResponsePayload
-    public GetAllEmployeeDetailsResponse findAll(@RequestPayload GetAllEmployeeDetailsRequest request) {
+    public GetAllEmployeeDetailsResponse findAll() {
 
         GetAllEmployeeDetailsResponse allEmployeeDetailsResponse = new GetAllEmployeeDetailsResponse();
         Iterable<Employee> employees = employeeRepository.findAll();
         for (Employee employee : employees) {
-            GetEmployeeDetailsResponse courseDetailsResponse = mapEmployeeDetails(employee);
-            allEmployeeDetailsResponse.getEmployeeDetails().add(courseDetailsResponse.getEmployeeDetails());
+            GetEmployeeDetailsResponse employeeDetailsResponse = mapEmployeeToGetResponse(employee);
+            allEmployeeDetailsResponse.getEmployeeDetails().add(employeeDetailsResponse.getEmployeeDetails());
         }
 
         return allEmployeeDetailsResponse;
@@ -69,8 +69,8 @@ public class EmployeeEndpoint {
     public UpdateEmployeeDetailsResponse update(@RequestPayload UpdateEmployeeDetailsRequest request) {
         UpdateEmployeeDetailsResponse employeeDetailsResponse = null;
         Optional<Employee> existingEmployee = this.employeeRepository.findById(request.getEmployeeDetails().getId());
-        if (existingEmployee.isEmpty() || existingEmployee == null) {
-            employeeDetailsResponse = mapEmployeeDetail(null, "Id not found");
+        if (existingEmployee.isEmpty()) {
+            employeeDetailsResponse = mapEmployeeToUpdateResponse(null, "Id not found");
         }
         if (existingEmployee.isPresent()) {
 
@@ -80,7 +80,7 @@ public class EmployeeEndpoint {
             employee.setEmployeePosition(EmployeePosition.valueOf(request.getEmployeeDetails().getEmployeeDetailsPosition().value()));
 
             employeeRepository.save(employee);
-            employeeDetailsResponse = mapEmployeeDetail(employee, "Updated successfully");
+            employeeDetailsResponse = mapEmployeeToUpdateResponse(employee, "Updated successfully");
 
         }
         return employeeDetailsResponse;
@@ -97,22 +97,20 @@ public class EmployeeEndpoint {
         return courseDetailsResponse;
     }
 
-    private GetEmployeeDetailsResponse mapEmployeeDetails(Employee employee) {
+    private GetEmployeeDetailsResponse mapEmployeeToGetResponse(Employee employee) {
         EmployeeDetails employeeDetails = employeeMapper.mapToEmployeeDetails(employee);
-
         GetEmployeeDetailsResponse employeeDetailsResponse = new GetEmployeeDetailsResponse();
 
         employeeDetailsResponse.setEmployeeDetails(employeeDetails);
-        ;
         return employeeDetailsResponse;
     }
 
-    private UpdateEmployeeDetailsResponse mapEmployeeDetail(Employee employee, String message) {
+    private UpdateEmployeeDetailsResponse mapEmployeeToUpdateResponse(Employee employee, String message) {
         EmployeeDetails employeeDetails = employeeMapper.mapToEmployeeDetails(employee);
-        UpdateEmployeeDetailsResponse courseDetailsResponse = new UpdateEmployeeDetailsResponse();
+        UpdateEmployeeDetailsResponse employeeDetailsResponse = new UpdateEmployeeDetailsResponse();
 
-        courseDetailsResponse.setEmployeeDetails(employeeDetails);
-        courseDetailsResponse.setMessage(message);
-        return courseDetailsResponse;
+        employeeDetailsResponse.setEmployeeDetails(employeeDetails);
+        employeeDetailsResponse.setMessage(message);
+        return employeeDetailsResponse;
     }
 }
