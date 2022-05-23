@@ -94,11 +94,11 @@
             <xs:element name="id" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
             <xs:element name="salary" type="xs:int"/>
-            <xs:element name="position" type="tns:position"/>
+            <xs:element name="employeeDetailsPosition" type="tns:EmployeeDetailsPosition"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="position">
+    <xs:simpleType name="EmployeeDetailsPosition">
         <xs:restriction base="xs:string">
             <xs:enumeration value="MANAGER"/>
             <xs:enumeration value="DIRECTOR"/>

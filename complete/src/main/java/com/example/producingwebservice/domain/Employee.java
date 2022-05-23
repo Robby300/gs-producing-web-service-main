@@ -1,7 +1,6 @@
 package com.example.producingwebservice.domain;
 
 
-import https.www_rob_com.gen.Position;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,13 +17,13 @@ public class Employee {
 
     private int salary;
     @Enumerated(EnumType.STRING)
-    private Position position;
+    private EmployeePosition employeePosition;
 
-    public Employee(Long id, String name, int salary, Position position) {
+    public Employee(Long id, String name, int salary, EmployeePosition employeePosition) {
         this.id = id;
         this.name = name;
         this.salary = salary;
-        this.position = position;
+        this.employeePosition = employeePosition;
     }
 
     public Employee() {
@@ -55,12 +54,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Position getPosition() {
-        return position;
+    public EmployeePosition getEmployeePosition() {
+        return employeePosition;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setEmployeePosition(EmployeePosition employeePosition) {
+        this.employeePosition = employeePosition;
     }
 
     @Override
@@ -68,11 +67,11 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return salary == employee.salary && Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && position == employee.position;
+        return salary == employee.salary && Objects.equals(id, employee.id) && Objects.equals(name, employee.name) && employeePosition == employee.employeePosition;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, salary, position);
+        return Objects.hash(id, name, salary, employeePosition);
     }
 }

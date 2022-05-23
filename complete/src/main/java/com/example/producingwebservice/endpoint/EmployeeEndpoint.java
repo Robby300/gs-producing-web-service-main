@@ -1,10 +1,10 @@
 package com.example.producingwebservice.endpoint;
 
 import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.domain.EmployeePosition;
 import com.example.producingwebservice.mapper.EmployeeMapper;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import https.www_rob_com.gen.*;
-import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -48,10 +48,20 @@ public class EmployeeEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "CreateEmployeeDetailsRequest")
     @ResponsePayload
-    public CreateEmployeeDetailsRequest save(@RequestPayload CreateEmployeeDetailsRequest request) {
+    public CreateEmployeeDetailsResponse save(@RequestPayload CreateEmployeeDetailsRequest request) {
         EmployeeDetails employeeDetails = request.getEmployeeDetails();
-        employeeRepository.save(employeeMapper.mapToEmployee(employeeDetails));
-        return request;
+        Employee employeeToSave = employeeMapper.mapToEmployee(employeeDetails);
+
+        CreateEmployeeDetailsResponse createEmployeeDetailsResponse = new CreateEmployeeDetailsResponse();
+        EmployeePosition employeeToSavePosition = employeeToSave.getEmployeePosition();
+        if (employeeToSavePosition.isValidSalary(employeeToSave.getSalary())) {
+            employeeRepository.save(employeeToSave);
+            createEmployeeDetailsResponse.setEmployeeDetails(employeeDetails);
+            createEmployeeDetailsResponse.setMessage("New employee was created successfully");
+        } else {
+            createEmployeeDetailsResponse.setMessage(employeeToSavePosition.getNotValidMessage(employeeToSave.getSalary()));
+        }
+        return createEmployeeDetailsResponse;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "UpdateEmployeeDetailsRequest")
@@ -67,7 +77,7 @@ public class EmployeeEndpoint {
             Employee employee = existingEmployee.orElseThrow(RuntimeException::new);
             employee.setName(request.getEmployeeDetails().getName());
             employee.setSalary(request.getEmployeeDetails().getSalary());
-            employee.setPosition(request.getEmployeeDetails().getPosition());
+            employee.setEmployeePosition(EmployeePosition.valueOf(request.getEmployeeDetails().getEmployeeDetailsPosition().value()));
 
             employeeRepository.save(employee);
             employeeDetailsResponse = mapEmployeeDetail(employee, "Updated successfully");
@@ -92,7 +102,8 @@ public class EmployeeEndpoint {
 
         GetEmployeeDetailsResponse employeeDetailsResponse = new GetEmployeeDetailsResponse();
 
-        employeeDetailsResponse.setEmployeeDetails(employeeDetails);;
+        employeeDetailsResponse.setEmployeeDetails(employeeDetails);
+        ;
         return employeeDetailsResponse;
     }
 
