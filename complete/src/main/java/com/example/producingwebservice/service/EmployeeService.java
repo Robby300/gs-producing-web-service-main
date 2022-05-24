@@ -59,12 +59,7 @@ public class EmployeeService {
         if (existingEmployee.isPresent()) {
             Employee employeeToUpdate = employeeMapper.mapToEmployee(request.getEmployeeDetails());
             EmployeePosition employeeToUpdatePosition = employeeToUpdate.getEmployeePosition();
-            if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
-                employeeRepository.save(employeeToUpdate);
-                employeeDetailsResponse = mapEmployeeToUpdateResponse(employeeToUpdate, "Updated successfully");
-            } else {
-                employeeDetailsResponse.setMessage(employeeToUpdatePosition.getNotValidMessage(employeeToUpdate.getSalary()));
-            }
+            employeeDetailsResponse = getUpdateEmployeeDetailsResponse(employeeDetailsResponse, employeeToUpdate, employeeToUpdatePosition);
         }
         return employeeDetailsResponse;
     }
@@ -91,6 +86,16 @@ public class EmployeeService {
             employeeDetailsResponse.setEmployeeDetails(employeeDetails);
         }
         employeeDetailsResponse.setMessage(message);
+        return employeeDetailsResponse;
+    }
+
+    private UpdateEmployeeDetailsResponse getUpdateEmployeeDetailsResponse(UpdateEmployeeDetailsResponse employeeDetailsResponse, Employee employeeToUpdate, EmployeePosition employeeToUpdatePosition) {
+        if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
+            employeeRepository.save(employeeToUpdate);
+            employeeDetailsResponse = mapEmployeeToUpdateResponse(employeeToUpdate, "Updated successfully");
+        } else {
+            employeeDetailsResponse.setMessage(employeeToUpdatePosition.getNotValidMessage(employeeToUpdate.getSalary()));
+        }
         return employeeDetailsResponse;
     }
 }

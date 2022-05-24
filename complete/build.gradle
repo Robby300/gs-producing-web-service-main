@@ -1,7 +1,8 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.3'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.6.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "org.flywaydb.flyway" version "7.15.0"
+    id 'java'
 }
 
 group = 'com.example'
@@ -10,7 +11,7 @@ sourceCompatibility = "11"
 
 repositories {
     mavenLocal()
-	mavenCentral()
+    mavenCentral()
 }
 
 // tag::xsd[]
@@ -21,6 +22,34 @@ sourceSets {
             srcDir 'build/generated-sources/jaxb'
         }
     }
+}
+
+def dbDataDriver = ''
+def dbDataUrl = ''
+def dbDataUser = ''
+def dbDataPassword = ''
+def dbDataLocation = ''
+def dbDataSchema = ''
+
+
+file("src/main/resources/flyway.properties").withReader {
+    Properties flywayProp = new Properties()
+    flywayProp.load(it)
+    dbDataDriver = "${flywayProp.driver}"
+    dbDataUrl = "${flywayProp.url}"
+    dbDataUser = "${flywayProp.user}"
+    dbDataPassword = "${flywayProp.password}"
+    dbDataLocation = "${flywayProp.locations}"
+    dbDataSchema = "${flywayProp.schemas}"
+}
+
+flyway {
+    locations = [dbDataLocation]
+    driver = dbDataDriver
+    url = dbDataUrl
+    user = dbDataUser
+    password = dbDataPassword
+    schemas = [dbDataSchema]
 }
 
 task genJaxb {
@@ -53,7 +82,7 @@ configurations {
 
 bootJar {
     archiveBaseName = 'gs-producing-web-service'
-    archiveVersion =  '0.1.0'
+    archiveVersion = '0.1.0'
 }
 // end::jaxb[]
 
@@ -62,12 +91,14 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
+    implementation "org.flywaydb:flyway-core:7.15.0"
     implementation 'org.hibernate.validator:hibernate-validator:7.0.4.Final'
     implementation 'org.modelmapper:modelmapper:3.1.0'
     implementation 'org.postgresql:postgresql:42.3.4'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'wsdl4j:wsdl4j'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
     implementation 'javax.xml.bind:jaxb-api:2.4.0-b180830.0359'
