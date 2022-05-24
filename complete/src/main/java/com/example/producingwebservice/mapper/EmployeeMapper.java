@@ -7,9 +7,10 @@ import https.www_rob_com.gen.EmployeeDetailsPosition;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EmployeeMapper {
+public class EmployeeMapper implements DoubleMapper<Employee, EmployeeDetails> {
 
-    public Employee mapToEmployee(EmployeeDetails employeeDetails) {
+    @Override
+    public Employee fromView(EmployeeDetails employeeDetails) {
         return Employee.builder()
                 .id(employeeDetails.getId())
                 .name(employeeDetails.getName())
@@ -18,7 +19,8 @@ public class EmployeeMapper {
                 .build();
     }
 
-    public EmployeeDetails mapToEmployeeDetails(Employee employee) {
+    @Override
+    public EmployeeDetails toView(Employee employee) {
         EmployeeDetails employeeDetails = new EmployeeDetails();
         employeeDetails.setId(employee.getId());
         employeeDetails.setName(employee.getName());

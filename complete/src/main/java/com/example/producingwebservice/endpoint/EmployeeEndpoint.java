@@ -3,7 +3,6 @@ package com.example.producingwebservice.endpoint;
 import com.example.producingwebservice.service.EmployeeService;
 import https.www_rob_com.gen.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.BindingResult;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
