@@ -27,7 +27,7 @@ public class EmployeeService {
         GetEmployeeDetailsResponse response = new GetEmployeeDetailsResponse();
         response.setEmployeeDetails(
                 employeeMapper.toView(
-                        employeeRepository.findById(request.getId())
+                        employeeRepository.findById(request.getId()) //todo вынеси findById в переменную
                                 .orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE))
                 )
         );
@@ -55,7 +55,7 @@ public class EmployeeService {
         if (employeeToSavePosition.isValidSalary(employeeToSave.getSalary())) {
             employeeRepository.save(employeeToSave);
             createEmployeeDetailsResponse.setEmployeeDetails(employeeDetails);
-            createEmployeeDetailsResponse.setMessage("New employee was created successfully");
+            createEmployeeDetailsResponse.setMessage("New employee was created successfully"); //todo вынести в константу
         } else {
             String salaryNotValidMessage = employeeToSavePosition.getNotValidMessage(employeeToSave.getSalary());
             createEmployeeDetailsResponse.setMessage(salaryNotValidMessage);
@@ -84,7 +84,7 @@ public class EmployeeService {
         employeeRepository.deleteById(request.getId());
 
         DeleteEmployeeDetailsResponse courseDetailsResponse = new DeleteEmployeeDetailsResponse();
-        courseDetailsResponse.setMessage("Deleted Successfully");
+        courseDetailsResponse.setMessage("Deleted Successfully"); //todo вынести в константу
         return courseDetailsResponse;
     }
 
@@ -100,7 +100,7 @@ public class EmployeeService {
         if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
             employeeRepository.save(employeeToUpdate);
             employeeDetailsResponse.setEmployeeDetails(employeeMapper.toView(employeeToUpdate));
-            employeeDetailsResponse.setMessage("Updated successfully");
+            employeeDetailsResponse.setMessage("Updated successfully"); //todo вынести в константу
         } else {
             employeeDetailsResponse.setMessage(employeeToUpdatePosition.getNotValidMessage(employeeToUpdate.getSalary()));
         }

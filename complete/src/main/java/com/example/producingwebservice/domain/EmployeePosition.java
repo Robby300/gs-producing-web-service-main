@@ -2,7 +2,7 @@ package com.example.producingwebservice.domain;
 
 public enum EmployeePosition {
 
-    DIRECTOR("директор",150_000, 200_000),
+    DIRECTOR("директор",150_000, 200_000), //todo кириллицу в коде оставлять плохо. Используй resourceBundle есть пример в fccr класс MessageService
     MANAGER("менеджер",100_000, 150_000),
     WORKER("рабочий", 50_000, 100_000);
 
@@ -24,8 +24,8 @@ public enum EmployeePosition {
         return salary >= lowSalary && salary < highSalary;
     }
 
-    public String getNotValidMessage(int salary) {
-        return "у позиции  \"" + ruName + "\" зп должна быть в диапазоне от "
+    public String getNotValidMessage(int salary) { //todo кириллицу в коде оставлять плохо. Используй resourceBundle есть пример в fccr класс MessageService
+        return "у позиции  \"" + ruName + "\" зп должна быть в диапазоне от " //todo если надо что то вставлять строку используй MessageFormat
                 + lowSalary + " до " + highSalary + ", в запросе прислали " + salary;
     }
 }

@@ -6,7 +6,7 @@ import https.www_rob_com.gen.EmployeeDetails;
 import https.www_rob_com.gen.EmployeeDetailsPosition;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component //todo можно сделать не бином)
 public class EmployeeMapper implements DoubleMapper<Employee, EmployeeDetails> {
 
     @Override
