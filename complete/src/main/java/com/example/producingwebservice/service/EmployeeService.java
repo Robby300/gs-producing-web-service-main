@@ -19,18 +19,20 @@ import java.util.Optional;
 public class EmployeeService {
 
     private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
-    private final EmployeeMapper employeeMapper;
+    private final static String EMPLOYEE_CREATED = "New employee was created successfully";
+    private final static String EMPLOYEE_DELETED = "Employee was deleted Successfully";
+    private final static String EMPLOYEE_UPDATED = "Employee was updated successfully";
+    private final EmployeeMapper employeeMapper = new EmployeeMapper();
     private final EmployeeRepository employeeRepository;
+    private final MessageService messageService;
 
     public GetEmployeeDetailsResponse getEmployeeDetails(GetEmployeeDetailsRequest request) {
         log.info("Get employeeDetails by id = {}", request.getId());
+        Employee employeeFromRepo =
+                employeeRepository.findById(request.getId())
+                        .orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
         GetEmployeeDetailsResponse response = new GetEmployeeDetailsResponse();
-        response.setEmployeeDetails(
-                employeeMapper.toView(
-                        employeeRepository.findById(request.getId()) //todo вынеси findById в переменную
-                                .orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE))
-                )
-        );
+        response.setEmployeeDetails(employeeMapper.toView(employeeFromRepo));
         return response;
     }
 
@@ -55,11 +57,12 @@ public class EmployeeService {
         if (employeeToSavePosition.isValidSalary(employeeToSave.getSalary())) {
             employeeRepository.save(employeeToSave);
             createEmployeeDetailsResponse.setEmployeeDetails(employeeDetails);
-            createEmployeeDetailsResponse.setMessage("New employee was created successfully"); //todo вынести в константу
+            createEmployeeDetailsResponse.setMessage(EMPLOYEE_CREATED); //todo вынести в константу // done
         } else {
-            String salaryNotValidMessage = employeeToSavePosition.getNotValidMessage(employeeToSave.getSalary());
+            String salaryNotValidMessage =
+                    messageService.getNotValidSalaryMessage(employeeToSavePosition, employeeToSave.getSalary());
             createEmployeeDetailsResponse.setMessage(salaryNotValidMessage);
-            throw  new NotValidException(salaryNotValidMessage);
+            throw new NotValidException(salaryNotValidMessage);
         }
         return createEmployeeDetailsResponse;
     }
@@ -84,7 +87,7 @@ public class EmployeeService {
         employeeRepository.deleteById(request.getId());
 
         DeleteEmployeeDetailsResponse courseDetailsResponse = new DeleteEmployeeDetailsResponse();
-        courseDetailsResponse.setMessage("Deleted Successfully"); //todo вынести в константу
+        courseDetailsResponse.setMessage(EMPLOYEE_DELETED); //todo вынести в константу //done
         return courseDetailsResponse;
     }
 
@@ -100,9 +103,9 @@ public class EmployeeService {
         if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
             employeeRepository.save(employeeToUpdate);
             employeeDetailsResponse.setEmployeeDetails(employeeMapper.toView(employeeToUpdate));
-            employeeDetailsResponse.setMessage("Updated successfully"); //todo вынести в константу
+            employeeDetailsResponse.setMessage(EMPLOYEE_UPDATED); //todo вынести в константу // done
         } else {
-            employeeDetailsResponse.setMessage(employeeToUpdatePosition.getNotValidMessage(employeeToUpdate.getSalary()));
+            employeeDetailsResponse.setMessage(messageService.getNotValidSalaryMessage(employeeToUpdatePosition, employeeToUpdate.getSalary()));
         }
         return employeeDetailsResponse;
     }

@@ -1,12 +1,13 @@
 package com.example.producingwebservice.mapper;
 
+import com.example.producingwebservice.api.DoubleMapper;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeePosition;
 import https.www_rob_com.gen.EmployeeDetails;
 import https.www_rob_com.gen.EmployeeDetailsPosition;
-import org.springframework.stereotype.Component;
 
-@Component //todo можно сделать не бином)
+//todo можно сделать не бином)
+// done
 public class EmployeeMapper implements DoubleMapper<Employee, EmployeeDetails> {
 
     @Override

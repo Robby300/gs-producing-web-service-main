@@ -1,20 +1,21 @@
-package com.example.producingwebservice.scheduller;
+package com.example.producingwebservice.config;
 
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+@Configuration
 @RequiredArgsConstructor
-public class Scheduler { //todo я бы сделал @Configuration + название SchedulerConfig + перенес в пакет config
-
+public class SchedulerConfig {
+    //todo я бы сделал @Configuration + название SchedulerConfig + перенес в пакет config
+    // done
     private final EmployeeRepository employeeRepository;
 
-    @Scheduled(cron = "0 * * * * *") //todo вынести в проперти
+    @Scheduled(cron = "${scheduler.cron}") //todo вынести в проперти // done
     public void deleteOneEmployeePerMinute() {
         List<Employee> all = employeeRepository.findAll();
         if (all.size() > 0) {
