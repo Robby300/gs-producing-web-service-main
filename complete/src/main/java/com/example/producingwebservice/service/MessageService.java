@@ -18,8 +18,7 @@ public class MessageService {
 
     public String getMessage(String code) {
         try {
-            String message = messageSource.getMessage(code, null, russian);
-            return message;
+            return messageSource.getMessage(code, null, russian);
         } catch (Exception e) {
             return code;
         }
@@ -36,7 +35,10 @@ public class MessageService {
 
 
     public String getNotValidSalaryMessage(@NonNull EmployeePosition position, int salary) { //todo кириллицу в коде оставлять плохо. Используй resourceBundle есть пример в fccr класс MessageService
-        String format = MessageFormat.format("У позиции \"{0}\" зп должна быть в диапазоне от {1} до {2}, в запросе прислали {3}", getMessage(position), position.lowSalary, position.highSalary, salary);
-        return format;
+        return MessageFormat.format("У позиции \"{0}\" зп должна быть в диапазоне от {1} до {2}, в запросе прислали {3}",
+                getMessage(position),
+                position.lowSalary,
+                position.highSalary,
+                salary);
     }
 }
