@@ -11,11 +11,9 @@ import java.util.List;
 @Configuration
 @RequiredArgsConstructor
 public class SchedulerConfig {
-    //todo я бы сделал @Configuration + название SchedulerConfig + перенес в пакет config
-    // done
     private final EmployeeRepository employeeRepository;
 
-    @Scheduled(cron = "${scheduler.cron}") //todo вынести в проперти // done
+    @Scheduled(cron = "${scheduler.cron}")
     public void deleteOneEmployeePerMinute() {
         List<Employee> all = employeeRepository.findAll();
         if (all.size() > 0) {

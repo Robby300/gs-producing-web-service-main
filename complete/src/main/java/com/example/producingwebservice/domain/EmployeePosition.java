@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 
 public enum EmployeePosition {
 
-    DIRECTOR(150_000, 200_000), //todo кириллицу в коде оставлять плохо. Используй resourceBundle есть пример в fccr класс MessageService // done
+    DIRECTOR(150_000, 200_000),
     MANAGER(100_000, 150_000),
     WORKER( 50_000, 100_000);
     public final int lowSalary;

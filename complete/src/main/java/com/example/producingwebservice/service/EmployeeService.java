@@ -57,7 +57,7 @@ public class EmployeeService {
         if (employeeToSavePosition.isValidSalary(employeeToSave.getSalary())) {
             employeeRepository.save(employeeToSave);
             createEmployeeDetailsResponse.setEmployeeDetails(employeeDetails);
-            createEmployeeDetailsResponse.setMessage(EMPLOYEE_CREATED); //todo вынести в константу // done
+            createEmployeeDetailsResponse.setMessage(EMPLOYEE_CREATED);
         } else {
             String salaryNotValidMessage =
                     messageService.getNotValidSalaryMessage(employeeToSavePosition, employeeToSave.getSalary());
@@ -87,7 +87,7 @@ public class EmployeeService {
         employeeRepository.deleteById(request.getId());
 
         DeleteEmployeeDetailsResponse courseDetailsResponse = new DeleteEmployeeDetailsResponse();
-        courseDetailsResponse.setMessage(EMPLOYEE_DELETED); //todo вынести в константу //done
+        courseDetailsResponse.setMessage(EMPLOYEE_DELETED);
         return courseDetailsResponse;
     }
 
@@ -103,7 +103,7 @@ public class EmployeeService {
         if (employeeToUpdatePosition.isValidSalary(employeeToUpdate.getSalary())) {
             employeeRepository.save(employeeToUpdate);
             employeeDetailsResponse.setEmployeeDetails(employeeMapper.toView(employeeToUpdate));
-            employeeDetailsResponse.setMessage(EMPLOYEE_UPDATED); //todo вынести в константу // done
+            employeeDetailsResponse.setMessage(EMPLOYEE_UPDATED);
         } else {
             employeeDetailsResponse.setMessage(messageService.getNotValidSalaryMessage(employeeToUpdatePosition, employeeToUpdate.getSalary()));
         }

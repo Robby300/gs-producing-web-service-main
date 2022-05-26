@@ -1,6 +1,6 @@
 package com.example.producingwebservice.api;
 
-public interface DoubleMapper<T, V> { //todo перенести в пакет api // done
+public interface DoubleMapper<T, V> {
 
     T fromView(V view);
 

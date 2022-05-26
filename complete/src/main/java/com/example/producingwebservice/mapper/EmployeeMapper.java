@@ -6,8 +6,6 @@ import com.example.producingwebservice.domain.EmployeePosition;
 import https.www_rob_com.gen.EmployeeDetails;
 import https.www_rob_com.gen.EmployeeDetailsPosition;
 
-//todo можно сделать не бином)
-// done
 public class EmployeeMapper implements DoubleMapper<Employee, EmployeeDetails> {
 
     @Override
