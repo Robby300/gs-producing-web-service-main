@@ -30,7 +30,7 @@ public class MessageService {
 
     public String getMessage(@NonNull Enum a) {
         String className = a.getClass().getName();
-        return getMessage(className + "." + a.toString());
+        return getMessage(className + "." + a);
     }
 
     public String getNotValidSalaryMessage(@NonNull EmployeePosition position, int salary) {
