@@ -16,38 +16,7 @@ import org.springframework.xml.xsd.XsdSchema;
 
 import java.util.List;
 
-@EnableWs
 @Configuration
-public class WebServiceConfig extends WsConfigurerAdapter {
+public class WebServiceConfig {
 
-    @Override
-    public void addInterceptors(List<EndpointInterceptor> interceptors) {
-        PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
-        validatingInterceptor.setValidateRequest(true);
-        validatingInterceptor.setValidateResponse(true);
-        validatingInterceptor.setXsdSchema(employeesSchema());
-        interceptors.add(validatingInterceptor);
-    }
-    @Bean
-    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
-        MessageDispatcherServlet servlet = new MessageDispatcherServlet();
-        servlet.setApplicationContext(applicationContext);
-        servlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(servlet, "/ws/*");
-    }
-
-    @Bean(name = "employee-details")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema employeesSchema) {
-        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("EmployeePort");
-        wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("https://www.rob.com/gen");
-        wsdl11Definition.setSchema(employeesSchema);
-        return wsdl11Definition;
-    }
-
-    @Bean
-    public XsdSchema employeesSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("employee-details.xsd"));
-    }
 }
