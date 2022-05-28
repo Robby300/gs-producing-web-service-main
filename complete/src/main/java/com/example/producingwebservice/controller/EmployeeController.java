@@ -3,14 +3,16 @@ package com.example.producingwebservice.controller;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("employees")
+@RequestMapping("api/v1.0/employees")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -20,9 +22,11 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public Employee create(@RequestBody Employee employee) {
-        return employeeService.save(employee);
+    public void create(@RequestBody List<Employee> employees) {
+        log.info("POST request received with parameter = {}", employees);
+        employees.forEach(employeeService::save);
     }
+
 
     @GetMapping("/{id}")
     public Employee getById(@PathVariable("id") Employee employee) {
