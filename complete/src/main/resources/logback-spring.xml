@@ -10,10 +10,10 @@
     </appender>
 
     <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>logs/fccr-registry.log</file>
+        <file>logs/producingwebservice.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logs/fccr-registry.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/producingwebservice.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder>

@@ -3,9 +3,10 @@ package com.example.producingwebservice.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 @RequiredArgsConstructor
@@ -14,9 +15,8 @@ import javax.persistence.*;
 public class Task {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "uuid2")
-    private long uuid;
+    @GeneratedValue
+    private Long id;
 
     private String description;
 }

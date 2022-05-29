@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -17,25 +18,27 @@ import java.util.List;
 @Builder
 public class Employee {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 32, message = "Name should be between 2 and 32 characters")
-    @UniqueElements(message = "Name should be unique")
+
+    @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
+    //@UniqueElements(message = "Name should be unique")
     private String name;
 
-    @Min(value = 0, message = "salary should be greater than 0")
+
+    @Min(value = 1, message = "salary should be greater than 0")
     private int salary;
 
+    @NotNull(message = "Please provide a position")
     @Enumerated(EnumType.STRING)
     private EmployeePosition employeePosition;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "employee_tasks",
             joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_uuid")
+            inverseJoinColumns = @JoinColumn(name = "task_id")
     )
     private List<Task> tasks;
 }

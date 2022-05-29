@@ -1,22 +1,24 @@
 package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeePosition;
-import com.example.producingwebservice.exception.EmployeeNotFoundException;
-import com.example.producingwebservice.exception.NotValidException;
 import com.example.producingwebservice.repository.EmployeeRepository;
-import https.www_rob_com.gen.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.*;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class EmployeeServiceImpl implements EmployeeService{
+@Validated
+public class EmployeeServiceImpl implements EmployeeService {
 
     private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
     private final static String EMPLOYEE_CREATED = "New employee was created successfully";
@@ -31,12 +33,29 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Employee save(Employee employee) {
-        return employeeRepository.save(employee);
+    @Validated
+    public ResponseEntity<?> save(Employee employee) {
+        validateInput(employee);
+        return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
     }
 
     @Override
     public void delete(Employee employee) {
         employeeRepository.delete(employee);
+    }
+
+    @Override
+    public ResponseEntity<?> saveAll(List<Employee> employees) {
+        List<? extends ResponseEntity<?>> collectResponses = employees.stream().map(this::save).collect(Collectors.toList());
+        return new ResponseEntity<>(collectResponses, HttpStatus.CREATED);
+    }
+
+    void validateInput(Employee employee) {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Employee>> violations = validator.validate(employee);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
+        }
     }
 }

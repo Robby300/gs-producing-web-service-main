@@ -16,12 +16,12 @@ services:
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
   db:
-    image: postgres:latest
+    image: postgres:13-alpine
     container_name: postgres
     networks:
       - cloud
     ports:
-      - 5433:5432
+      - 5432:5432
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
