@@ -15,7 +15,7 @@ VALUES (1, 'WORKER', 'Ivan', 55000),
        (12,  'DIRECTOR', 'Abdulla', 155000);
 
 -- insert all test tasks
-INSERT INTO employee_db.task (id, description)
+INSERT INTO task (id, description)
 values (1, 'first task'),
        (2, 'second task'),
        (3, 'third task'),

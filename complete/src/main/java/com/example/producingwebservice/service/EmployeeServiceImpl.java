@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final static String EMPLOYEE_DELETED = "Employee was deleted Successfully";
     private final static String EMPLOYEE_UPDATED = "Employee was updated successfully";
     private final EmployeeRepository employeeRepository;
-    private final MessageService messageService;
+    private final ValidatorService validatorService;
 
     @Override
     public List<Employee> findAll() {
@@ -35,8 +37,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Validated
     public ResponseEntity<?> save(Employee employee) {
-        validateInput(employee);
-        return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
+        if (validatorService.isValidInput(employee)) {
+            return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(validatorService.getViolationsMessage(employee), HttpStatus.FORBIDDEN);
+        }
     }
 
     @Override
@@ -46,16 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ResponseEntity<?> saveAll(List<Employee> employees) {
-        List<? extends ResponseEntity<?>> collectResponses = employees.stream().map(this::save).collect(Collectors.toList());
-        return new ResponseEntity<>(collectResponses, HttpStatus.CREATED);
+        return new ResponseEntity<>(employees.stream().map(this::save).collect(Collectors.toList()), HttpStatus.CREATED);
     }
 
-    void validateInput(Employee employee) {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<Employee>> violations = validator.validate(employee);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
-    }
 }

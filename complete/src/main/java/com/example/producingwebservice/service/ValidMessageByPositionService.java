@@ -1,5 +1,6 @@
 package com.example.producingwebservice.service;
 
+import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeePosition;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.Locale;
 
 @Slf4j
 @RequiredArgsConstructor
-public class MessageService {
+public class ValidMessageByPositionService {
     public static Locale russian = new Locale("ru", "RU");
 
     private final ResourceBundleMessageSource messageSource;
@@ -33,11 +34,17 @@ public class MessageService {
         return getMessage(className + "." + a);
     }
 
-    public String getNotValidSalaryMessage(@NonNull EmployeePosition position, int salary) {
-        return MessageFormat.format("У позиции \"{0}\" зп должна быть в диапазоне от {1} до {2}, в запросе прислали {3}",
-                getMessage(position),
-                position.lowSalary,
-                position.highSalary,
-                salary);
+    public String getNotValidSalaryMessage(Employee employee) {
+        return MessageFormat.format("У позиции {0} зп должна быть в диапазоне от {1} до {2}, в запросе прислали {3}",
+                getMessage(employee.getEmployeePosition()),
+                employee.getEmployeePosition().lowSalary,
+                employee.getEmployeePosition().highSalary,
+                employee.getSalary());
+    }
+
+    public String getNotValidCountsOfTasksMessage(Employee employee) {
+        return MessageFormat.format("У позиции {0} количество задач должно быть не более {1}",
+                getMessage(employee.getEmployeePosition()),
+                employee.getEmployeePosition().maxTasks);
     }
 }
