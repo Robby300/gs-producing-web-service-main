@@ -9,11 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final static String EMPLOYEE_DELETED = "Employee was deleted Successfully";
     private final static String EMPLOYEE_UPDATED = "Employee was updated successfully";
     private final EmployeeRepository employeeRepository;
-    private final ValidatorService validatorService;
+    private final EmployeeValidatorService employeeValidatorService;
 
     @Override
     public List<Employee> findAll() {
@@ -37,10 +33,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Validated
     public ResponseEntity<?> save(Employee employee) {
-        if (validatorService.isValidInput(employee)) {
+        if (employeeValidatorService.isValidInput(employee)) {
             return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>(validatorService.getViolationsMessage(employee), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(employeeValidatorService.getViolationsMessage(employee), HttpStatus.FORBIDDEN);
         }
     }
 

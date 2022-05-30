@@ -20,11 +20,13 @@ public class TaskController {
 
     @GetMapping()
     public List<Task> findAll() {
+        log.info("Find all tasks");
         return taskService.findAll();
     }
 
     @PostMapping()
     public void create(@RequestBody List<Task> tasks) {
+        log.info("Create new {} tasks", tasks.size());
         log.info("POST request received with parameter = {}", tasks);
         tasks.forEach(taskService::save);
     }
@@ -32,19 +34,22 @@ public class TaskController {
 
     @GetMapping("/{id}")
     public Task getById(@PathVariable("id") Task task) {
+        log.info("Get task by id = {}", task.getId());
         return task;
     }
 
     @PutMapping("/{id}")
     public Task update(@PathVariable("id") Task taskFromRepo,
                            @RequestBody Task task) {
+        log.info("Update task by id = {}", task.getId());
         BeanUtils.copyProperties(task, taskFromRepo, "id");
         return taskService.save(taskFromRepo);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Task employee) {
-        taskService.delete(employee);
+    public void delete(@PathVariable("id") Task task) {
+        log.info("Delete task by id = {}", task.getId());
+        taskService.delete(task);
     }
 
 }

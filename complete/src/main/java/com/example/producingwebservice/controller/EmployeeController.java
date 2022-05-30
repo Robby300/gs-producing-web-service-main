@@ -32,24 +32,28 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     public Employee getById(@PathVariable("id") Employee employee) {
+        log.info("Get employee by id = {}", employee.getId());
         return employee;
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Employee employeeFromRepo,
                            @RequestBody @Valid Employee employee) {
+        log.info("Update employee by id = {}", employee.getId());
         BeanUtils.copyProperties(employee, employeeFromRepo, "id");
         return employeeService.save(employeeFromRepo);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Employee employee) {
+        log.info("Delete employee by id = {}", employee.getId());
         employeeService.delete(employee);
     }
 
     @PutMapping("/{employee_id}/task/{task_id}")
     public ResponseEntity<?> assignTask(@PathVariable("employee_id") Employee employee,
                                @PathVariable("task_id") Task task) {
+        log.info("Assign task id = {} to employee by id = {}", task.getId(), employee.getId());
         employee.getTasks().add(task);
         return employeeService.save(employee);
     }
@@ -57,6 +61,7 @@ public class EmployeeController {
     @DeleteMapping("/{employee_id}/task/{task_id}")
     public ResponseEntity<?> unAssignTask(@PathVariable("employee_id") Employee employee,
                                           @PathVariable("task_id") Task task) {
+        log.info("Unassigned task id = {} to employee by id = {}", task.getId(), employee.getId());
         employee.getTasks().remove(task);
         return employeeService.save(employee);
     }

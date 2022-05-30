@@ -14,7 +14,7 @@ import static javax.validation.Validation.buildDefaultValidatorFactory;
 
 @Service
 @RequiredArgsConstructor
-public class ValidatorServiceImpl implements ValidatorService {
+public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     public static final String SEPARATOR = "; ";
     private final ValidMessageByPositionService validMessageByPositionService;
