@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +32,7 @@ public class EmployeeController {
     @PostMapping()
     public ResponseEntity<?> saveAll(@RequestBody List<Employee> employees) {
         //todo переносы в стриме + вынести в отдельную переменную. ЗАмечание при данной реализации
+        // done
         List<ResponseEntity<?>> responseEntities = employees
                 .stream()
                 .map(this::save)
@@ -62,7 +62,7 @@ public class EmployeeController {
 
     @PutMapping("/{employee_id}/task/{task_id}")
     public Employee assignTask(@PathVariable("employee_id") Employee employee,
-                                        @PathVariable("task_id") Task task) {
+                               @PathVariable("task_id") Task task) {
         log.info("Assign task id = {} to employee by id = {}", task.getId(), employee.getId());
         employee.getTasks().add(task);
         return employeeService.save(employee);
@@ -70,7 +70,7 @@ public class EmployeeController {
 
     @DeleteMapping("/{employee_id}/task/{task_id}")
     public Employee unAssignTask(@PathVariable("employee_id") Employee employee,
-                                          @PathVariable("task_id") Task task) {
+                                 @PathVariable("task_id") Task task) {
         log.info("Unassigned task id = {} to employee by id = {}", task.getId(), employee.getId());
         employee.getTasks().remove(task);
         return employeeService.save(employee);

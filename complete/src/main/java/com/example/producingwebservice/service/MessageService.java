@@ -14,11 +14,10 @@ public class MessageService {
 
     private final ResourceBundleMessageSource messageSource;
 
-
     //todo Общие замечание
     // у тебя данный сервис делает две разные логики. 1 достает из ResourceBundle, а другая делает какую то логику валидации
     // необходимо разделить логику
-    // done вынес в новый сервис
+    // done вынес  два метода в новый сервис
     public String getMessage(String code) {
         try {
             return messageSource.getMessage(code, null, russian);

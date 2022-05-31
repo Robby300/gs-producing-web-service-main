@@ -18,7 +18,7 @@ public class SchedulerConfig {
     public void deleteOneEmployee() { //todo у тебя название зависит от значения в аннотации то есть если поменять cron у тебя будет неожиданный результат // done
         List<Employee> all = employeeRepository.findAll();
         if (all.size() > ZERO) { //todo волшебная цифра. Выведи в константу // done только такое название пришло в голову
-            employeeRepository.delete(all.get(0));
+            employeeRepository.delete(all.get(ZERO));
         }
     }
 }

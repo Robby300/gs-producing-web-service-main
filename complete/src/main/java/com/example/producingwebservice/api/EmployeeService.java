@@ -1,7 +1,6 @@
 package com.example.producingwebservice.api;
 
 import com.example.producingwebservice.domain.Employee;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;

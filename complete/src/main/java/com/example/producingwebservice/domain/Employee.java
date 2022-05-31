@@ -2,7 +2,6 @@ package com.example.producingwebservice.domain;
 
 import com.example.producingwebservice.type.EmployeePosition;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
