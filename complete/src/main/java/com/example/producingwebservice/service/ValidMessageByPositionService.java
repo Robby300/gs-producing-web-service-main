@@ -1,7 +1,6 @@
 package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeePosition;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

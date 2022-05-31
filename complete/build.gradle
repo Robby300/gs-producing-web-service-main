@@ -1,7 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.6.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-//    id "org.flywaydb.flyway" version "7.15.0"
+    id "org.flywaydb.flyway" version "7.15.0"
     id 'java'
 }
 
@@ -19,38 +19,37 @@ sourceSets {
     main {
         java {
             srcDir 'src/main/java'
-//            srcDir 'build/generated-sources/jaxb'
         }
     }
 }
 
-//def dbDataDriver = ''
-//def dbDataUrl = ''
-//def dbDataUser = ''
-//def dbDataPassword = ''
-//def dbDataLocation = ''
-//def dbDataSchema = ''
-//
-//
-//file("src/main/resources/flyway.properties").withReader {
-//    Properties flywayProp = new Properties()
-//    flywayProp.load(it)
-//    dbDataDriver = "${flywayProp.driver}"
-//    dbDataUrl = "${flywayProp.url}"
-//    dbDataUser = "${flywayProp.user}"
-//    dbDataPassword = "${flywayProp.password}"
-//    dbDataLocation = "${flywayProp.locations}"
-//    dbDataSchema = "${flywayProp.schemas}"
-//}
-//
-//flyway {
-//    locations = [dbDataLocation]
-//    driver = dbDataDriver
-//    url = dbDataUrl
-//    user = dbDataUser
-//    password = dbDataPassword
-//    schemas = [dbDataSchema]
-//}
+def dbDataDriver = ''
+def dbDataUrl = ''
+def dbDataUser = ''
+def dbDataPassword = ''
+def dbDataLocation = ''
+def dbDataSchema = ''
+
+
+file("src/main/resources/flyway.properties").withReader {
+    Properties flywayProp = new Properties()
+    flywayProp.load(it)
+    dbDataDriver = "${flywayProp.driver}"
+    dbDataUrl = "${flywayProp.url}"
+    dbDataUser = "${flywayProp.user}"
+    dbDataPassword = "${flywayProp.password}"
+    dbDataLocation = "${flywayProp.locations}"
+    dbDataSchema = "${flywayProp.schemas}"
+}
+
+flyway {
+    locations = [dbDataLocation]
+    driver = dbDataDriver
+    url = dbDataUrl
+    user = dbDataUser
+    password = dbDataPassword
+    schemas = [dbDataSchema]
+}
 
 
 bootJar {
@@ -71,8 +70,8 @@ dependencies {
     implementation "ch.qos.logback:logback-core:1.2.3"
     implementation "ch.qos.logback:logback-classic:1.2.3"
 
-//    implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
-//    implementation "org.flywaydb:flyway-core:7.15.0"
+    implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
+    implementation "org.flywaydb:flyway-core:7.15.0"
     implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
     implementation 'org.modelmapper:modelmapper:3.1.0'
     implementation 'org.postgresql:postgresql:42.3.4'

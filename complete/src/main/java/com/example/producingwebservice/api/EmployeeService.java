@@ -1,8 +1,7 @@
-package com.example.producingwebservice.service;
+package com.example.producingwebservice.api;
 
 import com.example.producingwebservice.domain.Employee;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
@@ -17,4 +16,6 @@ public interface EmployeeService {
     void delete(Employee employee);
 
     ResponseEntity<?> saveAll(List<Employee> employees);
+
+    Employee getById(Long id);
 }

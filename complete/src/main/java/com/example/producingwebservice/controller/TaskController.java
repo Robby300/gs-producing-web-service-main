@@ -1,8 +1,7 @@
 package com.example.producingwebservice.controller;
 
-import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.Task;
-import com.example.producingwebservice.service.TaskService;
+import com.example.producingwebservice.api.TaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -51,5 +50,4 @@ public class TaskController {
         log.info("Delete task by id = {}", task.getId());
         taskService.delete(task);
     }
-
 }

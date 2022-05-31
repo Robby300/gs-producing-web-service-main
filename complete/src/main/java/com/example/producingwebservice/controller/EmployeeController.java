@@ -1,8 +1,8 @@
 package com.example.producingwebservice.controller;
 
+import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.Task;
-import com.example.producingwebservice.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -17,6 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("api/v1.0/employees")
 public class EmployeeController {
+
+
     private final EmployeeService employeeService;
 
     @GetMapping()
@@ -31,14 +33,14 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee getById(@PathVariable("id") Employee employee) {
-        log.info("Get employee by id = {}", employee.getId());
-        return employee;
+    public Employee getById(@PathVariable("id") Long id) {
+        log.info("Get employee by id = {}", id);
+        return employeeService.getById(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Employee employeeFromRepo,
-                           @RequestBody @Valid Employee employee) {
+                                    @RequestBody @Valid Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
         BeanUtils.copyProperties(employee, employeeFromRepo, "id");
         return employeeService.save(employeeFromRepo);
@@ -52,7 +54,7 @@ public class EmployeeController {
 
     @PutMapping("/{employee_id}/task/{task_id}")
     public ResponseEntity<?> assignTask(@PathVariable("employee_id") Employee employee,
-                               @PathVariable("task_id") Task task) {
+                                        @PathVariable("task_id") Task task) {
         log.info("Assign task id = {} to employee by id = {}", task.getId(), employee.getId());
         employee.getTasks().add(task);
         return employeeService.save(employee);

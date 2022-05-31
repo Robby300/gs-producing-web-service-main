@@ -1,6 +1,9 @@
 package com.example.producingwebservice.service;
 
+import com.example.producingwebservice.api.EmployeeService;
+import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,4 +53,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new ResponseEntity<>(employees.stream().map(this::save).collect(Collectors.toList()), HttpStatus.CREATED);
     }
 
+    @Override
+    public Employee getById(Long id) {
+        return employeeRepository.findById(id).orElseThrow(() ->new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+    }
 }
