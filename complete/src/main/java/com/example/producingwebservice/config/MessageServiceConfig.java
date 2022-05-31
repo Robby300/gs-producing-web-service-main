@@ -1,6 +1,6 @@
 package com.example.producingwebservice.config;
 
-import com.example.producingwebservice.service.ValidMessageByPositionService;
+import com.example.producingwebservice.service.MessageService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -9,8 +9,8 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 public class MessageServiceConfig {
 
     @Bean
-    public ValidMessageByPositionService messageService() {
-        return new ValidMessageByPositionService(messageSource());
+    public MessageService messageService() {
+        return new MessageService(messageSource());
     }
 
     @Bean

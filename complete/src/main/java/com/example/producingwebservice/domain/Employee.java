@@ -1,6 +1,8 @@
 package com.example.producingwebservice.domain;
 
+import com.example.producingwebservice.type.EmployeePosition;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,7 +23,7 @@ public class Employee {
 
 
     @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
-    //@UniqueElements(message = "Name should be unique") //todo комменты в коде
+    @UniqueElements(message = "Name should be unique") //todo комменты в коде // done
     private String name;
 
 

@@ -2,7 +2,7 @@ package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeePosition;
+import com.example.producingwebservice.type.EmployeePosition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import static javax.validation.Validation.buildDefaultValidatorFactory;
 public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     public static final String SEPARATOR = "; ";
-    private final ValidMessageByPositionService validMessageByPositionService;
+    private final EmployeeNotValidMessageService employeeNotValidMessageService;
 
     @Override
     public boolean isValidInput(Employee employee) {
@@ -30,18 +30,15 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     @Override
     public String getViolationsMessage(Employee employee) {
-        StringBuilder result = new StringBuilder();
+        StringBuilder violationsMessage = new StringBuilder();
         //todo тут усложнено. Думаю можно сделать проще и читаться будет лучше
-        getConstraintViolations(employee)
-                .forEach(violation -> result.append(violation.getMessageTemplate())
+        Set<ConstraintViolation<Employee>> employeeConstraintViolations = getConstraintViolations(employee);
+        employeeConstraintViolations
+                .forEach(violation -> violationsMessage.append(violation.getMessageTemplate())
                         .append(SEPARATOR));
-        if (isNotValidSalary(employee)) {
-            result.append(validMessageByPositionService.getNotValidSalaryMessage(employee)).append(SEPARATOR);
-        }
-        if (isNotValidCountOfTasks(employee)) {
-            result.append(validMessageByPositionService.getNotValidCountsOfTasksMessage(employee)).append(SEPARATOR);
-        }
-        return result.toString();
+        addNotValidSalaryMessage(employee, violationsMessage);
+        addNotValidCountsOfTasksMessage(employee, violationsMessage);
+        return violationsMessage.toString();
     }
 
     private Set<ConstraintViolation<Employee>> getConstraintViolations(Employee employee) {
@@ -57,5 +54,17 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     private boolean isNotValidSalary(Employee employee) {
         return !employee.getEmployeePosition().isValidSalary(employee.getSalary());
+    }
+
+    private void addNotValidCountsOfTasksMessage(Employee employee, StringBuilder result) {
+        if (isNotValidCountOfTasks(employee)) {
+            result.append(employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee)).append(SEPARATOR);
+        }
+    }
+
+    private void addNotValidSalaryMessage(Employee employee, StringBuilder result) {
+        if (isNotValidSalary(employee)) {
+            result.append(employeeNotValidMessageService.getNotValidSalaryMessage(employee)).append(SEPARATOR);
+        }
     }
 }

@@ -22,11 +22,10 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
-    private final static String EMPLOYEE_CREATED = "New employee was created successfully"; //todo не используется
-    private final static String EMPLOYEE_DELETED = "Employee was deleted Successfully"; //todo не используется
-    private final static String EMPLOYEE_UPDATED = "Employee was updated successfully"; //todo не используется
+    //todo не используется // done
+
     private final EmployeeRepository employeeRepository;
-    private final EmployeeValidatorService employeeValidatorService;
+
 
     @Override
     public List<Employee> findAll() {
@@ -35,15 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     //todo Общие замечание
     // не очень что методы возвращают ResponseEntity. Оборачивай в контроллере
-    @Override
-    @Validated
-    public ResponseEntity<?> save(Employee employee) {
-        if (employeeValidatorService.isValidInput(employee)) {
-            return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(employeeValidatorService.getViolationsMessage(employee), HttpStatus.FORBIDDEN);
-        }
-    }
+    // done
 
     @Override
     public void delete(Employee employee) {
@@ -51,9 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ResponseEntity<?> saveAll(List<Employee> employees) {
-        //todo переносы в стриме + вынести в отдельную переменную. ЗАмечание при данной реализации
-        return new ResponseEntity<>(employees.stream().map(this::save).collect(Collectors.toList()), HttpStatus.CREATED);
+    public Employee save(Employee employee) {
+
+        return employeeRepository.save(employee);
     }
 
     @Override

@@ -11,11 +11,9 @@ public interface EmployeeService {
     List<Employee> findAll();
 
     @Validated
-    ResponseEntity<?> save(@Valid Employee employee);
+    Employee save(@Valid Employee employee);
 
     void delete(Employee employee);
-
-    ResponseEntity<?> saveAll(List<Employee> employees);
 
     Employee getById(Long id);
 }
