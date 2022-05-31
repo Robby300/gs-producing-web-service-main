@@ -31,8 +31,6 @@ public class EmployeeController {
 
     @PostMapping()
     public ResponseEntity<?> saveAll(@RequestBody List<Employee> employees) {
-        //todo переносы в стриме + вынести в отдельную переменную. ЗАмечание при данной реализации
-        // done
         List<ResponseEntity<?>> responseEntities = employees
                 .stream()
                 .map(this::save)
@@ -50,7 +48,7 @@ public class EmployeeController {
     public ResponseEntity<?> update(@PathVariable("id") Employee employeeFromRepo,
                                     @RequestBody Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
-        BeanUtils.copyProperties(employee, employeeFromRepo, "id"); //todo это для чего ? // done копирование игнорируя id
+        BeanUtils.copyProperties(employee, employeeFromRepo, "id");
         return save(employeeFromRepo);
     }
 

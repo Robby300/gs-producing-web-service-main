@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Override
-    List<Employee> findAll(); //todo зачем указывать если он есть по умолчанию ? // done чтобы возвращал List, а не Iterable
+    List<Employee> findAll();
 
 }
 

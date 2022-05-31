@@ -11,14 +11,14 @@ import java.util.List;
 @Configuration
 @RequiredArgsConstructor
 public class SchedulerConfig {
-    public static final int ZERO = 0;
+    public static final int ZERO_ELEMENT = 0;
     private final EmployeeRepository employeeRepository;
 
     @Scheduled(cron = "${scheduler.cron}")
-    public void deleteOneEmployee() { //todo у тебя название зависит от значения в аннотации то есть если поменять cron у тебя будет неожиданный результат // done
-        List<Employee> all = employeeRepository.findAll();
-        if (all.size() > ZERO) { //todo волшебная цифра. Выведи в константу // done только такое название пришло в голову
-            employeeRepository.delete(all.get(ZERO));
+    public void deleteOneEmployee() {
+        List<Employee> employees = employeeRepository.findAll();
+        if (!employees.isEmpty()) {
+            employeeRepository.delete(employees.get(ZERO_ELEMENT));
         }
     }
 }

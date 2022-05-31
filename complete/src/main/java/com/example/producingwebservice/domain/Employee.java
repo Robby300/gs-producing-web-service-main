@@ -21,8 +21,6 @@ public class Employee {
     private Long id;
 
     @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
-    //todo комменты в коде
-    // done
     private String name;
 
     @Min(value = 1, message = "salary should be greater than 0")

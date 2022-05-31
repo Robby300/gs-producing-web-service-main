@@ -18,8 +18,6 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
-    //todo не используется // done
-
     private final EmployeeRepository employeeRepository;
 
 
@@ -27,10 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
-
-    //todo Общие замечание
-    // не очень что методы возвращают ResponseEntity. Оборачивай в контроллере
-    // done
 
     @Override
     public void delete(Employee employee) {
