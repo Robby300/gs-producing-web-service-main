@@ -21,11 +21,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
-    @UniqueElements(message = "Name should be unique") //todo комменты в коде // done
+    //todo комменты в коде
+    // done
     private String name;
-
 
     @Min(value = 1, message = "salary should be greater than 0")
     private int salary;

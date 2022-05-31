@@ -16,10 +16,6 @@ public enum EmployeePosition { //todo вынести в отдельный па�
         this.maxTasks = maxTasks;
     }
 
-    public String value() {
-        return name();
-    }
-
     public boolean isValidSalary(int salary) {
         return salary >= lowSalary && salary < highSalary;
     }

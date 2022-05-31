@@ -1,19 +1,15 @@
 package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeService;
-import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +39,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-
         return employeeRepository.save(employee);
     }
 

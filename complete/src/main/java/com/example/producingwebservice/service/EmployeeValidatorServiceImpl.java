@@ -32,6 +32,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     public String getViolationsMessage(Employee employee) {
         StringBuilder violationsMessage = new StringBuilder();
         //todo тут усложнено. Думаю можно сделать проще и читаться будет лучше
+        // done вынес переменную, вроде дал понятный нейминг, инкапсулировал два метода
         Set<ConstraintViolation<Employee>> employeeConstraintViolations = getConstraintViolations(employee);
         employeeConstraintViolations
                 .forEach(violation -> violationsMessage.append(violation.getMessageTemplate())
