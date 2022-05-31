@@ -10,19 +10,19 @@ public class EmployeeNotValidMessageService {
     private final MessageService messageService;
 
     public String getNotValidSalaryMessage(Employee employee) { //todo кириллица в коде. // done
-        return messageService.getMessage("AT_THE_POSITION")
-                + messageService.getMessage("INCOME_MUST_BE_IN_RANGE_OF")
+        return messageService.getMessage("validation.at.position")
+                + messageService.getMessage("validation.income.should.be.in.range.of")
                 + employee.getEmployeePosition().lowSalary
-                + messageService.getMessage("TO")
+                + messageService.getMessage("validation.to")
                 + employee.getEmployeePosition().highSalary
-                + messageService.getMessage("SENT_IN_A_REQUEST")
+                + messageService.getMessage("validation.sent.in.request")
                 + employee.getSalary();
     }
 
-    public String getNotValidCountsOfTasksMessage(Employee employee) { //todo кириллица в коде.
-        return messageService.getMessage("AT_THE_POSITION")
+    public String getNotValidCountsOfTasksMessage(Employee employee) { //todo кириллица в коде. // done
+        return messageService.getMessage("validation.at.position")
                 + messageService.getMessage(employee.getEmployeePosition())
-                + messageService.getMessage("THE_NUMBER_OF_TASKS_SHOULD_NOT_EXCEED")
+                + messageService.getMessage("validation.number.of.tasks.should.not.exceed")
                 + employee.getEmployeePosition().maxTasks;
     }
 

@@ -4,7 +4,7 @@ create table employee_db.employee
 (
     id                int8 not null,
     employee_position varchar(255),
-    name              varchar(255) unique ,
+    name              varchar(255),
     salary            int4 not null,
     primary key (id)
 );

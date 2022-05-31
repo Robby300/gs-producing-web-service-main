@@ -48,7 +48,7 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Employee employeeFromRepo,
-                                    @RequestBody @Valid Employee employee) {
+                                    @RequestBody Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
         BeanUtils.copyProperties(employee, employeeFromRepo, "id"); //todo это для чего ? // done копирование игнорируя id
         return save(employeeFromRepo);
