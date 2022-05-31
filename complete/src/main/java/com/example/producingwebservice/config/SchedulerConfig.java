@@ -14,9 +14,9 @@ public class SchedulerConfig {
     private final EmployeeRepository employeeRepository;
 
     @Scheduled(cron = "${scheduler.cron}")
-    public void deleteOneEmployeePerMinute() {
+    public void deleteOneEmployeePerMinute() { //todo у тебя название зависит от значения в аннотации то есть если поменять cron у тебя будет неожиданный результат
         List<Employee> all = employeeRepository.findAll();
-        if (all.size() > 0) {
+        if (all.size() > 0) { //todo волшебная цифра. Выведи в константу
             employeeRepository.delete(all.get(0));
         }
     }

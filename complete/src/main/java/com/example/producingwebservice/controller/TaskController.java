@@ -25,7 +25,7 @@ public class TaskController {
 
     @PostMapping()
     public void create(@RequestBody List<Task> tasks) {
-        log.info("Create new {} tasks", tasks.size());
+        log.info("Create new {} tasks", tasks.size()); //todo два подряд лога не очень. сделай один
         log.info("POST request received with parameter = {}", tasks);
         tasks.forEach(taskService::save);
     }

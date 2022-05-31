@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TaskRepository extends CrudRepository<Task, Long> {
     @Override
-    List<Task> findAll();
+    List<Task> findAll(); //todo зачем указывать если он есть по умолчанию ?
 }

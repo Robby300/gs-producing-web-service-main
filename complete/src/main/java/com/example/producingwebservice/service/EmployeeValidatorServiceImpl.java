@@ -31,6 +31,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     @Override
     public String getViolationsMessage(Employee employee) {
         StringBuilder result = new StringBuilder();
+        //todo тут усложнено. Думаю можно сделать проще и читаться будет лучше
         getConstraintViolations(employee)
                 .forEach(violation -> result.append(violation.getMessageTemplate())
                         .append(SEPARATOR));

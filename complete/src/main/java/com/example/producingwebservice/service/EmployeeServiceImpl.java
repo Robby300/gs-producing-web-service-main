@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
-    private final static String EMPLOYEE_CREATED = "New employee was created successfully";
-    private final static String EMPLOYEE_DELETED = "Employee was deleted Successfully";
-    private final static String EMPLOYEE_UPDATED = "Employee was updated successfully";
+    private final static String EMPLOYEE_CREATED = "New employee was created successfully"; //todo не используется
+    private final static String EMPLOYEE_DELETED = "Employee was deleted Successfully"; //todo не используется
+    private final static String EMPLOYEE_UPDATED = "Employee was updated successfully"; //todo не используется
     private final EmployeeRepository employeeRepository;
     private final EmployeeValidatorService employeeValidatorService;
 
@@ -33,6 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findAll();
     }
 
+    //todo Общие замечание
+    // не очень что методы возвращают ResponseEntity. Оборачивай в контроллере
     @Override
     @Validated
     public ResponseEntity<?> save(Employee employee) {
@@ -50,11 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ResponseEntity<?> saveAll(List<Employee> employees) {
+        //todo переносы в стриме + вынести в отдельную переменную. ЗАмечание при данной реализации
         return new ResponseEntity<>(employees.stream().map(this::save).collect(Collectors.toList()), HttpStatus.CREATED);
     }
 
     @Override
     public Employee getById(Long id) {
-        return employeeRepository.findById(id).orElseThrow(() ->new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+        return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
     }
 }

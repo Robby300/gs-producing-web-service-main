@@ -1,6 +1,6 @@
 package com.example.producingwebservice.domain;
 
-public enum EmployeePosition {
+public enum EmployeePosition { //todo вынести в отдельный пакет type
 
     DIRECTOR(150_000, 200_000, 4),
     MANAGER(100_000, 150_000, 3),

@@ -42,7 +42,7 @@ public class EmployeeController {
     public ResponseEntity<?> update(@PathVariable("id") Employee employeeFromRepo,
                                     @RequestBody @Valid Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
-        BeanUtils.copyProperties(employee, employeeFromRepo, "id");
+        BeanUtils.copyProperties(employee, employeeFromRepo, "id"); //todo это для чего ?
         return employeeService.save(employeeFromRepo);
     }
 

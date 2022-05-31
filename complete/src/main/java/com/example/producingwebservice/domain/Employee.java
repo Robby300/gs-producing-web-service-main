@@ -21,7 +21,7 @@ public class Employee {
 
 
     @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
-    //@UniqueElements(message = "Name should be unique")
+    //@UniqueElements(message = "Name should be unique") //todo комменты в коде
     private String name;
 
 
