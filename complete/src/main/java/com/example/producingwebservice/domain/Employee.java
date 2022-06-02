@@ -20,6 +20,8 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String uid;
+
     @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
     private String name;
 

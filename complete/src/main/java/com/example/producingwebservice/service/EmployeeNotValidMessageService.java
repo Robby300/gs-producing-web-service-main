@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class EmployeeNotValidMessageService {
     private final MessageService messageService;
 
-    public String getNotValidSalaryMessage(Employee employee) { //todo кириллица в коде. // done
+    public String getNotValidSalaryMessage(Employee employee) {
         return messageService.getMessage("validation.at.position")
                 + messageService.getMessage("validation.income.should.be.in.range.of")
                 + employee.getEmployeePosition().lowSalary
@@ -19,7 +19,7 @@ public class EmployeeNotValidMessageService {
                 + employee.getSalary();
     }
 
-    public String getNotValidCountsOfTasksMessage(Employee employee) { //todo кириллица в коде. // done
+    public String getNotValidCountsOfTasksMessage(Employee employee) {
         return messageService.getMessage("validation.at.position")
                 + messageService.getMessage(employee.getEmployeePosition())
                 + messageService.getMessage("validation.number.of.tasks.should.not.exceed")

@@ -70,6 +70,8 @@ dependencies {
     implementation "ch.qos.logback:logback-core:1.2.3"
     implementation "ch.qos.logback:logback-classic:1.2.3"
 
+    implementation 'org.springframework.kafka:spring-kafka:2.8.6'
+
     implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
     implementation "org.flywaydb:flyway-core:7.15.0"
     implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
