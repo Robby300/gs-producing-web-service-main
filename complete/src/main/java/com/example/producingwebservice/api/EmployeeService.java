@@ -9,10 +9,10 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> findAll();
 
+    void deleteByUuid(String uuid);
+
     @Validated
     Employee save(@Valid Employee employee);
 
-    void delete(Employee employee);
-
-    Employee getById(Long id);
+    Employee getByUuid(String uuid);
 }

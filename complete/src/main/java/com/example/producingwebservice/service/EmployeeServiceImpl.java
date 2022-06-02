@@ -4,12 +4,14 @@ import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
+import com.example.producingwebservice.service.kafkaService.ProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
     private final EmployeeRepository employeeRepository;
+    private final ProducerService producerService;
 
 
     @Override
@@ -27,17 +30,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void delete(Employee employee) {
-        employeeRepository.delete(employee);
+    public void deleteByUuid(String uuid) {
+        employeeRepository.deleteEmployeeByUuid(uuid);
     }
 
     @Override
     public Employee save(Employee employee) {
+        employee.setUuid(UUID.randomUUID().toString());
+        producerService.produce(employee);
         return employeeRepository.save(employee);
     }
 
     @Override
-    public Employee getById(Long id) {
-        return employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+    public Employee getByUuid(String uuid) {
+        return employeeRepository.findEmployeeByUuid(uuid).orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
     }
 }

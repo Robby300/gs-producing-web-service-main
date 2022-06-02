@@ -38,38 +38,41 @@ public class EmployeeController {
         return new ResponseEntity<>(responseEntities, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public Employee getById(@PathVariable("id") Long id) {
-        log.info("Get employee by id = {}", id);
-        return employeeService.getById(id);
+    @GetMapping("/{uuid}")
+    public Employee getByUuid(@PathVariable("uuid") String uuid) {
+        log.info("Get employee by uuid = {}", uuid);
+        return employeeService.getByUuid(uuid);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") Employee employeeFromRepo,
+    @PutMapping("/{uuid}")
+    public ResponseEntity<?> update(@PathVariable("uuid") String uuid,
                                     @RequestBody Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
-        BeanUtils.copyProperties(employee, employeeFromRepo, "id");
+        Employee employeeFromRepo = employeeService.getByUuid(uuid);
+        BeanUtils.copyProperties(employee, employeeFromRepo, "id", "uuid");
         return save(employeeFromRepo);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Employee employee) {
-        log.info("Delete employee by id = {}", employee.getId());
-        employeeService.delete(employee);
+    @DeleteMapping("/{uuid}")
+    public void delete(@PathVariable String uuid) {
+        log.info("Delete employee by uuid = {}", uuid);
+        employeeService.deleteByUuid(uuid);
     }
 
-    @PutMapping("/{employee_id}/task/{task_id}")
-    public Employee assignTask(@PathVariable("employee_id") Employee employee,
+    @PutMapping("/{uuid}/task/{task_id}")
+    public Employee assignTask(@PathVariable("uuid") String uuid,
                                @PathVariable("task_id") Task task) {
-        log.info("Assign task id = {} to employee by id = {}", task.getId(), employee.getId());
+        log.info("Assign task id = {} to employee by uuid = {}", task.getId(), uuid);
+        Employee employee = employeeService.getByUuid(uuid);
         employee.getTasks().add(task);
         return employeeService.save(employee);
     }
 
-    @DeleteMapping("/{employee_id}/task/{task_id}")
-    public Employee unAssignTask(@PathVariable("employee_id") Employee employee,
+    @DeleteMapping("/{uuid}/task/{task_id}")
+    public Employee unAssignTask(@PathVariable("uuid") String uuid,
                                  @PathVariable("task_id") Task task) {
-        log.info("Unassigned task id = {} to employee by id = {}", task.getId(), employee.getId());
+        log.info("Unassigned task id = {} to employee by uuid = {}", task.getId(), uuid);
+        Employee employee = employeeService.getByUuid(uuid);
         employee.getTasks().remove(task);
         return employeeService.save(employee);
     }
@@ -81,5 +84,4 @@ public class EmployeeController {
             return new ResponseEntity<>(employeeValidatorService.getViolationsMessage(employee), HttpStatus.FORBIDDEN);
         }
     }
-
 }
