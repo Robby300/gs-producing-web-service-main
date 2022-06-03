@@ -1,5 +1,6 @@
 package com.example.producingwebservice.domain;
 
+import com.example.producingwebservice.type.ResponseStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmployeeResponse {
-    private String status;
+    private ResponseStatus responseStatus;
     private String message;
     private Employee employee;
 }

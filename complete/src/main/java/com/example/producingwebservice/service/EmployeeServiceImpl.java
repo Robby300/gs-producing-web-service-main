@@ -1,11 +1,13 @@
 package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeService;
+import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import com.example.producingwebservice.service.kafkaService.ProducerService;
+import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ProducerService producerService;
 
+    private final EmployeeValidatorService employeeValidatorService;
+
 
     @Override
     public List<Employee> findAll() {
@@ -37,9 +41,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponse save(Employee employee) {
-        employee.setUuid(UUID.randomUUID().toString());
-        producerService.produce(employee);
-        return EmployeeResponse.builder().status("ok").message("message").employee(employee).build();
+        EmployeeResponse employeeResponse = employeeValidatorService.validate(employee);
+
+        if (employeeResponse.getResponseStatus() == ResponseStatus.SUCCESS) {
+            employee.setUuid(UUID.randomUUID().toString());
+            producerService.produce(employee);
+        }
+        return employeeResponse;
     }
 
     @Override

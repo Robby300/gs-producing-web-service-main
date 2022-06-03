@@ -71,7 +71,7 @@ public class EmployeeController {
 
     @DeleteMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
-                                 @PathVariable("task_id") Task task) {
+                                         @PathVariable("task_id") Task task) {
         log.info("Unassigned task id = {} to employee by uuid = {}", task.getId(), uuid);
         Employee employee = employeeService.getByUuid(uuid);
         employee.getTasks().remove(task);

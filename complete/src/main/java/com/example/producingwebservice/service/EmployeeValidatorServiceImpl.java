@@ -2,18 +2,15 @@ package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.type.EmployeePosition;
+import com.example.producingwebservice.domain.EmployeeResponse;
+import com.example.producingwebservice.type.Position;
+import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import java.util.Set;
-
-import static javax.validation.Validation.buildDefaultValidatorFactory;
-
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
@@ -21,69 +18,66 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
     private final MessageService messageService;
 
+    private final StringBuilder message = new StringBuilder();
+
     @Override
     public boolean isValidInput(Employee employee) {
-        if (isNotValidSalary(employee) || isNotValidCountOfTasks(employee)) {
-            return false;
+        boolean isValid = true;
+        if (employee.getName() == null) {
+            isValid = false;
+            employee.setName(employeeNotValidMessageService.getNotNullMessage());
         }
-        return getConstraintViolations(employee).isEmpty();
+        if (employee.getSalary() == null) {
+            isValid = false;
+            employee.setSalary(employeeNotValidMessageService.getNotNullMessage());
+        }
+        if (employee.getName().length() < 3 || employee.getName().length() > 32) {
+            isValid = false;
+            employee.setName(employeeNotValidMessageService.getNotValidNameLength());
+        }
+        if (isNotValidCountOfTasks(employee)) {
+            isValid = false;
+            message.append(employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee))
+                    .append(SEPARATOR);
+        }
+        if (isNotValidSalaryByPosition(employee)) {
+            isValid = false;
+            message.append(employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee))
+                    .append(SEPARATOR);
+        }
+        return isValid;
+    }
+
+
+
+    private boolean isNotValidCountOfTasks(Employee employee) {
+        Position position = employee.getPosition();
+        return !position.isValidCountOfTasks(employee.getTasks().size());
+    }
+
+    private boolean isNotValidSalaryByPosition(Employee employee) {
+        return !employee.getPosition().isValidSalary(employee.getSalary());
     }
 
     @Override
-    public String getViolationsMessage(Employee employee) {
-        StringBuilder violationsMessage = new StringBuilder();
-        Set<ConstraintViolation<Employee>> employeeConstraintViolations = getConstraintViolations(employee);
-        employeeConstraintViolations
-                .forEach(violation -> violationsMessage.append(violation.getMessageTemplate())
-                        .append(SEPARATOR));
-        addNotValidSalaryMessage(employee, violationsMessage);
-        addNotValidCountsOfTasksMessage(employee, violationsMessage);
-        return violationsMessage.toString();
-    }
+    public EmployeeResponse validate(Employee employee) {
 
-    private Set<ConstraintViolation<Employee>> getConstraintViolations(Employee employee) {
-        Validator validator;
-        try (ValidatorFactory factory = buildDefaultValidatorFactory()) {
-            validator = factory.getValidator();
+        if (isValidInput(employee)) {
+            log.debug("Employee {} passed check", employee);
+
+            return EmployeeResponse.builder()
+                    .responseStatus(ResponseStatus.FAILURE)
+                    .message("Employee accepted")
+                    .employee(employee)
+                    .build();
         }
-        return validator.validate(employee);
-    }
 
-    private boolean isNotValidCountOfTasks(Employee employee) {
-        EmployeePosition employeePosition = employee.getEmployeePosition();
-        return !employeePosition.isValidCountOfTasks(employee.getTasks().size());
-    }
+        log.debug("Employee {} failed verification and will not be added", employee);
+        return EmployeeResponse.builder()
+                .responseStatus(ResponseStatus.SUCCESS)
+                .message(message.capacity() > 0 ? message.toString():"Employee not valid")
+                .employee(employee)
+                .build();
 
-    private boolean isNotValidSalary(Employee employee) {
-        return !employee.getEmployeePosition().isValidSalary(employee.getSalary());
-    }
-
-    private void addNotValidCountsOfTasksMessage(Employee employee, StringBuilder result) {
-        if (isNotValidCountOfTasks(employee)) {
-            result.append(employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee)).append(SEPARATOR);
-        }
-    }
-
-    private void addNotValidSalaryMessage(Employee employee, StringBuilder result) {
-        if (isNotValidSalary(employee)) {
-            result.append(employeeNotValidMessageService.getNotValidSalaryMessage(employee)).append(SEPARATOR);
-        }
-    }
-
-    public String getNotValidSalaryMessage(Employee employee) {
-        return messageService.getMessage("validation.at.position")
-                + messageService.getMessage("validation.income.should.be.in.range.of")
-                + employee.getEmployeePosition().lowSalary
-                + messageService.getMessage("validation.to")
-                + employee.getEmployeePosition().highSalary
-                + messageService.getMessage("validation.sent.in.request")
-                + employee.getSalary();
-    }
-
-    public String getNotValidCountsOfTasksMessage(Employee employee) {
-        return messageService.getMessage("validation.at.position")
-                + messageService.getMessage(employee.getEmployeePosition())
-                + messageService.getMessage("validation.number.of.tasks.should.not.exceed")
-                + employee.getEmployeePosition().maxTasks;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.producingwebservice.domain;
 
-import com.example.producingwebservice.type.EmployeePosition;
+import com.example.producingwebservice.type.Position;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,18 +19,12 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String uuid;
-
-    @Size(min = 3, max = 32, message = "Name should be between 2 and 32 characters")
     private String name;
+    private String salary;
 
-    @Min(value = 1, message = "salary should be greater than 0")
-    private int salary;
-
-    @NotNull(message = "Please provide a position")
     @Enumerated(EnumType.STRING)
-    private EmployeePosition employeePosition;
+    private Position position;
 
     @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
