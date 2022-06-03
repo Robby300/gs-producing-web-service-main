@@ -17,8 +17,8 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     public static final String SEPARATOR = "; ";
     public static final int MIN_NAME_LENGTH = 3;
     public static final int MAX_NAME_LENGTH = 32;
-    public static final String EMPLOYEE_ACCEPTED = "Employee accepted";
-    public static final String EMPLOYEE_NOT_VALID = "Employee not valid";
+    public static final String EMPLOYEE_ACCEPTED = "Employee accepted";     //todo поместить в ResourceBundle
+    public static final String EMPLOYEE_NOT_VALID = "Employee not valid"; //todo поместить в ResourceBundle
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
 
     private final StringBuilder messageBuilder = new StringBuilder();

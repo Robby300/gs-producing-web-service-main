@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class EmployeeNotValidMessageService {
+
+    //todo поместить в ResourceBundle
     public static final String SALARY_SHOULD_BE_GREATER_THAN_0 = "salary should be greater than 0";
     public static final String FIELD_SHOULD_NOT_BE_NULL = "field should not be null";
     public static final String NAME_SHOULD_BE_BETWEEN_3_AND_32_CHARACTERS = "Name should be between 3 and 32 characters";

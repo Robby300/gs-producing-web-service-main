@@ -1,5 +1,5 @@
 package com.example.producingwebservice.service.kafkaservice;
-
+//todo переименовать пакет в kafka и переместить на уровень выше
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
