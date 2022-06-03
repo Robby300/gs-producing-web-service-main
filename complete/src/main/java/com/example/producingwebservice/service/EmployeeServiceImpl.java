@@ -2,6 +2,7 @@ package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import com.example.producingwebservice.service.kafkaService.ProducerService;
@@ -35,10 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee save(Employee employee) {
+    public EmployeeResponse save(Employee employee) {
         employee.setUuid(UUID.randomUUID().toString());
         producerService.produce(employee);
-        return employeeRepository.save(employee);
+        return EmployeeResponse.builder().status("ok").message("message").employee(employee).build();
     }
 
     @Override

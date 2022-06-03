@@ -3,6 +3,7 @@ package com.example.producingwebservice.controller;
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.domain.Task;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -60,8 +61,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/{uuid}/task/{task_id}")
-    public Employee assignTask(@PathVariable("uuid") String uuid,
-                               @PathVariable("task_id") Task task) {
+    public EmployeeResponse assignTask(@PathVariable("uuid") String uuid,
+                                       @PathVariable("task_id") Task task) {
         log.info("Assign task id = {} to employee by uuid = {}", task.getId(), uuid);
         Employee employee = employeeService.getByUuid(uuid);
         employee.getTasks().add(task);
@@ -69,7 +70,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{uuid}/task/{task_id}")
-    public Employee unAssignTask(@PathVariable("uuid") String uuid,
+    public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
                                  @PathVariable("task_id") Task task) {
         log.info("Unassigned task id = {} to employee by uuid = {}", task.getId(), uuid);
         Employee employee = employeeService.getByUuid(uuid);

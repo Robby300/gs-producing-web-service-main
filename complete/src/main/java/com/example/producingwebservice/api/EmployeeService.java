@@ -1,6 +1,7 @@
 package com.example.producingwebservice.api;
 
 import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.domain.EmployeeResponse;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
@@ -12,7 +13,7 @@ public interface EmployeeService {
     void deleteByUuid(String uuid);
 
     @Validated
-    Employee save(@Valid Employee employee);
+    EmployeeResponse save(@Valid Employee employee);
 
     Employee getByUuid(String uuid);
 }

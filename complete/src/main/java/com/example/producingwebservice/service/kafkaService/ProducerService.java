@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProducerService {
     private final KafkaTemplate<String, Employee> kafkaTemplate;
-    @Value("${topic.add}")
+    @Value("${topic.save}")
     private String topicAdd;
 
     public void produce(Employee employee) {

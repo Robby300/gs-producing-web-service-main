@@ -85,8 +85,8 @@ dependencies {
 
 }
 
-test {
-    useJUnitPlatform()
-}
+//test {
+//    useJUnitPlatform()
+//}
 // end::dependencies[]
 targetCompatibility = JavaVersion.VERSION_11
