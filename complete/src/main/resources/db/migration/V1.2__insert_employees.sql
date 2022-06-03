@@ -1,18 +1,18 @@
 
 -- insert all test employees
-INSERT INTO employee_db.employee (id, employee_position, name, salary)
-VALUES (1, 'WORKER', 'Ivan', 55000),
-       (2, 'MANAGER', 'Sergey', 105000),
-       (3, 'DIRECTOR', 'Aleksandr', 155000),
-       (4, 'WORKER', 'Igor', 55000),
-       (5, 'MANAGER', 'Aleksey', 105000),
-       (6,  'DIRECTOR', 'Petr', 155000),
-       (7, 'WORKER', 'Vasiliy', 55000),
-       (8, 'MANAGER', 'Ilya', 105000),
-       (9, 'DIRECTOR', 'Anatoliy', 155000),
-       (10, 'WORKER', 'Andrey', 55000),
-       (11, 'MANAGER', 'Boris', 105000),
-       (12,  'DIRECTOR', 'Abdulla', 155000);
+INSERT INTO employee_db.employee (id, position, name, uuid, salary)
+VALUES (1, 'WORKER', 'Ivan', 'dfhssfhtr', '55000'),
+       (2, 'MANAGER', 'Sergey', 'rsdhteh', '105000'),
+       (3, 'DIRECTOR', 'Aleksandr', 'ragraskbf','155000'),
+       (4, 'WORKER', 'Igor', 'ewirkn348', '55000'),
+       (5, 'MANAGER', 'Aleksey', 'dsgwreiyb7', '105000'),
+       (6,  'DIRECTOR', 'Petr', 'rdjiunywat', '155000'),
+       (7, 'WORKER', 'Vasiliy', 'zseuayoewo5979', '55000'),
+       (8, 'MANAGER', 'Ilya', 'elarnvds4', '105000'),
+       (9, 'DIRECTOR', 'Anatoliy', 'adskbugfybure', '155000'),
+       (10, 'WORKER', 'Andrey', 'adfuker748', '55000'),
+       (11, 'MANAGER', 'Boris', 'cxzfbdhzkbfs50-', '105000'),
+       (12,  'DIRECTOR', 'Abdulla', 'fshrenkgs', '155000');
 
 -- insert all test tasks
 INSERT INTO task (id, description)

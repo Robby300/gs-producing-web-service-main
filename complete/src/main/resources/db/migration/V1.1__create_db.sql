@@ -3,9 +3,10 @@ create schema if not exists employee_db;
 create table employee_db.employee
 (
     id                int8 not null,
-    employee_position varchar(255),
+    position varchar(255),
     name              varchar(255),
-    salary            int4 not null,
+    uuid              varchar(255),
+    salary            varchar(255),
     primary key (id)
 );
 
