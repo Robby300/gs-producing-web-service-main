@@ -1,4 +1,4 @@
-package com.example.producingwebservice.service;
+package com.example.producingwebservice.service.validator;
 
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
@@ -15,13 +15,15 @@ import org.springframework.stereotype.Service;
 public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     public static final String SEPARATOR = "; ";
+    public static final int MIN_NAME_LENGTH = 3;
+    public static final int MAX_NAME_LENGTH = 32;
+    public static final String EMPLOYEE_ACCEPTED = "Employee accepted";
+    public static final String EMPLOYEE_NOT_VALID = "Employee not valid";
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
-    private final MessageService messageService;
 
-    private final StringBuilder message = new StringBuilder();
+    private final StringBuilder messageBuilder = new StringBuilder();
 
-    @Override
-    public boolean isValidInput(Employee employee) {
+    private boolean isValidInput(Employee employee) {
         boolean isValid = true;
         if (employee.getName() == null) {
             isValid = false;
@@ -31,24 +33,36 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
             isValid = false;
             employee.setSalary(employeeNotValidMessageService.getNotNullMessage());
         }
-        if (employee.getName().length() < 3 || employee.getName().length() > 32) {
+        try {
+            int salary = Integer.parseInt(employee.getSalary());
+            if (salary == 0) {
+                isValid = false;
+                employee.setSalary(employeeNotValidMessageService.getNotValidSalaryMessage());
+            }
+        } catch (NumberFormatException e) {
+            isValid = false;
+            employee.setSalary(employeeNotValidMessageService.getSalaryNotANumber());
+        }
+
+        if (employee.getName().length() < MIN_NAME_LENGTH || employee.getName().length() > MAX_NAME_LENGTH) {
             isValid = false;
             employee.setName(employeeNotValidMessageService.getNotValidNameLength());
         }
+        if (employee.getPosition() == null) {
+            isValid = false;
+            messageBuilder.append("Position: ").append(employeeNotValidMessageService.getNotNullMessage());
+        }
         if (isNotValidCountOfTasks(employee)) {
             isValid = false;
-            message.append(employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee))
+            messageBuilder.append(employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee))
                     .append(SEPARATOR);
         }
         if (isNotValidSalaryByPosition(employee)) {
             isValid = false;
-            message.append(employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee))
-                    .append(SEPARATOR);
+            employee.setSalary(employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee));
         }
         return isValid;
     }
-
-
 
     private boolean isNotValidCountOfTasks(Employee employee) {
         Position position = employee.getPosition();
@@ -64,20 +78,20 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
         if (isValidInput(employee)) {
             log.debug("Employee {} passed check", employee);
-
             return EmployeeResponse.builder()
-                    .responseStatus(ResponseStatus.FAILURE)
-                    .message("Employee accepted")
+                    .responseStatus(ResponseStatus.SUCCESS)
+                    .message(EMPLOYEE_ACCEPTED)
                     .employee(employee)
                     .build();
         }
 
         log.debug("Employee {} failed verification and will not be added", employee);
+        String message = messageBuilder.toString();
+        messageBuilder.setLength(0);
         return EmployeeResponse.builder()
-                .responseStatus(ResponseStatus.SUCCESS)
-                .message(message.capacity() > 0 ? message.toString():"Employee not valid")
+                .responseStatus(ResponseStatus.FAILURE)
+                .message(message.isEmpty() ? EMPLOYEE_NOT_VALID : message)
                 .employee(employee)
                 .build();
-
     }
 }

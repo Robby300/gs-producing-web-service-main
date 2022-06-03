@@ -1,6 +1,5 @@
-package com.example.producingwebservice.service.kafkaService;
+package com.example.producingwebservice.service.kafkaservice;
 
-import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;

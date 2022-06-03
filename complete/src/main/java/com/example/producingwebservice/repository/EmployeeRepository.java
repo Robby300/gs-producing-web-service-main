@@ -12,8 +12,9 @@ import java.util.Optional;
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Override
     List<Employee> findAll();
-    boolean existsByUuid(String uuid);
+
     Optional<Employee> findEmployeeByUuid(String uuid);
+
     void deleteEmployeeByUuid(String uuid);
 
 }

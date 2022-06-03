@@ -1,7 +1,6 @@
 package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.EmployeeService;
-import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.domain.Task;
@@ -21,9 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("api/v1.0/employees")
 public class EmployeeController {
 
-
     private final EmployeeService employeeService;
-    private final EmployeeValidatorService employeeValidatorService;
 
     @GetMapping()
     public List<Employee> findAll() {
@@ -31,12 +28,12 @@ public class EmployeeController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> saveAll(@RequestBody List<Employee> employees) {
-        List<ResponseEntity<?>> responseEntities = employees
+    public ResponseEntity<List<EmployeeResponse>> saveAll(@RequestBody List<Employee> employees) {
+        List<EmployeeResponse> employeeResponses = employees
                 .stream()
-                .map(this::save)
+                .map(employeeService::save)
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(responseEntities, HttpStatus.CREATED);
+        return new ResponseEntity<>(employeeResponses, HttpStatus.CREATED);
     }
 
     @GetMapping("/{uuid}")
@@ -46,12 +43,12 @@ public class EmployeeController {
     }
 
     @PutMapping("/{uuid}")
-    public ResponseEntity<?> update(@PathVariable("uuid") String uuid,
-                                    @RequestBody Employee employee) {
+    public EmployeeResponse update(@PathVariable("uuid") String uuid,
+                                   @RequestBody Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
         Employee employeeFromRepo = employeeService.getByUuid(uuid);
         BeanUtils.copyProperties(employee, employeeFromRepo, "id", "uuid");
-        return save(employeeFromRepo);
+        return employeeService.save(employeeFromRepo);
     }
 
     @DeleteMapping("/{uuid}")
@@ -78,11 +75,4 @@ public class EmployeeController {
         return employeeService.save(employee);
     }
 
-    private ResponseEntity<?> save(Employee employee) {
-        if (employeeValidatorService.isValidInput(employee)) {
-            return new ResponseEntity<>(employeeService.save(employee), HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(employeeValidatorService.getViolationsMessage(employee), HttpStatus.FORBIDDEN);
-        }
-    }
 }

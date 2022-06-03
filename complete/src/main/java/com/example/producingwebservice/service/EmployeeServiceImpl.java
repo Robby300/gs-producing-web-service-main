@@ -6,7 +6,7 @@ import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
-import com.example.producingwebservice.service.kafkaService.ProducerService;
+import com.example.producingwebservice.service.kafkaservice.ProducerService;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ import java.util.UUID;
 @Validated
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final static String ID_NOT_FOUND_MESSAGE = "Id not found";
+    private static final String ID_NOT_FOUND_MESSAGE = "Id not found";
     private final EmployeeRepository employeeRepository;
     private final ProducerService producerService;
 
@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeResponse employeeResponse = employeeValidatorService.validate(employee);
 
         if (employeeResponse.getResponseStatus() == ResponseStatus.SUCCESS) {
-            employee.setUuid(UUID.randomUUID().toString());
+            generateUuid(employee);
             producerService.produce(employee);
         }
         return employeeResponse;
@@ -53,5 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getByUuid(String uuid) {
         return employeeRepository.findEmployeeByUuid(uuid).orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+    }
+
+    private void generateUuid(Employee employee) {
+        if (employee.getUuid() == null) {
+            employee.setUuid(UUID.randomUUID().toString());
+        }
     }
 }

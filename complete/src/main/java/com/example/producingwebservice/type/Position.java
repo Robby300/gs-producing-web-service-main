@@ -17,7 +17,7 @@ public enum Position {
     }
 
     public boolean isValidSalary(String salary) {
-        Integer salaryNum = Integer.getInteger(salary);
+        int salaryNum = Integer.parseInt(salary);
         return salaryNum >= lowSalary && salaryNum < highSalary;
     }
 

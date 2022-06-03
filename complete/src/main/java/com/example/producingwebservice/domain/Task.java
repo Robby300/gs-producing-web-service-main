@@ -13,10 +13,8 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class Task {
-
     @Id
     @GeneratedValue
     private Long id;
-
     private String description;
 }

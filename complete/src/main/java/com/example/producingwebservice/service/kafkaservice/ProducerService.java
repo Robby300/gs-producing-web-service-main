@@ -1,4 +1,4 @@
-package com.example.producingwebservice.service.kafkaService;
+package com.example.producingwebservice.service.kafkaservice;
 
 
 import com.example.producingwebservice.domain.Employee;
@@ -18,10 +18,8 @@ public class ProducerService {
 
     public void produce(Employee employee) {
         log.info("The produce got employee: {}", employee);
-
         kafkaTemplate.send(topicAdd, employee.getUuid(), employee);
         kafkaTemplate.flush();
-
         log.debug("Topic posted");
     }
 }
