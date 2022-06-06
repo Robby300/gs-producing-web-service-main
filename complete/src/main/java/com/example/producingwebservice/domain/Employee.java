@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Builder
+@ToString(exclude = {"id", "uuid"})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

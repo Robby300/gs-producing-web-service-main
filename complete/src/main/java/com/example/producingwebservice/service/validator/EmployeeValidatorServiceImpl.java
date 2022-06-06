@@ -10,6 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -21,48 +25,79 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
     private final MessageService messageService;
 
-    private final StringBuilder messageBuilder = new StringBuilder();
+    @Override
+    public EmployeeResponse validate(Employee employee) {
 
-    private boolean isValidInput(Employee employee) {
-        boolean isValid = true;
-        //todo перевести все if в приватные методы
-        if (employee.getName() == null) {
-            isValid = false;
-            employee.setName(employeeNotValidMessageService.getNotNullMessage());
+        if (getPayLoadMessage(employee).isEmpty()) {
+            log.debug("Employee {} passed check", employee);
+            return getResponseBuild(employee.toString(), ResponseStatus.SUCCESS, "validation.employee.accepted");
         }
+
+        log.debug("Employee {} failed verification and will not be added", employee);
+        return getResponseBuild(getPayLoadMessage(employee), ResponseStatus.FAILURE, "validation.employee.not.valid");
+    }
+
+    private String getPayLoadMessage(Employee employee) {
+
+        return Stream.of(checkNameByNull(employee),
+                        checkSalary(employee),
+                        checkNameLength(employee),
+                        checkPositionByNull(employee),
+                        checkCountOfTasks(employee),
+                        checkSalaryByPosition(employee))
+                .filter(Objects::nonNull)
+                .map(Objects::toString)
+                .collect(Collectors.joining(SEPARATOR));
+    }
+
+    private String checkSalaryByPosition(Employee employee) {
+        if (isNotValidSalaryByPosition(employee)) {
+            return employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee);
+        }
+        return null;
+    }
+
+    private String checkCountOfTasks(Employee employee) {
+        if (isNotValidCountOfTasks(employee)) {
+            return employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee);
+        }
+        return null;
+    }
+
+    private String checkPositionByNull(Employee employee) {
+        if (employee.getPosition() == null) {
+            return employeeNotValidMessageService.getNotNullMessage("Position");
+        }
+        return null;
+    }
+
+    private String checkNameLength(Employee employee) {
+        if (employee.getName().length() < MIN_NAME_LENGTH || employee.getName().length() > MAX_NAME_LENGTH) {
+            return employeeNotValidMessageService.getNotValidNameLength();
+        }
+        return null;
+    }
+
+    private String checkSalary(Employee employee) {
         if (employee.getSalary() == null) {
-            isValid = false;
-            employee.setSalary(employeeNotValidMessageService.getNotNullMessage());
+            return employeeNotValidMessageService.getNotNullMessage("Salary");
         }
         try {
             int salary = Integer.parseInt(employee.getSalary());
             if (salary <= 0) {
-                isValid = false;
-                employee.setSalary(employeeNotValidMessageService.getNotValidSalaryMessage());
+                return employeeNotValidMessageService.getNotValidSalaryMessage();
             }
         } catch (NumberFormatException e) {
-            isValid = false;
-            employee.setSalary(employeeNotValidMessageService.getSalaryNotANumber());
+            return employeeNotValidMessageService.getSalaryNotANumber();
         }
+        return null;
+    }
 
-        if (employee.getName().length() < MIN_NAME_LENGTH || employee.getName().length() > MAX_NAME_LENGTH) {
-            isValid = false;
-            employee.setName(employeeNotValidMessageService.getNotValidNameLength());
+    private String checkNameByNull(Employee employee) {
+        if (employee.getName() == null) {
+            return employeeNotValidMessageService.getNotNullMessage("name");
         }
-        if (employee.getPosition() == null) {
-            isValid = false;
-            messageBuilder.append("Position: ").append(employeeNotValidMessageService.getNotNullMessage());
-        }
-        if (isNotValidCountOfTasks(employee)) {
-            isValid = false;
-            messageBuilder.append(employeeNotValidMessageService.getNotValidCountsOfTasksMessage(employee))
-                    .append(SEPARATOR);
-        }
-        if (isNotValidSalaryByPosition(employee)) {
-            isValid = false;
-            employee.setSalary(employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee));
-        }
-        return isValid;
+        return null;
     }
 
     private boolean isNotValidCountOfTasks(Employee employee) {
@@ -74,25 +109,11 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
         return !employee.getPosition().isValidSalary(employee.getSalary());
     }
 
-    @Override
-    public EmployeeResponse validate(Employee employee) {
-
-        if (isValidInput(employee)) {
-            log.debug("Employee {} passed check", employee);
-            return EmployeeResponse.builder()
-                    .responseStatus(ResponseStatus.SUCCESS)
-                    .message(messageService.getMessage("validation.employee.accepted"))
-                    .employee(employee)
-                    .build();
-        }
-
-        log.debug("Employee {} failed verification and will not be added", employee);
-        String message = messageBuilder.toString();
-        messageBuilder.setLength(0);
+    private EmployeeResponse getResponseBuild(String payLoad, ResponseStatus status, String message) {
         return EmployeeResponse.builder()
-                .responseStatus(ResponseStatus.FAILURE)
-                .message(message.isEmpty() ? messageService.getMessage("validation.employee.not.valid") : message)
-                .employee(employee)
+                .responseStatus(status)
+                .message(messageService.getMessage(message))
+                .payLoad(payLoad)
                 .build();
     }
 }

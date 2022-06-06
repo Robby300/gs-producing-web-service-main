@@ -11,5 +11,5 @@ import lombok.Setter;
 public class EmployeeResponse {
     private ResponseStatus responseStatus;
     private String message;
-    private Employee employee;
+    private String payLoad;
 }
