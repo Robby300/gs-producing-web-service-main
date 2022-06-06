@@ -15,5 +15,5 @@ public interface EmployeeService {
     @Validated
     EmployeeResponse save(@Valid Employee employee);
 
-    Employee findByUuid(String uuid); //todo название findByUuid. Потому что идет именно поиск // done
+    Employee findByUuid(String uuid);
 }

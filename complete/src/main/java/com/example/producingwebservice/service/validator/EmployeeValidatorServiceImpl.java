@@ -18,10 +18,6 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     public static final String SEPARATOR = "; ";
     public static final int MIN_NAME_LENGTH = 3;
     public static final int MAX_NAME_LENGTH = 32;
-    //todo поместить в ResourceBundle
-    // done
-    //todo поместить в ResourceBundle
-    // done
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
     private final MessageService messageService;
 
@@ -29,6 +25,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     private boolean isValidInput(Employee employee) {
         boolean isValid = true;
+        //todo перевести все if в приватные методы
         if (employee.getName() == null) {
             isValid = false;
             employee.setName(employeeNotValidMessageService.getNotNullMessage());
