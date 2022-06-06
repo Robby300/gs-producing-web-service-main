@@ -39,14 +39,14 @@ public class EmployeeController {
     @GetMapping("/{uuid}")
     public Employee getByUuid(@PathVariable("uuid") String uuid) {
         log.info("Get employee by uuid = {}", uuid);
-        return employeeService.getByUuid(uuid);
+        return employeeService.findByUuid(uuid);
     }
 
     @PutMapping("/{uuid}")
     public EmployeeResponse update(@PathVariable("uuid") String uuid,
                                    @RequestBody Employee employee) {
         log.info("Update employee by id = {}", employee.getId());
-        Employee employeeFromRepo = employeeService.getByUuid(uuid);
+        Employee employeeFromRepo = employeeService.findByUuid(uuid);
         BeanUtils.copyProperties(employee, employeeFromRepo, "id", "uuid");
         return employeeService.save(employeeFromRepo);
     }
@@ -61,7 +61,7 @@ public class EmployeeController {
     public EmployeeResponse assignTask(@PathVariable("uuid") String uuid,
                                        @PathVariable("task_id") Task task) {
         log.info("Assign task id = {} to employee by uuid = {}", task.getId(), uuid);
-        Employee employee = employeeService.getByUuid(uuid);
+        Employee employee = employeeService.findByUuid(uuid);
         employee.getTasks().add(task);
         return employeeService.save(employee);
     }
@@ -70,9 +70,8 @@ public class EmployeeController {
     public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
                                          @PathVariable("task_id") Task task) {
         log.info("Unassigned task id = {} to employee by uuid = {}", task.getId(), uuid);
-        Employee employee = employeeService.getByUuid(uuid);
+        Employee employee = employeeService.findByUuid(uuid);
         employee.getTasks().remove(task);
         return employeeService.save(employee);
     }
-
 }

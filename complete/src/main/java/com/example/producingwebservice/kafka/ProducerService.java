@@ -1,4 +1,4 @@
-package com.example.producingwebservice.service.kafkaservice;
+package com.example.producingwebservice.kafka;
 
 
 import com.example.producingwebservice.domain.Employee;

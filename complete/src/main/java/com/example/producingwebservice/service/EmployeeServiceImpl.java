@@ -6,7 +6,7 @@ import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.repository.EmployeeRepository;
-import com.example.producingwebservice.service.kafkaservice.ProducerService;
+import com.example.producingwebservice.kafka.ProducerService;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getByUuid(String uuid) {
+    public Employee findByUuid(String uuid) {
         return employeeRepository.findEmployeeByUuid(uuid).orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
     }
 

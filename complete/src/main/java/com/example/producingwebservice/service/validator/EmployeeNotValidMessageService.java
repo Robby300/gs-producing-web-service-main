@@ -10,18 +10,16 @@ import org.springframework.stereotype.Service;
 public class EmployeeNotValidMessageService {
 
     //todo поместить в ResourceBundle
-    public static final String SALARY_SHOULD_BE_GREATER_THAN_0 = "salary should be greater than 0";
-    public static final String FIELD_SHOULD_NOT_BE_NULL = "field should not be null";
-    public static final String NAME_SHOULD_BE_BETWEEN_3_AND_32_CHARACTERS = "Name should be between 3 and 32 characters";
-    public static final String SALARY_NOT_A_NUMBER = "Salary not a number";
+    // done
+
     private final MessageService messageService;
 
     public String getNotValidSalaryMessage() {
-        return SALARY_SHOULD_BE_GREATER_THAN_0;
+        return messageService.getMessage("validation.salary.size");
     }
 
     public String getSalaryNotANumber() {
-        return SALARY_NOT_A_NUMBER;
+        return messageService.getMessage("validation.salary.not.number");
     }
 
     public String getNotValidSalaryByPositionMessage(Employee employee) {
@@ -43,10 +41,10 @@ public class EmployeeNotValidMessageService {
     }
 
     public String getNotNullMessage() {
-        return FIELD_SHOULD_NOT_BE_NULL;
+        return messageService.getMessage("validation.not.null");
     }
 
     public String getNotValidNameLength() {
-        return NAME_SHOULD_BE_BETWEEN_3_AND_32_CHARACTERS;
+        return messageService.getMessage("validation.name.length");
     }
 }

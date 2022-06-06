@@ -3,6 +3,7 @@ package com.example.producingwebservice.service.validator;
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
+import com.example.producingwebservice.service.MessageService;
 import com.example.producingwebservice.type.Position;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,12 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     public static final String SEPARATOR = "; ";
     public static final int MIN_NAME_LENGTH = 3;
     public static final int MAX_NAME_LENGTH = 32;
-    public static final String EMPLOYEE_ACCEPTED = "Employee accepted";     //todo поместить в ResourceBundle
-    public static final String EMPLOYEE_NOT_VALID = "Employee not valid"; //todo поместить в ResourceBundle
+    //todo поместить в ResourceBundle
+    // done
+    //todo поместить в ResourceBundle
+    // done
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
+    private final MessageService messageService;
 
     private final StringBuilder messageBuilder = new StringBuilder();
 
@@ -35,7 +39,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
         }
         try {
             int salary = Integer.parseInt(employee.getSalary());
-            if (salary == 0) {
+            if (salary <= 0) {
                 isValid = false;
                 employee.setSalary(employeeNotValidMessageService.getNotValidSalaryMessage());
             }
@@ -80,7 +84,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
             log.debug("Employee {} passed check", employee);
             return EmployeeResponse.builder()
                     .responseStatus(ResponseStatus.SUCCESS)
-                    .message(EMPLOYEE_ACCEPTED)
+                    .message(messageService.getMessage("validation.employee.accepted"))
                     .employee(employee)
                     .build();
         }
@@ -90,7 +94,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
         messageBuilder.setLength(0);
         return EmployeeResponse.builder()
                 .responseStatus(ResponseStatus.FAILURE)
-                .message(message.isEmpty() ? EMPLOYEE_NOT_VALID : message)
+                .message(message.isEmpty() ? messageService.getMessage("validation.employee.not.valid") : message)
                 .employee(employee)
                 .build();
     }
