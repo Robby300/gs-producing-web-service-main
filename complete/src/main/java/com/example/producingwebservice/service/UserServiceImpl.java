@@ -3,6 +3,7 @@ package com.example.producingwebservice.service;
 import com.example.producingwebservice.api.UserService;
 import com.example.producingwebservice.domain.User;
 import com.example.producingwebservice.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -16,8 +17,8 @@ import java.util.Set;
 
 
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
 
@@ -26,15 +27,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        Long id = Long.parseLong(userId);
-        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Отсутствует пользователь с id = " + userId));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Отсутствует пользователь с username = " + username));
     }
 
     @Override
     public User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        logger.info("Вызов текущего пользователя.");
+        log.info("Вызов текущего пользователя.");
         return (User) loadUserByUsername(auth.getName());
+    }
+
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
     }
 }

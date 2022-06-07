@@ -2,7 +2,6 @@ package com.example.producingwebservice.domain;
 
 import com.example.producingwebservice.type.Role;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,8 +26,9 @@ public class User implements UserDetails {
 
     @Id
     @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
-    private String name;
+    private String username;
     private String password;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -49,7 +48,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return String.valueOf(userId);
+        return username;
     }
 
     @Override

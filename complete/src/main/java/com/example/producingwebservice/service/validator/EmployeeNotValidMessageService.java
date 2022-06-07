@@ -35,7 +35,7 @@ public class EmployeeNotValidMessageService {
     }
 
     public String getNotNullMessage(String parameter) {
-        return "parameter:" + messageService.getMessage("validation.not.null");
+        return parameter + messageService.getMessage("validation.not.null");
     }
 
     public String getNotValidNameLength() {
