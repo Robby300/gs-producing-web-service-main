@@ -26,7 +26,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     @Override
     public EmployeeResponse validate(Employee employee) {
         String validateFieldsMessage = validateFields(employee);
-        if (validateFieldsMessage.isEmpty()) { //todo два раза идет вызов getPayLoadMessage. сделать один вызов // done
+        if (validateFieldsMessage.isEmpty()) {
             log.debug("Employee {} passed check", employee);
             return getResponseBuild(employee.toString(), ResponseStatus.SUCCESS, "validation.employee.accepted");
         }
@@ -35,7 +35,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
         return getResponseBuild(validateFieldsMessage, ResponseStatus.FAILURE, "validation.employee.not.valid");
     }
 
-    private String validateFields(Employee employee) { //todo название не стыкуется с тем что делает. будет лучше validateFields, можешь придумать свой вариант)) // done
+    private String validateFields(Employee employee) {
         return Stream.of(employeeChecker.checkNameByNull(employee),
                         employeeChecker.checkSalary(employee),
                         employeeChecker.checkNameLength(employee),
