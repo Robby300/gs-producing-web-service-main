@@ -28,7 +28,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     @Override
     public EmployeeResponse validate(Employee employee) {
 
-        if (getPayLoadMessage(employee).isEmpty()) {
+        if (getPayLoadMessage(employee).isEmpty()) { //todo два раза идет вызов getPayLoadMessage. сделать один вызов
             log.debug("Employee {} passed check", employee);
             return getResponseBuild(employee.toString(), ResponseStatus.SUCCESS, "validation.employee.accepted");
         }
@@ -37,7 +37,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
         return getResponseBuild(getPayLoadMessage(employee), ResponseStatus.FAILURE, "validation.employee.not.valid");
     }
 
-    private String getPayLoadMessage(Employee employee) {
+    private String getPayLoadMessage(Employee employee) { //todo название не стыкуется с тем что делает. будет лучше validateFields, можешь придумать свой вариант))
         return Stream.of(checkNameByNull(employee),
                         checkSalary(employee),
                         checkNameLength(employee),
@@ -49,6 +49,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
                 .collect(Collectors.joining(SEPARATOR));
     }
 
+    //todo вынести все чекеры для филодов в отдельный сервис. Реши сделать его бином или статиком
     private String checkSalaryByPosition(Employee employee) {
         if (isNotValidSalaryByPosition(employee)) {
             return employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee);
@@ -65,7 +66,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     private String checkPositionByNull(Employee employee) {
         if (employee.getPosition() == null) {
-            return employeeNotValidMessageService.getNotNullMessage("Position");
+            return employeeNotValidMessageService.getNotNullMessage("Position"); //todo вынести в константу POSITION_FIELD
         }
         return null;
     }
@@ -79,7 +80,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     private String checkSalary(Employee employee) {
         if (employee.getSalary() == null) {
-            return employeeNotValidMessageService.getNotNullMessage("Salary");
+            return employeeNotValidMessageService.getNotNullMessage("Salary"); //todo вынести в константу
         }
         try {
             int salary = Integer.parseInt(employee.getSalary());
@@ -94,7 +95,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     private String checkNameByNull(Employee employee) {
         if (employee.getName() == null) {
-            return employeeNotValidMessageService.getNotNullMessage("name");
+            return employeeNotValidMessageService.getNotNullMessage("name"); //todo вынести в константу
         }
         return null;
     }

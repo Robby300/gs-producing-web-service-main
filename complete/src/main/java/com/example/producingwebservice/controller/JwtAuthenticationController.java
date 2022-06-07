@@ -44,7 +44,7 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-        log.info("Обработка POST Запроса /login");
+        log.info("Обработка POST Запроса /login"); //todo инглиш плиз)
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
