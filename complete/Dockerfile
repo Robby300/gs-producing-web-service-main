@@ -1,8 +1,29 @@
-FROM eclipse-temurin:11-jdk-alpine AS build
-COPY src /home/producing-web-service/src
-USER root
+FROM gradle:7.0-jdk11 AS TEMP_BUILD_IMAGE
+ENV APP_HOME=/home/producing-web-service/complete/
+WORKDIR $APP_HOME
 
-FROM openjdk:11-ea-11-jdk-slim
-COPY --from=build /home/producing-web-service/target/producing-web-service-0.0.1-SNAPSHOT.jar /usr/local/lib/producing-web-service-0.0.1-SNAPSHOT.jar
+COPY build.gradle settings.gradle $APP_HOME
+COPY gradle $APP_HOME/gradle/
+COPY --chown=gradle:gradle . producing-web-service/complete/
+
+USER root
+RUN chown -R gradle /home/producing-web-service/
+
+RUN gradle build || return 0
+COPY . .
+RUN gradle clean build
+
+# actual container
+FROM adoptopenjdk/openjdk11:alpine-jre
+ENV ARTIFACT_NAME=gs-producing-web-service-0.1.0.jar
+ENV APP_HOME=/home/producing-web-service/
+
+WORKDIR $APP_HOME
+COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
+
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/usr/local/lib/producing-web-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
+
+
+
+
