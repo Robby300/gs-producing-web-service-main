@@ -18,7 +18,6 @@ public class Task {
     @GeneratedValue
     private Long id;
     private String description;
-
     public Task(TaskDto taskDto) {
         setDescription(taskDto.getDescription());
     }

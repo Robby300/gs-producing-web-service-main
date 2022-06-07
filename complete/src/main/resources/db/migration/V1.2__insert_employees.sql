@@ -15,7 +15,7 @@ VALUES (1, 'WORKER', 'Ivan', 'dfhssfhtr', '55000'),
        (12,  'DIRECTOR', 'Abdulla', 'fshrenkgs', '155000');
 
 -- insert all test tasks
-INSERT INTO task (id, description)
+INSERT INTO employee_db.task (id, description)
 values (1, 'first task'),
        (2, 'second task'),
        (3, 'third task'),
@@ -44,3 +44,6 @@ values (1 , 1),
        (2 , 4),
        (3 , 5),
        (3 , 6);
+
+INSERT INTO employee_db.usr (user_id, username, password)
+values (1, 'user', '$2a$10$2Cs7hzpo8ahCxowd4tQgXuWAOi6p/TjHMwCrl2XqZxnm7W1p6qf/C');

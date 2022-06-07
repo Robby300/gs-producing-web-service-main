@@ -23,18 +23,18 @@ create table employee_db.employee_tasks
     task_id     int8 not null
 );
 
-create table user_role
+create table employee_db.user_role
 (
     user_id int8 not null,
     roles   varchar(255)
 );
-create table usr
+create table employee_db.usr
 (
     user_id  int8 not null,
     password varchar(255),
     username varchar(255),
     primary key (user_id)
-)
+);
 
 create sequence if not exists employee_db.hibernate_sequence;
 

@@ -1,7 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '2.6.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-//    id "org.flywaydb.flyway" version "7.15.0"
+    id "org.flywaydb.flyway" version "7.15.0"
     id 'java'
 }
 
@@ -23,33 +23,33 @@ sourceSets {
     }
 }
 
-//def dbDataDriver = ''
-//def dbDataUrl = ''
-//def dbDataUser = ''
-//def dbDataPassword = ''
-//def dbDataLocation = ''
-//def dbDataSchema = ''
+def dbDataDriver = ''
+def dbDataUrl = ''
+def dbDataUser = ''
+def dbDataPassword = ''
+def dbDataLocation = ''
+def dbDataSchema = ''
 
 
-//file("src/main/resources/flyway.properties").withReader {
-//    Properties flywayProp = new Properties()
-//    flywayProp.load(it)
-//    dbDataDriver = "${flywayProp.driver}"
-//    dbDataUrl = "${flywayProp.url}"
-//    dbDataUser = "${flywayProp.user}"
-//    dbDataPassword = "${flywayProp.password}"
-//    dbDataLocation = "${flywayProp.locations}"
-//    dbDataSchema = "${flywayProp.schemas}"
-//}
-//
-//flyway {
-//    locations = [dbDataLocation]
-//    driver = dbDataDriver
-//    url = dbDataUrl
-//    user = dbDataUser
-//    password = dbDataPassword
-//    schemas = [dbDataSchema]
-//}
+file("src/main/resources/flyway.properties").withReader {
+    Properties flywayProp = new Properties()
+    flywayProp.load(it)
+    dbDataDriver = "${flywayProp.driver}"
+    dbDataUrl = "${flywayProp.url}"
+    dbDataUser = "${flywayProp.user}"
+    dbDataPassword = "${flywayProp.password}"
+    dbDataLocation = "${flywayProp.locations}"
+    dbDataSchema = "${flywayProp.schemas}"
+}
+
+flyway {
+    locations = [dbDataLocation]
+    driver = dbDataDriver
+    url = dbDataUrl
+    user = dbDataUser
+    password = dbDataPassword
+    schemas = [dbDataSchema]
+}
 
 
 bootJar {
@@ -72,8 +72,8 @@ dependencies {
 
     implementation 'org.springframework.kafka:spring-kafka:2.8.6'
 
-//    implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
-//    implementation "org.flywaydb:flyway-core:7.15.0"
+    implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
+    implementation "org.flywaydb:flyway-core:7.15.0"
 
     implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
     implementation 'org.modelmapper:modelmapper:3.1.0'
