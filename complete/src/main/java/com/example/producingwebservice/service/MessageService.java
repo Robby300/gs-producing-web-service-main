@@ -2,15 +2,13 @@ package com.example.producingwebservice.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 import java.util.Locale;
 
-@Slf4j
 @RequiredArgsConstructor
 public class MessageService {
-    public static Locale russian = new Locale("ru", "RU");
+    public static final Locale russian = new Locale("ru", "RU");
 
     private final ResourceBundleMessageSource messageSource;
 

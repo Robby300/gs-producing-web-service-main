@@ -4,7 +4,6 @@ import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import java.util.List;
 
 public interface EmployeeService {
@@ -13,7 +12,7 @@ public interface EmployeeService {
     void deleteByUuid(String uuid);
 
     @Validated
-    EmployeeResponse save(@Valid Employee employee);
+    EmployeeResponse save(Employee employee);
 
     Employee findByUuid(String uuid);
 }

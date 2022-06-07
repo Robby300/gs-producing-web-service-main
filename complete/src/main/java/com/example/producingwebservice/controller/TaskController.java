@@ -2,6 +2,7 @@ package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.TaskService;
 import com.example.producingwebservice.domain.Task;
+import com.example.producingwebservice.model.TaskDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -38,8 +39,9 @@ public class TaskController {
 
     @PutMapping("/{id}")
     public Task update(@PathVariable("id") Task taskFromRepo,
-                       @RequestBody Task task) {
-        log.info("Update task by id = {}", task.getId());
+                       @RequestBody TaskDto taskDto) {
+        log.info("Update task by id = {}", taskFromRepo.getId());
+        Task task = new Task(taskDto);
         BeanUtils.copyProperties(task, taskFromRepo, "id");
         return taskService.save(taskFromRepo);
     }

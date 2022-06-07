@@ -2,18 +2,16 @@ package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.UserService;
 import com.example.producingwebservice.domain.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.producingwebservice.model.UserDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class RegistrationController {
-
-    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
-
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -23,10 +21,11 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public User addUser(@RequestBody User user) {
+    public User addUser(@RequestBody UserDto userDto) {
+        User user = new User(userDto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.save(user);
-        logger.info("Регистрация нового пользователя {}", user.getUsername());
+        log.info("Регистрация нового пользователя {}", user.getUsername());
         return user;
     }
 }

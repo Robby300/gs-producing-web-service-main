@@ -38,7 +38,6 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     }
 
     private String getPayLoadMessage(Employee employee) {
-
         return Stream.of(checkNameByNull(employee),
                         checkSalary(employee),
                         checkNameLength(employee),

@@ -1,6 +1,9 @@
 package com.example.producingwebservice.domain;
 
+import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.type.Position;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,8 +15,19 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @ToString(exclude = {"id", "uuid"})
 public class Employee {
+    public Employee(EmployeeDto employeeDto) {
+        setName(employeeDto.getName());
+        setSalary(employeeDto.getSalary());
+        setPosition(employeeDto.getPosition());
+        setTasks(employeeDto.getTasks());
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

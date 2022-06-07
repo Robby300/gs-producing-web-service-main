@@ -4,6 +4,7 @@ import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.domain.EmployeeResponse;
 import com.example.producingwebservice.domain.Task;
+import com.example.producingwebservice.model.EmployeeDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -44,8 +45,9 @@ public class EmployeeController {
 
     @PutMapping("/{uuid}")
     public EmployeeResponse update(@PathVariable("uuid") String uuid,
-                                   @RequestBody Employee employee) {
-        log.info("Update employee by id = {}", employee.getId());
+                                   @RequestBody EmployeeDto employeeDto) {
+        log.info("Update employee by uuid = {}", uuid);
+        Employee employee = new Employee(employeeDto);
         Employee employeeFromRepo = employeeService.findByUuid(uuid);
         BeanUtils.copyProperties(employee, employeeFromRepo, "id", "uuid");
         return employeeService.save(employeeFromRepo);

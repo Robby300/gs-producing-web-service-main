@@ -1,5 +1,6 @@
 package com.example.producingwebservice.domain;
 
+import com.example.producingwebservice.model.UserDto;
 import com.example.producingwebservice.type.Role;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -9,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 @Entity
@@ -36,9 +38,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    public User(UserDto userDto) {
+        setUsername(userDto.getUsername());
+        setPassword(userDto.getPassword());
+        setRoles(userDto.getRoles());
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

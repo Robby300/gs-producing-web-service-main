@@ -25,7 +25,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static final String ID_NOT_FOUND_MESSAGE = "Id not found";
     private final EmployeeRepository employeeRepository;
     private final ProducerService producerService;
-
     private final EmployeeValidatorService employeeValidatorService;
 
 

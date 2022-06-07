@@ -1,5 +1,6 @@
 package com.example.producingwebservice.domain;
 
+import com.example.producingwebservice.model.TaskDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,4 +18,8 @@ public class Task {
     @GeneratedValue
     private Long id;
     private String description;
+
+    public Task(TaskDto taskDto) {
+        setDescription(taskDto.getDescription());
+    }
 }
