@@ -21,6 +21,16 @@
         </encoder>
     </appender>
 
+    <appender name="mask" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.example.producingwebservice.support.MaskingPatternLayout">
+                <maskPattern>\"salary\"\s*:\s*\"(.*?)\"</maskPattern>
+                <maskPattern>\"password\"\s*:\s*\"(.*?)\"</maskPattern>
+                <pattern>%-5p [%d{ISO8601,UTC}] [%thread] %c: %m%n%rootException</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
     <logger name="com.example.producingwebservice" level="DEBUG"/>
 
     <root>
