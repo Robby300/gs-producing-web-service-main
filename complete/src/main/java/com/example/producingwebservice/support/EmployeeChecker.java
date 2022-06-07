@@ -16,10 +16,9 @@ public class EmployeeChecker {
     public static final String NAME_FIELD = "name";
     public static final String POSITION_FIELD = "Position";
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
-    private final MessageService messageService;
+    private final MessageService messageService; //todo не используется
 
-    //todo вынести все чекеры для филодов в отдельный сервис. Реши сделать его бином или статиком
-    // done сделал бином
+
     public String checkSalaryByPosition(Employee employee) {
         if (isNotValidSalaryByPosition(employee)) {
             return employeeNotValidMessageService.getNotValidSalaryByPositionMessage(employee);
@@ -36,7 +35,7 @@ public class EmployeeChecker {
 
     public String checkPositionByNull(Employee employee) {
         if (employee.getPosition() == null) {
-            return employeeNotValidMessageService.getNotNullMessage(POSITION_FIELD); //todo вынести в константу POSITION_FIELD // done
+            return employeeNotValidMessageService.getNotNullMessage(POSITION_FIELD);
         }
         return null;
     }
@@ -50,7 +49,7 @@ public class EmployeeChecker {
 
     public String checkSalary(Employee employee) {
         if (employee.getSalary() == null) {
-            return employeeNotValidMessageService.getNotNullMessage(SALARY_FIELD); //todo вынести в константу // done
+            return employeeNotValidMessageService.getNotNullMessage(SALARY_FIELD);
         }
         try {
             int salary = Integer.parseInt(employee.getSalary());
@@ -65,7 +64,7 @@ public class EmployeeChecker {
 
     public String checkNameByNull(Employee employee) {
         if (employee.getName() == null) {
-            return employeeNotValidMessageService.getNotNullMessage(NAME_FIELD); //todo вынести в константу // done
+            return employeeNotValidMessageService.getNotNullMessage(NAME_FIELD);
         }
         return null;
     }
