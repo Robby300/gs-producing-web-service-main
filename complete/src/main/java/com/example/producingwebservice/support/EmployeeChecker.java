@@ -16,8 +16,6 @@ public class EmployeeChecker {
     public static final String NAME_FIELD = "name";
     public static final String POSITION_FIELD = "Position";
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
-    private final MessageService messageService; //todo не используется
-
 
     public String checkSalaryByPosition(Employee employee) {
         if (isNotValidSalaryByPosition(employee)) {
