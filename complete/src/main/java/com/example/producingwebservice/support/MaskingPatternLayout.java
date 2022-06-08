@@ -12,15 +12,16 @@ import java.util.stream.IntStream;
 @Component
 public class MaskingPatternLayout extends PatternLayout {
 
+    public static final char ASTERISK = '*';
     private static final String PASSWORD_MASK_PATTERN = "[\"']?password[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
     private static final String SALARY_MASK_PATTERN = "salary=(\\d+)";
+    private static final String JWT_MASK_PATTERN = "[\"']?jwtToken[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
     private static final String DELIMITER = "|";
     private static final int FIRST_MATCHER_INDEX = 1;
-    public static final char ASTERISK = '*';
     private final Pattern multilinePattern;
 
     public MaskingPatternLayout() {
-        List<String> maskPatterns = List.of(PASSWORD_MASK_PATTERN, SALARY_MASK_PATTERN);
+        List<String> maskPatterns = List.of(PASSWORD_MASK_PATTERN, SALARY_MASK_PATTERN, JWT_MASK_PATTERN);
         multilinePattern = Pattern.compile(String.join(DELIMITER, maskPatterns), Pattern.MULTILINE);
     }
 
