@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 @Component
 public class MaskingPatternLayout extends PatternLayout {
 
-    private static final String PASSWORD_MASK_PATTERN = "password=^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+    private static final String PASSWORD_MASK_PATTERN = "[\"']?password[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
     private static final String SALARY_MASK_PATTERN = "salary=(\\d+)";
     private static final String DELIMITER = "|";
     private static final int FIRST_MATCHER_INDEX = 1;
