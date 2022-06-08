@@ -46,10 +46,10 @@ public class EmployeeController {
     @PutMapping("/{uuid}")
     public EmployeeResponse update(@PathVariable("uuid") String uuid,
                                    @RequestBody EmployeeDto employeeDto) {
-        log.info("Update employee by uuid = {}", uuid);
         Employee employee = new Employee(employeeDto);
         Employee employeeFromRepo = employeeService.findByUuid(uuid);
         BeanUtils.copyProperties(employee, employeeFromRepo, "id", "uuid");
+        log.info("Update employee = {}", employeeFromRepo);
         return employeeService.save(employeeFromRepo);
     }
 

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg %n</Pattern>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.example.producingwebservice.support.MaskingPatternLayout">
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg %n</Pattern>
+            </layout>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
@@ -16,25 +18,17 @@
             <fileNamePattern>logs/producingwebservice.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
-        <encoder>
-            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg %n</Pattern>
-        </encoder>
-    </appender>
-
-    <appender name="mask" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
             <layout class="com.example.producingwebservice.support.MaskingPatternLayout">
-                <maskPattern>\"salary\"\s*:\s*\"(.*?)\"</maskPattern>
-                <maskPattern>\"password\"\s*:\s*\"(.*?)\"</maskPattern>
-                <pattern>%-5p [%d{ISO8601,UTC}] [%thread] %c: %m%n%rootException</pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg %n</Pattern>
             </layout>
         </encoder>
     </appender>
 
-    <logger name="com.example.producingwebservice" level="DEBUG"/>
+    <logger name="com.example.producingwebservice" level="INFO"/>
 
     <root>
-        <level value="DEBUG"/>
+        <level value="INFO"/>
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="fileAppender"/>
     </root>

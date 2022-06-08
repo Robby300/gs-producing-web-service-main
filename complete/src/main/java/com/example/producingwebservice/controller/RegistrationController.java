@@ -25,7 +25,7 @@ public class RegistrationController {
         User user = new User(userDto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.save(user);
-        log.info("Registration new user = {}", user.getUsername());
+        log.info("Registration new user = {}", user);
         return user;
     }
 }

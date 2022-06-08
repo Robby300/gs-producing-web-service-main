@@ -1,29 +1,22 @@
-FROM gradle:7.0-jdk11 AS TEMP_BUILD_IMAGE
-ENV APP_HOME=/home/producing-web-service/complete/
-WORKDIR $APP_HOME
+FROM openjdk:11-jre-slim
 
-COPY build.gradle settings.gradle $APP_HOME
-COPY gradle $APP_HOME/gradle/
-COPY --chown=gradle:gradle . producing-web-service/complete/
+RUN mkdir -p /app/logs && \
+    chgrp -R 0 /app/logs && \
+    chmod -R g=u /app/logs
 
-USER root
-RUN chown -R gradle /home/producing-web-service/
-
-RUN gradle build || return 0
-COPY . .
-RUN gradle clean build
-
-# actual container
-FROM adoptopenjdk/openjdk11:alpine-jre
-ENV ARTIFACT_NAME=gs-producing-web-service-0.1.0.jar
-ENV APP_HOME=/home/producing-web-service/
-
-WORKDIR $APP_HOME
-COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
-
-EXPOSE 8080
-ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		procps curl \
+	; \
+	rm -rf /var/lib/apt/lists/*
 
 
+COPY /build/libs/gs-producing-web-service-0.1.0.jar /app/
+COPY /build/resources/main/application-docker.properties /app/application.properties
 
+EXPOSE 8080 8082 5432
 
+WORKDIR /app/
+
+CMD ["java","-jar","/app/gs-producing-web-service-0.1.0.jar"]

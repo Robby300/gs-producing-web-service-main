@@ -23,10 +23,13 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
+
   app:
-    build: ./complete
-    image: web-service-image
-    container_name: web-service
+    container_name: producing-web-service
+    build:
+      context: ..
+      dockerfile: complete/Dockerfile
+    image:  web-service-image
     networks:
       - cloud
     ports:
@@ -37,6 +40,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+
   db:
     image: postgres:13-alpine
     container_name: postgres
