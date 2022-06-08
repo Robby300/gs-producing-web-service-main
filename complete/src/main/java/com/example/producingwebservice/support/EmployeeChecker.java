@@ -1,5 +1,5 @@
 package com.example.producingwebservice.support;
-
+//todo переместить в отдельный пакет checker
 import com.example.producingwebservice.domain.Employee;
 import com.example.producingwebservice.service.validator.EmployeeNotValidMessageService;
 import com.example.producingwebservice.type.Position;
