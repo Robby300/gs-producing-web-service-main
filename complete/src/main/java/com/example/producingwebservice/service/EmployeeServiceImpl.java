@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Validated
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static final String ID_NOT_FOUND_MESSAGE = "Id not found";
+    private static final String UUID_NOT_FOUND = "uuid not found";
     private final EmployeeRepository employeeRepository;
     private final TaskService taskService;
     private final ProducerService producerService;
@@ -65,7 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee =
                 employeeRepository
                         .findEmployeeByUuid(uuid)
-                        .orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+                        .orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
         return modelMapper.map(employee, EmployeeDto.class);
     }
 

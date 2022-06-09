@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 @Getter
 @Setter
+@ToString(exclude = {"id"})
 public class Task {
     @Id
     @GeneratedValue
