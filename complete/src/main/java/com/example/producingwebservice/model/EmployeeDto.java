@@ -2,15 +2,15 @@ package com.example.producingwebservice.model;
 
 import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.type.Position;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 
 @Getter
 @Setter
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = {"id", "uuid"})
 public class EmployeeDto {
     private long id;
     private String uuid;

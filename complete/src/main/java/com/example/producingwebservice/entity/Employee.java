@@ -18,7 +18,6 @@ import java.util.Set;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id"
 )
-@ToString(exclude = {"id", "uuid"})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

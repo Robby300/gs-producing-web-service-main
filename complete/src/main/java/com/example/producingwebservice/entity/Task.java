@@ -13,7 +13,6 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Task {
     @Id
     @GeneratedValue

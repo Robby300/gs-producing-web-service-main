@@ -54,15 +54,15 @@ public class EmployeeController {
 
     @PutMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse assignTask(@PathVariable("uuid") String uuid,
-                                       @PathVariable("task_id") TaskDto taskDto) {
-        log.info("Assign task = {} to employee by uuid = {}", taskDto, uuid);
-        return employeeService.assignTaskToEmployee(uuid, taskDto);
+                                       @PathVariable("task_id") long taskId) {
+        log.info("Assign task id = {} to employee by uuid = {}", taskId, uuid);
+        return employeeService.assignTaskToEmployee(uuid, taskId);
     }
 
     @DeleteMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
-                                         @PathVariable("task_id") TaskDto taskDto) {
-        log.info("Unassigned task id = {} to employee by uuid = {}", taskDto.getId(), uuid);
-        return employeeService.unAssignTaskFromEmployee(uuid, taskDto);
+                                         @PathVariable("task_id") long taskId) {
+        log.info("Unassigned task id = {} to employee by uuid = {}", taskId, uuid);
+        return employeeService.unAssignTaskFromEmployee(uuid, taskId);
     }
 }

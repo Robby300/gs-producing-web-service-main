@@ -19,7 +19,7 @@ public interface EmployeeService {
 
     EmployeeResponse update(String uuid, EmployeeDto employeeDto);
 
-    EmployeeResponse assignTaskToEmployee(String uuid, TaskDto taskDto);
+    EmployeeResponse assignTaskToEmployee(String uuid, long taskId);
 
-    EmployeeResponse unAssignTaskFromEmployee(String uuid, TaskDto taskDto);
+    EmployeeResponse unAssignTaskFromEmployee(String uuid, long taskId);
 }

@@ -23,7 +23,6 @@ import java.util.Set;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "userId"
 )
-@ToString
 public class User implements UserDetails {
 
     @Id

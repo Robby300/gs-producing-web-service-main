@@ -19,7 +19,7 @@ public class TaskServiceImpl implements TaskService {
 
     private static final String ID_NOT_FOUND_MESSAGE = "Id not found";
     private final TaskRepository taskRepository;
-    private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public List<TaskDto> findAll() {

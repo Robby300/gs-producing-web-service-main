@@ -2,6 +2,7 @@ package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.api.EmployeeValidatorService;
+import com.example.producingwebservice.api.TaskService;
 import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
@@ -30,9 +31,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private static final String ID_NOT_FOUND_MESSAGE = "Id not found";
     private final EmployeeRepository employeeRepository;
+    private final TaskService taskService;
     private final ProducerService producerService;
     private final EmployeeValidatorService employeeValidatorService;
-    private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public List<EmployeeDto> findAll() {
@@ -84,15 +86,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeResponse assignTaskToEmployee(String uuid, TaskDto taskDto) {
+    public EmployeeResponse assignTaskToEmployee(String uuid, long taskId) {
         EmployeeDto employeeDto = findByUuid(uuid);
+        TaskDto taskDto = taskService.findById(taskId);
         employeeDto.getTasks().add(modelMapper.map(taskDto, Task.class));
         return save(employeeDto);
     }
 
     @Override
-    public EmployeeResponse unAssignTaskFromEmployee(String uuid, TaskDto taskDto) {
+    public EmployeeResponse unAssignTaskFromEmployee(String uuid, long taskId) {
         EmployeeDto employeeDto = findByUuid(uuid);
+        TaskDto taskDto = taskService.findById(taskId);
         employeeDto.getTasks().remove(modelMapper.map(taskDto, Task.class));
         return save(employeeDto);
     }
