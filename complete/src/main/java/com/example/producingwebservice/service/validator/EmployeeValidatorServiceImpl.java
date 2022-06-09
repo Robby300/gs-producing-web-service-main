@@ -1,9 +1,10 @@
 package com.example.producingwebservice.service.validator;
 
 import com.example.producingwebservice.api.EmployeeValidatorService;
-import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeeResponse;
-import com.example.producingwebservice.support.EmployeeChecker;
+import com.example.producingwebservice.entity.Employee;
+import com.example.producingwebservice.model.EmployeeDto;
+import com.example.producingwebservice.model.EmployeeResponse;
+import com.example.producingwebservice.checker.EmployeeChecker;
 import com.example.producingwebservice.service.MessageService;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
@@ -24,24 +25,24 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
     private final EmployeeChecker employeeChecker;
 
     @Override
-    public EmployeeResponse validate(Employee employee) {
-        String validateFieldsMessage = validateFields(employee);
+    public EmployeeResponse validate(EmployeeDto employeeDto) {
+        String validateFieldsMessage = validateFields(employeeDto);
         if (validateFieldsMessage.isEmpty()) {
-            log.debug("Employee {} passed check", employee);
-            return getResponseBuild(employee.toString(), ResponseStatus.SUCCESS, "validation.employee.accepted");
+            log.debug("Employee {} passed check", employeeDto);
+            return getResponseBuild(employeeDto.toString(), ResponseStatus.SUCCESS, "validation.employee.accepted");
         }
 
-        log.debug("Employee {} failed verification and will not be added", employee);
+        log.debug("Employee {} failed verification and will not be added", employeeDto);
         return getResponseBuild(validateFieldsMessage, ResponseStatus.FAILURE, "validation.employee.not.valid");
     }
 
-    private String validateFields(Employee employee) {
-        return Stream.of(employeeChecker.checkNameByNull(employee),
-                        employeeChecker.checkSalary(employee),
-                        employeeChecker.checkNameLength(employee),
-                        employeeChecker.checkPositionByNull(employee),
-                        employeeChecker.checkCountOfTasks(employee),
-                        employeeChecker.checkSalaryByPosition(employee))
+    private String validateFields(EmployeeDto employeeDto) {
+        return Stream.of(employeeChecker.checkNameByNull(employeeDto),
+                        employeeChecker.checkSalary(employeeDto),
+                        employeeChecker.checkNameLength(employeeDto),
+                        employeeChecker.checkPositionByNull(employeeDto),
+                        employeeChecker.checkCountOfTasks(employeeDto),
+                        employeeChecker.checkSalaryByPosition(employeeDto))
                 .filter(Objects::nonNull)
                 .map(Objects::toString)
                 .collect(Collectors.joining(SEPARATOR));

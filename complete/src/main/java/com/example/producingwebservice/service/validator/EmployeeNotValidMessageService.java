@@ -1,6 +1,7 @@
 package com.example.producingwebservice.service.validator;
 
-import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.entity.Employee;
+import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,18 +21,18 @@ public class EmployeeNotValidMessageService {
         return messageService.getMessage("validation.salary.not.number");
     }
 
-    public String getNotValidSalaryByPositionMessage(Employee employee) {
+    public String getNotValidSalaryByPositionMessage(EmployeeDto employeeDto) {
         return MessageFormat.format(messageService.getMessage("validation.position.salary"),
-                messageService.getMessage(employee.getPosition()),
-                employee.getPosition().lowSalary,
-                employee.getPosition().highSalary,
-                employee.getSalary());
+                messageService.getMessage(employeeDto.getPosition()),
+                employeeDto.getPosition().lowSalary,
+                employeeDto.getPosition().highSalary,
+                employeeDto.getSalary());
     }
 
-    public String getNotValidCountsOfTasksMessage(Employee employee) {
+    public String getNotValidCountsOfTasksMessage(EmployeeDto employeeDto) {
         return MessageFormat.format(messageService.getMessage("validation.position.tasks"),
-                messageService.getMessage(employee.getPosition()),
-                employee.getPosition().maxTasks);
+                messageService.getMessage(employeeDto.getPosition()),
+                employeeDto.getPosition().maxTasks);
     }
 
     public String getNotNullMessage(String parameter) {

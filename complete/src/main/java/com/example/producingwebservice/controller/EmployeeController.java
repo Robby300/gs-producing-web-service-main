@@ -1,19 +1,16 @@
 package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.EmployeeService;
-import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeeResponse;
-import com.example.producingwebservice.domain.Task;
+import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.EmployeeDto;
+import com.example.producingwebservice.model.EmployeeResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -24,21 +21,19 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping()
-    public List<Employee> findAll() {
+    public List<EmployeeDto> findAll() {
+        log.info("Find all employee");
         return employeeService.findAll();
     }
 
     @PostMapping()
-    public ResponseEntity<List<EmployeeResponse>> saveAll(@RequestBody List<Employee> employees) {
-        List<EmployeeResponse> employeeResponses = employees
-                .stream()
-                .map(employeeService::save)
-                .collect(Collectors.toList());
+    public ResponseEntity<List<EmployeeResponse>> saveAll(@RequestBody List<EmployeeDto> employeeDtos) {
+        List<EmployeeResponse> employeeResponses = employeeService.saveAll(employeeDtos);
         return new ResponseEntity<>(employeeResponses, HttpStatus.CREATED);
     }
 
     @GetMapping("/{uuid}")
-    public Employee getByUuid(@PathVariable("uuid") String uuid) {
+    public EmployeeDto getByUuid(@PathVariable("uuid") String uuid) {
         log.info("Get employee by uuid = {}", uuid);
         return employeeService.findByUuid(uuid);
     }
@@ -46,11 +41,8 @@ public class EmployeeController {
     @PutMapping("/{uuid}")
     public EmployeeResponse update(@PathVariable("uuid") String uuid,
                                    @RequestBody EmployeeDto employeeDto) {
-        Employee employee = new Employee(employeeDto);
-        Employee employeeFromRepo = employeeService.findByUuid(uuid);
-        BeanUtils.copyProperties(employee, employeeFromRepo, "id", "uuid");
-        log.info("Update employee = {}", employeeFromRepo);
-        return employeeService.save(employeeFromRepo);
+        log.info("Update employee by uuid = {}", uuid);
+        return employeeService.update(uuid, employeeDto);
     }
 
     @DeleteMapping("/{uuid}")
@@ -62,18 +54,18 @@ public class EmployeeController {
     @PutMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse assignTask(@PathVariable("uuid") String uuid,
                                        @PathVariable("task_id") Task task) {
-        log.info("Assign task id = {} to employee by uuid = {}", task.getId(), uuid);
-        Employee employee = employeeService.findByUuid(uuid);
-        employee.getTasks().add(task);
-        return employeeService.save(employee);
+        log.info("Assign task = {} to employee by uuid = {}", task, uuid);
+        EmployeeDto employeeDto = employeeService.findByUuid(uuid);
+        employeeDto.getTasks().add(task);
+        return employeeService.save(employeeDto);
     }
 
     @DeleteMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
                                          @PathVariable("task_id") Task task) {
         log.info("Unassigned task id = {} to employee by uuid = {}", task.getId(), uuid);
-        Employee employee = employeeService.findByUuid(uuid);
-        employee.getTasks().remove(task);
-        return employeeService.save(employee);
+        EmployeeDto employeeDto = employeeService.findByUuid(uuid);
+        employeeDto.getTasks().remove(task);
+        return employeeService.save(employeeDto);
     }
 }

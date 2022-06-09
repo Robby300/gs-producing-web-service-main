@@ -1,8 +1,8 @@
 package com.example.producingwebservice.api;
 
-import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeeResponse;
+import com.example.producingwebservice.model.EmployeeDto;
+import com.example.producingwebservice.model.EmployeeResponse;
 
 public interface EmployeeValidatorService {
-    EmployeeResponse validate(Employee employee);
+    EmployeeResponse validate(EmployeeDto employeeDto);
 }

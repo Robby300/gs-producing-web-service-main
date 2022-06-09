@@ -2,19 +2,23 @@ package com.example.producingwebservice.service;
 
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.api.EmployeeValidatorService;
-import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeeResponse;
+import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
-import com.example.producingwebservice.repository.EmployeeRepository;
 import com.example.producingwebservice.kafka.ProducerService;
+import com.example.producingwebservice.model.EmployeeDto;
+import com.example.producingwebservice.model.EmployeeResponse;
+import com.example.producingwebservice.repository.EmployeeRepository;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +30,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ProducerService producerService;
     private final EmployeeValidatorService employeeValidatorService;
-
+    private final ModelMapper modelMapper;
 
     @Override
-    public List<Employee> findAll() {
-        return employeeRepository.findAll();
+    public List<EmployeeDto> findAll() {
+        return employeeRepository
+                .findAll()
+                .stream()
+                .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -39,24 +47,43 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeResponse save(Employee employee) {
-        EmployeeResponse employeeResponse = employeeValidatorService.validate(employee);
-
+    public EmployeeResponse save(EmployeeDto employeeDto) {
+        EmployeeResponse employeeResponse = employeeValidatorService.validate(employeeDto);
         if (employeeResponse.getResponseStatus() == ResponseStatus.SUCCESS) {
-            generateUuid(employee);
-            producerService.produce(employee);
+            generateUuid(employeeDto);
+            producerService.produce(employeeDto);
         }
         return employeeResponse;
     }
 
     @Override
-    public Employee findByUuid(String uuid) {
-        return employeeRepository.findEmployeeByUuid(uuid).orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+    public EmployeeDto findByUuid(String uuid) {
+        Employee employee =
+                employeeRepository
+                        .findEmployeeByUuid(uuid)
+                        .orElseThrow(() -> new EmployeeNotFoundException(ID_NOT_FOUND_MESSAGE));
+        return modelMapper.map(employee, EmployeeDto.class);
     }
 
-    private void generateUuid(Employee employee) {
-        if (employee.getUuid() == null) {
-            employee.setUuid(UUID.randomUUID().toString());
+    @Override
+    public List<EmployeeResponse> saveAll(List<EmployeeDto> employeeDtos) {
+        return employeeDtos
+                .stream()
+                .map(this::save)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public EmployeeResponse update(String uuid, EmployeeDto employeeDto) {
+        EmployeeDto employeeDtoFromRepo = findByUuid(uuid);
+        BeanUtils.copyProperties(employeeDto, employeeDtoFromRepo, "id", "uuid");
+        log.info("Update employee = {}", employeeDtoFromRepo);
+        return save(employeeDtoFromRepo);
+    }
+
+    private void generateUuid(EmployeeDto employeeDto) {
+        if (employeeDto.getUuid() == null) {
+            employeeDto.setUuid(UUID.randomUUID().toString());
         }
     }
 }

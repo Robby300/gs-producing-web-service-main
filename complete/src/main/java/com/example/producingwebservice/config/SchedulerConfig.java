@@ -1,6 +1,6 @@
 package com.example.producingwebservice.config;
 
-import com.example.producingwebservice.domain.Employee;
+import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

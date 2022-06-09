@@ -1,4 +1,4 @@
-package com.example.producingwebservice.domain;
+package com.example.producingwebservice.entity;
 
 import com.example.producingwebservice.model.UserDto;
 import com.example.producingwebservice.type.Role;
@@ -38,12 +38,6 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
-
-    public User(UserDto userDto) {
-        setUsername(userDto.getUsername());
-        setPassword(userDto.getPassword());
-        setRoles(userDto.getRoles());
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

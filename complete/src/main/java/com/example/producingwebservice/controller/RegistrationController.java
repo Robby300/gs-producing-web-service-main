@@ -1,7 +1,7 @@
 package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.UserService;
-import com.example.producingwebservice.domain.User;
+import com.example.producingwebservice.entity.User;
 import com.example.producingwebservice.model.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,10 +22,8 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public User addUser(@RequestBody UserDto userDto) {
-        User user = new User(userDto);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.save(user);
-        log.info("Registration new user = {}", user);
-        return user;
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        log.info("Registration new user = {}", userDto);
+        return userService.save(userDto);
     }
 }

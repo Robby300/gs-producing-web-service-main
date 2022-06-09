@@ -1,4 +1,4 @@
-package com.example.producingwebservice.domain;
+package com.example.producingwebservice.entity;
 
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.type.Position;
@@ -21,13 +21,6 @@ import java.util.Set;
 )
 @ToString(exclude = {"id", "uuid"})
 public class Employee {
-    public Employee(EmployeeDto employeeDto) {
-        setName(employeeDto.getName());
-        setSalary(employeeDto.getSalary());
-        setPosition(employeeDto.getPosition());
-        setTasks(employeeDto.getTasks());
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

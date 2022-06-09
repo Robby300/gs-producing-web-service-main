@@ -1,11 +1,9 @@
 package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.TaskService;
-import com.example.producingwebservice.domain.Task;
 import com.example.producingwebservice.model.TaskDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,36 +17,33 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping()
-    public List<Task> findAll() {
+    public List<TaskDto> findAll() {
         log.info("Find all tasks");
         return taskService.findAll();
     }
 
     @PostMapping()
-    public void create(@RequestBody List<Task> tasks) {
-        log.info("POST request received with parameter = {} to create new {} tasks", tasks, tasks.size());
-        tasks.forEach(taskService::save);
+    public List<TaskDto> create(@RequestBody List<TaskDto> taskDtos) {
+        log.info("POST request received with parameter = {} to create new {} tasks", taskDtos, taskDtos.size());
+        return taskService.saveAll(taskDtos);
     }
 
-
     @GetMapping("/{id}")
-    public Task getById(@PathVariable("id") Task task) {
-        log.info("Get task by id = {}", task.getId());
-        return task;
+    public TaskDto getById(@PathVariable("id") Long id) {
+        log.info("Get task by id = {}", id);
+        return taskService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public Task update(@PathVariable("id") Task taskFromRepo,
-                       @RequestBody TaskDto taskDto) {
-        log.info("Update task by id = {}", taskFromRepo.getId());
-        Task task = new Task(taskDto);
-        BeanUtils.copyProperties(task, taskFromRepo, "id");
-        return taskService.save(taskFromRepo);
+    public TaskDto update(@PathVariable("id") Long id,
+                          @RequestBody TaskDto taskDto) {
+        log.info("Update task by id = {}", id);
+        return taskService.update(id, taskDto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Task task) {
-        log.info("Delete task by id = {}", task.getId());
-        taskService.delete(task);
+    public void delete(@PathVariable("id") Long id) {
+        log.info("Delete task by id = {}", id);
+        taskService.deleteById(id);
     }
 }

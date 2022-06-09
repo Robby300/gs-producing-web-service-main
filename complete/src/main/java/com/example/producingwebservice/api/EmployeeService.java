@@ -1,16 +1,21 @@
 package com.example.producingwebservice.api;
 
-import com.example.producingwebservice.domain.Employee;
-import com.example.producingwebservice.domain.EmployeeResponse;
+import com.example.producingwebservice.entity.Employee;
+import com.example.producingwebservice.model.EmployeeDto;
+import com.example.producingwebservice.model.EmployeeResponse;
 
 import java.util.List;
 
 public interface EmployeeService {
-    List<Employee> findAll();
+    List<EmployeeDto> findAll();
 
     void deleteByUuid(String uuid);
 
-    EmployeeResponse save(Employee employee);
+    EmployeeResponse save(EmployeeDto employeeDto);
 
-    Employee findByUuid(String uuid);
+    EmployeeDto findByUuid(String uuid);
+
+    List<EmployeeResponse> saveAll(List<EmployeeDto> employeeDtos);
+
+    EmployeeResponse update(String uuid, EmployeeDto employeeDto);
 }

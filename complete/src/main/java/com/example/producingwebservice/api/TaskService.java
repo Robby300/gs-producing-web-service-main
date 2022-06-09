@@ -1,11 +1,20 @@
 package com.example.producingwebservice.api;
 
-import com.example.producingwebservice.domain.Task;
+import com.example.producingwebservice.entity.Task;
+import com.example.producingwebservice.model.TaskDto;
 
 import java.util.List;
 
 public interface TaskService {
-    List<Task> findAll();
-    Task save(Task task);
-    void delete(Task task);
+    List<TaskDto> findAll();
+
+    TaskDto findById(Long id);
+
+    TaskDto update(Long id, TaskDto taskDto);
+
+    void deleteById(Long id);
+
+    TaskDto save(TaskDto taskDto);
+
+    List<TaskDto> saveAll(List<TaskDto> taskDtos);
 }

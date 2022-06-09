@@ -1,4 +1,4 @@
-package com.example.producingwebservice.domain;
+package com.example.producingwebservice.model;
 
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.Builder;
