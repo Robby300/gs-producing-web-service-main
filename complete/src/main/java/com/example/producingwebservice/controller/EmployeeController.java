@@ -1,9 +1,9 @@
 package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.api.EmployeeService;
-import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
+import com.example.producingwebservice.model.TaskDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -29,6 +29,7 @@ public class EmployeeController {
     @PostMapping()
     public ResponseEntity<List<EmployeeResponse>> saveAll(@RequestBody List<EmployeeDto> employeeDtos) {
         List<EmployeeResponse> employeeResponses = employeeService.saveAll(employeeDtos);
+        log.info("save all employee = {}", employeeDtos);
         return new ResponseEntity<>(employeeResponses, HttpStatus.CREATED);
     }
 
@@ -53,19 +54,15 @@ public class EmployeeController {
 
     @PutMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse assignTask(@PathVariable("uuid") String uuid,
-                                       @PathVariable("task_id") Task task) {
-        log.info("Assign task = {} to employee by uuid = {}", task, uuid);
-        EmployeeDto employeeDto = employeeService.findByUuid(uuid);
-        employeeDto.getTasks().add(task);
-        return employeeService.save(employeeDto);
+                                       @PathVariable("task_id") TaskDto taskDto) {
+        log.info("Assign task = {} to employee by uuid = {}", taskDto, uuid);
+        return employeeService.assignTaskToEmployee(uuid, taskDto);
     }
 
     @DeleteMapping("/{uuid}/task/{task_id}")
     public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
-                                         @PathVariable("task_id") Task task) {
-        log.info("Unassigned task id = {} to employee by uuid = {}", task.getId(), uuid);
-        EmployeeDto employeeDto = employeeService.findByUuid(uuid);
-        employeeDto.getTasks().remove(task);
-        return employeeService.save(employeeDto);
+                                         @PathVariable("task_id") TaskDto taskDto) {
+        log.info("Unassigned task id = {} to employee by uuid = {}", taskDto.getId(), uuid);
+        return employeeService.unAssignTaskFromEmployee(uuid, taskDto);
     }
 }

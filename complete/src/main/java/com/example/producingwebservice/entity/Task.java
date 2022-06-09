@@ -1,6 +1,5 @@
 package com.example.producingwebservice.entity;
 
-import com.example.producingwebservice.model.TaskDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

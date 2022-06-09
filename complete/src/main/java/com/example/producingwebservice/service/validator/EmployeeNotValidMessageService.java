@@ -1,6 +1,5 @@
 package com.example.producingwebservice.service.validator;
 
-import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.service.MessageService;
 import lombok.RequiredArgsConstructor;

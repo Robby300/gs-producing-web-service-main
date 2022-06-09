@@ -1,6 +1,5 @@
 package com.example.producingwebservice.api;
 
-import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.TaskDto;
 
 import java.util.List;

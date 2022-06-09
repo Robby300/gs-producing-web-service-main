@@ -1,10 +1,9 @@
 package com.example.producingwebservice.service.validator;
 
 import com.example.producingwebservice.api.EmployeeValidatorService;
-import com.example.producingwebservice.entity.Employee;
+import com.example.producingwebservice.checker.EmployeeChecker;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
-import com.example.producingwebservice.checker.EmployeeChecker;
 import com.example.producingwebservice.service.MessageService;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;

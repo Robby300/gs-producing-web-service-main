@@ -1,6 +1,5 @@
 package com.example.producingwebservice.entity;
 
-import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.type.Position;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

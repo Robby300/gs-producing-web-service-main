@@ -1,7 +1,6 @@
 package com.example.producingwebservice.kafka;
 
 
-import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.model.EmployeeDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -3,10 +3,12 @@ package com.example.producingwebservice.service;
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.entity.Employee;
+import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.kafka.ProducerService;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
+import com.example.producingwebservice.model.TaskDto;
 import com.example.producingwebservice.repository.EmployeeRepository;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
@@ -79,6 +81,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         BeanUtils.copyProperties(employeeDto, employeeDtoFromRepo, "id", "uuid");
         log.info("Update employee = {}", employeeDtoFromRepo);
         return save(employeeDtoFromRepo);
+    }
+
+    @Override
+    public EmployeeResponse assignTaskToEmployee(String uuid, TaskDto taskDto) {
+        EmployeeDto employeeDto = findByUuid(uuid);
+        employeeDto.getTasks().add(modelMapper.map(taskDto, Task.class));
+        return save(employeeDto);
+    }
+
+    @Override
+    public EmployeeResponse unAssignTaskFromEmployee(String uuid, TaskDto taskDto) {
+        EmployeeDto employeeDto = findByUuid(uuid);
+        employeeDto.getTasks().remove(modelMapper.map(taskDto, Task.class));
+        return save(employeeDto);
     }
 
     private void generateUuid(EmployeeDto employeeDto) {

@@ -1,6 +1,5 @@
 package com.example.producingwebservice.entity;
 
-import com.example.producingwebservice.model.UserDto;
 import com.example.producingwebservice.type.Role;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
