@@ -1,6 +1,4 @@
 package com.example.producingwebservice.checker;
-//todo переместить в отдельный пакет checker
-// done
 
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.service.validator.EmployeeNotValidMessageService;
