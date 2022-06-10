@@ -11,7 +11,6 @@ import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
 import com.example.producingwebservice.model.TaskDto;
 import com.example.producingwebservice.repository.EmployeeRepository;
-import com.example.producingwebservice.support.PdfReportGenerator;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +28,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static com.example.producingwebservice.support.PdfReportGenerator.getEmployeePdfReport;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -45,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public ResponseEntity<InputStreamResource> getEmployeePdfResponseEntity(String uuid) {
         EmployeeDto foundEmployeeDto = findByUuid(uuid);
-        ByteArrayInputStream employeePdf = PdfReportGenerator.getEmployeePdfReport(foundEmployeeDto);
+        ByteArrayInputStream employeePdf = getEmployeePdfReport(foundEmployeeDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(CONTENT_DISPOSITION, EMPLOYEES_REPORT_PDF);
 
@@ -82,7 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto findByUuid(String uuid) {
         Employee employee = employeeRepository.findEmployeeByUuid(uuid)
-                        .orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
+                .orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
         return modelMapper.map(employee, EmployeeDto.class);
     }
 
