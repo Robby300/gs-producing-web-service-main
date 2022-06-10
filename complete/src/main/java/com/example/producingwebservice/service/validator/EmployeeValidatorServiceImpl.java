@@ -20,6 +20,8 @@ import java.util.stream.Stream;
 public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 
     public static final String SEPARATOR = "; ";
+    public static final String VALIDATION_EMPLOYEE_ACCEPTED = "validation.employee.accepted";
+    public static final String VALIDATION_EMPLOYEE_NOT_VALID = "validation.employee.not.valid";
     private final MessageService messageService;
     private final EmployeeChecker employeeChecker;
 
@@ -28,11 +30,11 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
         String validateFieldsMessage = validateFields(employeeDto);
         if (validateFieldsMessage.isEmpty()) {
             log.debug("Employee {} passed check", employeeDto);
-            return getResponseBuild(employeeDto.toString(), ResponseStatus.SUCCESS, "validation.employee.accepted");
+            return getResponseBuild(employeeDto.toString(), ResponseStatus.SUCCESS, VALIDATION_EMPLOYEE_ACCEPTED);
         }
 
         log.debug("Employee {} failed verification and will not be added", employeeDto);
-        return getResponseBuild(validateFieldsMessage, ResponseStatus.FAILURE, "validation.employee.not.valid");
+        return getResponseBuild(validateFieldsMessage, ResponseStatus.FAILURE, VALIDATION_EMPLOYEE_NOT_VALID);
     }
 
     private String validateFields(EmployeeDto employeeDto) {

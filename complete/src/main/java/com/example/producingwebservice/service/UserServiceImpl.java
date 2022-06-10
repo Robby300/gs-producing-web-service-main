@@ -16,13 +16,14 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    public static final String NOT_FOUND_USER_WITH_USERNAME = "Not found user with username ";
     private final UserRepository userRepository;
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Not found user with username " + username));
+                .orElseThrow(() -> new UsernameNotFoundException(NOT_FOUND_USER_WITH_USERNAME + username));
     }
 
     @Override

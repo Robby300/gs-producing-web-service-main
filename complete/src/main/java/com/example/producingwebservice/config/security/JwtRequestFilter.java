@@ -20,6 +20,11 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
+    public static final String AUTHORIZATION = "Authorization";
+    public static final String BEARER = "Bearer ";
+    public static final String UNABLE_TO_GET_JWT_TOKEN = "Unable to get JWT Token ";
+    public static final String JWT_TOKEN_HAS_EXPIRED = "JWT Token has expired ";
+    public static final String JWT_TOKEN_DOES_NOT_BEGIN_WITH_BEARER_STRING = "JWT Token does not begin with Bearer String";
     private final UserService jwtUserDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
@@ -32,21 +37,21 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain chain)
             throws ServletException, IOException {
 
-        final String requestTokenHeader = request.getHeader("Authorization");
+        final String requestTokenHeader = request.getHeader(AUTHORIZATION);
 
         String username = null;
         String jwtToken = null;
-        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+        if (requestTokenHeader != null && requestTokenHeader.startsWith(BEARER)) {
             jwtToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                log.error("Unable to get JWT Token " + e);
+                log.error(UNABLE_TO_GET_JWT_TOKEN + e);
             } catch (ExpiredJwtException e) {
-                log.error("JWT Token has expired " + e);
+                log.error(JWT_TOKEN_HAS_EXPIRED + e);
             }
         } else {
-            log.warn("JWT Token does not begin with Bearer String");
+            log.warn(JWT_TOKEN_DOES_NOT_BEGIN_WITH_BEARER_STRING);
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

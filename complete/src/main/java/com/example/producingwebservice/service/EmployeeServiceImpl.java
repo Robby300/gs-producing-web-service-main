@@ -38,8 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDto> findAll() {
-        return employeeRepository
-                .findAll()
+        return employeeRepository.findAll()
                 .stream()
                 .map(employee -> modelMapper.map(employee, EmployeeDto.class))
                 .collect(Collectors.toList());
@@ -62,8 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto findByUuid(String uuid) {
-        Employee employee = employeeRepository
-                        .findEmployeeByUuid(uuid)
+        Employee employee = employeeRepository.findEmployeeByUuid(uuid)
                         .orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
         return modelMapper.map(employee, EmployeeDto.class);
     }

@@ -22,6 +22,8 @@ import java.util.List;
 @RequestMapping("api/v1.0/employees")
 public class EmployeeController {
 
+    public static final String CONTENT_DISPOSITION = "Content-Disposition";
+    public static final String EMPLOYEES_REPORT_PDF = "inline; filename=employeesReport.pdf";
     private final EmployeeService employeeService;
 
     @GetMapping()
@@ -45,11 +47,11 @@ public class EmployeeController {
 
     @GetMapping("/{uuid}/pdf")
     public ResponseEntity<InputStreamResource> getPdfByUuid(@PathVariable("uuid") String uuid) {
-        log.info("Get employee by uuid = {}", uuid);
+        log.info("Get employee PDF by uuid = {}", uuid);
         EmployeeDto foundEmployeeDto = employeeService.findByUuid(uuid);
         ByteArrayInputStream employeePdf = GeneratePdfReport.employeeReport(foundEmployeeDto);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Content-Disposition", "inline; filename=employeesReport.pdf");
+        httpHeaders.add(CONTENT_DISPOSITION, EMPLOYEES_REPORT_PDF);
 
         return ResponseEntity
                 .ok()

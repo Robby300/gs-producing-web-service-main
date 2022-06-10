@@ -10,18 +10,24 @@ import java.text.MessageFormat;
 @RequiredArgsConstructor
 @Service
 public class EmployeeNotValidMessageService {
+    public static final String VALIDATION_SALARY_SIZE = "validation.salary.size";
+    public static final String VALIDATION_SALARY_NOT_NUMBER = "validation.salary.not.number";
+    public static final String VALIDATION_POSITION_SALARY = "validation.position.salary";
+    public static final String VALIDATION_POSITION_TASKS = "validation.position.tasks";
+    public static final String VALIDATION_NOT_NULL = "validation.not.null";
+    public static final String VALIDATION_NAME_LENGTH = "validation.name.length";
     private final MessageService messageService;
 
     public String getNotValidSalaryMessage() {
-        return messageService.getMessage("validation.salary.size");
+        return messageService.getMessage(VALIDATION_SALARY_SIZE);
     }
 
     public String getSalaryNotANumber() {
-        return messageService.getMessage("validation.salary.not.number");
+        return messageService.getMessage(VALIDATION_SALARY_NOT_NUMBER);
     }
 
     public String getNotValidSalaryByPositionMessage(EmployeeDto employeeDto) {
-        return MessageFormat.format(messageService.getMessage("validation.position.salary"),
+        return MessageFormat.format(messageService.getMessage(VALIDATION_POSITION_SALARY),
                 messageService.getMessage(employeeDto.getPosition()),
                 employeeDto.getPosition().lowSalary,
                 employeeDto.getPosition().highSalary,
@@ -29,16 +35,16 @@ public class EmployeeNotValidMessageService {
     }
 
     public String getNotValidCountsOfTasksMessage(EmployeeDto employeeDto) {
-        return MessageFormat.format(messageService.getMessage("validation.position.tasks"),
+        return MessageFormat.format(messageService.getMessage(VALIDATION_POSITION_TASKS),
                 messageService.getMessage(employeeDto.getPosition()),
                 employeeDto.getPosition().maxTasks);
     }
 
     public String getNotNullMessage(String parameter) {
-        return parameter + messageService.getMessage("validation.not.null");
+        return parameter + messageService.getMessage(VALIDATION_NOT_NULL);
     }
 
     public String getNotValidNameLength() {
-        return messageService.getMessage("validation.name.length");
+        return messageService.getMessage(VALIDATION_NAME_LENGTH);
     }
 }
