@@ -58,7 +58,7 @@ public class PdfReportGenerator {
     }
 
     private static List getListOfEmployeeTasks(EmployeeDto employeeDto) {
-        List list = new List();
+        List list = new List(); //todo переменные так лучше не называть. Это как String string
         Set<Task> tasks = employeeDto.getTasks();
         list.setListSymbol(new Chunk(TASK));
         list.setNumbered(true);
