@@ -32,7 +32,7 @@ public class PdfReportGenerator {
     private PdfReportGenerator() {
     }
 
-    public static ByteArrayInputStream employeeReport(EmployeeDto employeeDto) {
+    public static ByteArrayInputStream getEmployeePdfReport(EmployeeDto employeeDto) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Document document = new Document();
         document.open();
