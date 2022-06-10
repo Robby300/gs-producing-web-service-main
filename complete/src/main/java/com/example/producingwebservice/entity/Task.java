@@ -3,7 +3,6 @@ package com.example.producingwebservice.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +12,14 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = {"id"})
 public class Task {
     @Id
     @GeneratedValue
     private Long id;
     private String description;
+
+    @Override
+    public String toString() {
+        return "Description: " + description;
+    }
 }
