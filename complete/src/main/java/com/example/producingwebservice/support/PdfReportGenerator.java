@@ -5,7 +5,6 @@ import com.example.producingwebservice.model.EmployeeDto;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.InputStreamResource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +18,6 @@ import static com.itextpdf.text.pdf.BaseFont.HELVETICA_BOLD;
 @Slf4j
 public class PdfReportGenerator {
 
-    private static final String DATE_FORMAT_PATTERN = "HH:mm:ss dd.MM.yyyy";
     public static final String EMPLOYEE_QUESTIONNAIRE = "Employee questionnaire";
     public static final String EMPLOYEE_TASKS = "Employee tasks";
     public static final String TASK = "Task: ";
@@ -29,16 +27,17 @@ public class PdfReportGenerator {
     public static final String SALARY = "Salary: ";
     public static final int BIG_FONT_SIZE = 16;
     public static final int MIDDLE_FONT_SIZE = 14;
+    private static final String DATE_FORMAT_PATTERN = "HH:mm:ss dd.MM.yyyy";
 
     private PdfReportGenerator() {
     }
 
-    public static InputStreamResource getEmployeePdfReport(EmployeeDto employeeDto) {
+    public static ByteArrayInputStream getEmployeePdfReport(EmployeeDto employeeDto) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Document document = new Document();
-        document.open();
         try {
             PdfWriter.getInstance(document, outputStream);
+            document.open();
             document.add(getParagraph(EMPLOYEE_QUESTIONNAIRE, BIG_FONT_SIZE));
             document.add(getParagraph(getDownloadDate(), MIDDLE_FONT_SIZE));
             document.add(getListOfEmployeeFields(employeeDto));
@@ -48,10 +47,10 @@ public class PdfReportGenerator {
             }
         } catch (DocumentException e) {
             e.printStackTrace();
+        } finally {
+            document.close();
         }
-        document.close();
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(outputStream.toByteArray());
-        return new InputStreamResource(byteArrayInputStream);
+        return new ByteArrayInputStream(outputStream.toByteArray());
     }
 
     private static boolean employeeHasTasks(EmployeeDto employeeDto) {

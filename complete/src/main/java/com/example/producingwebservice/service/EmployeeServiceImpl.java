@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -45,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public ResponseEntity<InputStreamResource> getEmployeePdfResponseEntity(String uuid) {
         EmployeeDto foundEmployeeDto = findByUuid(uuid);
-        InputStreamResource employeePdf = getEmployeePdfReport(foundEmployeeDto);
+        ByteArrayInputStream employeePdf = getEmployeePdfReport(foundEmployeeDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(CONTENT_DISPOSITION, EMPLOYEES_REPORT_PDF);
 
@@ -53,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .ok()
                 .headers(httpHeaders)
                 .contentType(MediaType.APPLICATION_PDF)
-                .body(employeePdf);
+                .body(new InputStreamResource(employeePdf));
     }
 
     @Override
