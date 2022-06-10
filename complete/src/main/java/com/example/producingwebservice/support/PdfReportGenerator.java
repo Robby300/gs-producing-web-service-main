@@ -50,7 +50,8 @@ public class PdfReportGenerator {
             e.printStackTrace();
         }
         document.close();
-        return new InputStreamResource(new ByteArrayInputStream(outputStream.toByteArray()));
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(outputStream.toByteArray());
+        return new InputStreamResource(byteArrayInputStream);
     }
 
     private static boolean employeeHasTasks(EmployeeDto employeeDto) {
