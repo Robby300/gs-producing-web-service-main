@@ -16,7 +16,7 @@ import static com.itextpdf.text.Element.ALIGN_CENTER;
 import static com.itextpdf.text.pdf.BaseFont.HELVETICA_BOLD;
 
 @Slf4j
-public class GeneratePdfReport {
+public class PdfReportGenerator {
 
     private static final String DATE_FORMAT_PATTERN = "HH:mm:ss dd.MM.yyyy";
     public static final String EMPLOYEE_QUESTIONNAIRE = "Employee questionnaire";
@@ -29,14 +29,13 @@ public class GeneratePdfReport {
     public static final int BIG_FONT_SIZE = 16;
     public static final int MIDDLE_FONT_SIZE = 14;
 
-    private GeneratePdfReport() {
+    private PdfReportGenerator() {
     }
 
     public static ByteArrayInputStream employeeReport(EmployeeDto employeeDto) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Document document = new Document();
         document.open();
-
         try {
             PdfWriter.getInstance(document, outputStream);
             document.add(getParagraph(EMPLOYEE_QUESTIONNAIRE, BIG_FONT_SIZE));
@@ -58,7 +57,6 @@ public class GeneratePdfReport {
     }
 
     private static List getListOfEmployeeTasks(EmployeeDto employeeDto) {
-
         List list = new List();
         Set<Task> tasks = employeeDto.getTasks();
         list.setListSymbol(new Chunk(TASK));

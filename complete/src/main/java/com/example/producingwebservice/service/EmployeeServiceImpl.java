@@ -11,7 +11,7 @@ import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
 import com.example.producingwebservice.model.TaskDto;
 import com.example.producingwebservice.repository.EmployeeRepository;
-import com.example.producingwebservice.support.GeneratePdfReport;
+import com.example.producingwebservice.support.PdfReportGenerator;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public ResponseEntity<InputStreamResource> getEmployeePdfResponseEntity(String uuid) {
         EmployeeDto foundEmployeeDto = findByUuid(uuid);
-        ByteArrayInputStream employeePdf = GeneratePdfReport.employeeReport(foundEmployeeDto);
+        ByteArrayInputStream employeePdf = PdfReportGenerator.employeeReport(foundEmployeeDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(CONTENT_DISPOSITION, EMPLOYEES_REPORT_PDF);
 
