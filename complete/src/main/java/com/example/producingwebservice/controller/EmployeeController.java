@@ -3,17 +3,13 @@ package com.example.producingwebservice.controller;
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
-import com.example.producingwebservice.support.GeneratePdfReport;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @Slf4j
@@ -22,8 +18,6 @@ import java.util.List;
 @RequestMapping("api/v1.0/employees")
 public class EmployeeController {
 
-    public static final String CONTENT_DISPOSITION = "Content-Disposition";
-    public static final String EMPLOYEES_REPORT_PDF = "inline; filename=employeesReport.pdf";
     private final EmployeeService employeeService;
 
     @GetMapping()
@@ -48,17 +42,7 @@ public class EmployeeController {
     @GetMapping("/{uuid}/pdf")
     public ResponseEntity<InputStreamResource> getPdfByUuid(@PathVariable("uuid") String uuid) {
         log.info("Get employee PDF by uuid = {}", uuid);
-        EmployeeDto foundEmployeeDto = employeeService.findByUuid(uuid);
-        ByteArrayInputStream employeePdf = GeneratePdfReport.employeeReport(foundEmployeeDto);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(CONTENT_DISPOSITION, EMPLOYEES_REPORT_PDF);
-
-        return ResponseEntity
-                .ok()
-                .headers(httpHeaders)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(employeePdf));
-
+        return employeeService.getEmployeePdfResponseEntity(uuid);
     }
 
     @PutMapping("/{uuid}")
