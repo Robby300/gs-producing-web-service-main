@@ -5,6 +5,7 @@ import com.example.producingwebservice.model.EmployeeDto;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.InputStreamResource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -32,7 +33,7 @@ public class PdfReportGenerator {
     private PdfReportGenerator() {
     }
 
-    public static ByteArrayInputStream getEmployeePdfReport(EmployeeDto employeeDto) {
+    public static InputStreamResource getEmployeePdfReport(EmployeeDto employeeDto) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         Document document = new Document();
         document.open();
@@ -49,7 +50,7 @@ public class PdfReportGenerator {
             e.printStackTrace();
         }
         document.close();
-        return new ByteArrayInputStream(outputStream.toByteArray());
+        return new InputStreamResource(new ByteArrayInputStream(outputStream.toByteArray()));
     }
 
     private static boolean employeeHasTasks(EmployeeDto employeeDto) {

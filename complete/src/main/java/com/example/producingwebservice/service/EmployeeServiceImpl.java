@@ -46,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public ResponseEntity<InputStreamResource> getEmployeePdfResponseEntity(String uuid) {
         EmployeeDto foundEmployeeDto = findByUuid(uuid);
-        ByteArrayInputStream employeePdf = getEmployeePdfReport(foundEmployeeDto);
+        InputStreamResource employeePdf = getEmployeePdfReport(foundEmployeeDto);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(CONTENT_DISPOSITION, EMPLOYEES_REPORT_PDF);
 
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .ok()
                 .headers(httpHeaders)
                 .contentType(MediaType.APPLICATION_PDF)
-                .body(new InputStreamResource(employeePdf));
+                .body(employeePdf);
     }
 
     @Override
