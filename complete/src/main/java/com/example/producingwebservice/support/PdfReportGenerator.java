@@ -58,14 +58,14 @@ public class PdfReportGenerator {
     }
 
     private static List getListOfEmployeeTasks(EmployeeDto employeeDto) {
-        List list = new List(); //todo переменные так лучше не называть. Это как String string
+        List listOfEmployeeTasks = new List(); //todo переменные так лучше не называть. Это как String string // done
         Set<Task> tasks = employeeDto.getTasks();
-        list.setListSymbol(new Chunk(TASK));
-        list.setNumbered(true);
+        listOfEmployeeTasks.setListSymbol(new Chunk(TASK));
+        listOfEmployeeTasks.setNumbered(true);
         for (Task task : tasks) {
-            list.add(task.toString());
+            listOfEmployeeTasks.add(task.toString());
         }
-        return list;
+        return listOfEmployeeTasks;
     }
 
     private static Paragraph getParagraph(String content, int fontSize) {
@@ -81,18 +81,18 @@ public class PdfReportGenerator {
     }
 
     private static List getListOfEmployeeFields(EmployeeDto employeeDto) {
-        List list = new List();
-        list.setListSymbol(new Chunk(UUID));
-        list.add(employeeDto.getUuid());
+        List listOfEmployeeFields = new List();
+        listOfEmployeeFields.setListSymbol(new Chunk(UUID));
+        listOfEmployeeFields.add(employeeDto.getUuid());
 
-        list.setListSymbol(new Chunk(NAME));
-        list.add(employeeDto.getName());
+        listOfEmployeeFields.setListSymbol(new Chunk(NAME));
+        listOfEmployeeFields.add(employeeDto.getName());
 
-        list.setListSymbol(new Chunk(POSITION));
-        list.add(employeeDto.getPosition().name());
+        listOfEmployeeFields.setListSymbol(new Chunk(POSITION));
+        listOfEmployeeFields.add(employeeDto.getPosition().name());
 
-        list.setListSymbol(new Chunk(SALARY));
-        list.add(employeeDto.getSalary());
-        return list;
+        listOfEmployeeFields.setListSymbol(new Chunk(SALARY));
+        listOfEmployeeFields.add(employeeDto.getSalary());
+        return listOfEmployeeFields;
     }
 }

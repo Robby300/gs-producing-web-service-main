@@ -1,5 +1,4 @@
 FROM openjdk:11-jre-slim
-
 RUN mkdir -p /app/logs && \
     chgrp -R 0 /app/logs && \
     chmod -R g=u /app/logs
@@ -12,10 +11,9 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 
-COPY /build/libs/gs-producing-web-service-0.1.0.jar /app/
-COPY /build/resources/main/application-docker.properties /app/application.properties
+COPY /build/libs/gs-producing-web-service-0.1.0.jar /app
 
-EXPOSE 8080 8082 5432
+EXPOSE 8080
 
 WORKDIR /app/
 
