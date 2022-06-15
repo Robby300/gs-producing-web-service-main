@@ -17,5 +17,14 @@ pipeline {
                 sh 'docker build -t employee/jenkins-images:0.3 .'
             }
         }
+         stage('Push docker image to DockerHub') {
+            steps{
+               withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                  sh '''
+                    docker push employee/jenkins-images:0.3
+                  '''
+               }
+            }
+         }
     }
 }
