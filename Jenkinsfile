@@ -13,6 +13,9 @@ pipeline {
             }
         }*/
         stage('build docker') {
+            agent {
+                docker 'gradle:latest'
+            }
             steps {
                 sh 'docker build -t jenkins-images:0.3 .'
             }
