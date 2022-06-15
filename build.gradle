@@ -56,7 +56,6 @@ bootJar {
     archiveBaseName = 'gs-producing-web-service'
     archiveVersion = '0.1.0'
 }
-// end::jaxb[]
 
 // tag::dependencies[]
 dependencies {

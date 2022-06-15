@@ -1,9 +1,7 @@
 FROM gradle:latest AS GRADLE_BUILD
 COPY ./ /usr/local/app
 WORKDIR /usr/local/app
-RUN sh gradlew clean
-RUN sh gradlew build
-
+RUN sh gradlew clean build
 
 FROM openjdk:11-jre-slim
 RUN mkdir -p /app/logs && \
