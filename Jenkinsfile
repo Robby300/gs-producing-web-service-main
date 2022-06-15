@@ -21,7 +21,7 @@ pipeline {
             steps{
                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
                   sh '''
-                    docker push employee/jenkins-images:0.3
+                    docker push robby300/jenkins-images:0.3
                   '''
                }
             }
