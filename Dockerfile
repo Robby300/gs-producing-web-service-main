@@ -8,11 +8,11 @@ RUN mkdir -p /app/logs && \
     chgrp -R 0 /app/logs && \
     chmod -R g=u /app/logs
 
-COPY --from=GRADLE_BUILD /usr/local/app/build/libs/gs-producing-web-service-0.1.0.jar /app
+COPY --from=GRADLE_BUILD /usr/local/app/build/libs/gs-producing-web-service-0.1.0.jar /app/app.jar
 
 EXPOSE 8080
 
 WORKDIR /app/
 
-CMD ["java","-jar","/app/gs-producing-web-service-0.1.0.jar"]
+CMD ["java","-jar","app.jar"]
 

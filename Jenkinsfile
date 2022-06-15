@@ -13,11 +13,8 @@ pipeline {
             }
         }*/
         stage('build docker') {
-            agent {
-                docker 'gradle:latest'
-            }
             steps {
-                sh 'docker build -t jenkins-images:0.3 .'
+                sh 'docker build -t employee/jenkins-images:0.3 .'
             }
         }
     }
