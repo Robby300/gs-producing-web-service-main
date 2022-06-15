@@ -14,7 +14,7 @@ pipeline {
         }*/
         stage('build docker') {
             steps {
-                sh 'docker build -t employee/jenkins-images:0.3 .'
+                sh 'docker build -t robby300/jenkins-images:0.3 .'
             }
         }
          stage('Push docker image to DockerHub') {
