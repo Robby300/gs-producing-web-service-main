@@ -19,7 +19,7 @@ pipeline {
             }
         }
 
-        stage ('Build & Push'){
+        stage ('Pull & Run'){
             steps ('build') {
                 sh 'echo HELLO'
             }
