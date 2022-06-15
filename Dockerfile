@@ -10,7 +10,7 @@ RUN mkdir -p /app/logs && \
     chgrp -R 0 /app/logs && \
     chmod -R g=u /app/logs
 
-COPY --from=MAVEN_BUILD /build/libs/gs-producing-web-service-0.1.0.jar /app
+COPY --from=GRADLE_BUILD /build/libs/gs-producing-web-service-0.1.0.jar /app
 
 EXPOSE 8080
 
