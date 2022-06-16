@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy to staging') {
             steps {
                 sshagent(['server']) {
-                     sh '''
+                     sh '
                         ssh -o StrictHostKeyChecking=no robert@192.168.233.128
                         docker run --network cloud -p 8080:8080 -e PORT=8080
                         -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/robdb
@@ -39,7 +39,7 @@ pipeline {
                         -e SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092
                         -e SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092
                         -v ${PWD}/logs:/logs -d robby300/jenkins-images:0.3
-                        '''
+                        '
                  }
             }
         }
