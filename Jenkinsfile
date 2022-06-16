@@ -23,8 +23,7 @@ pipeline {
             steps {
 
                 sshagent(['server']) {
-                     sh 'ssh -o StrictHostKeyChecking=no robert@192.168.233.128 docker stop employee'
-                     sh 'ssh -o StrictHostKeyChecking=no robert@192.168.233.128 docker remove employee'
+                     sh 'ssh -o StrictHostKeyChecking=no robert@192.168.233.128 docker rm -f employee'
                      sh 'ssh -o StrictHostKeyChecking=no robert@192.168.233.128 docker run --name employee --network cloud -p 8080:8080 -e PORT=8080 -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/robdb -e SPRING_DATASOURCE_USERNAME=rob -e SPRING_DATASOURCE_PASSWORD=isa_3812 -e SPRING_FLYWAY_URL=jdbc:postgresql://postgres:5432/robdb -e SPRING_FLYWAY_USER=rob -e SPRING_FLYWAY_PASSWORD=isa_3812 -e SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092 -e SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092 -v ${PWD}/logs:/logs -d robby300/jenkins-images:0.3'
                  }
             }
