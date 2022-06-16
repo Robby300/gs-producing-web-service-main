@@ -27,11 +27,8 @@ pipeline {
         stage('Deploy to staging') {
             steps {
                 sshagent(['server']) {
-                    sh 'ssh -o StrictHostKeyChecking=no robert@192.168.233.128 whoami'
-                }
-//                 sshagent(['server']) {
-//                     sh 'ssh -o StrictHostKeyChecking=no robert@192.168.199.128 docker run --network kafka-net -p 8081:8081 -e PORT=8081 -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/robdb -e SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092 -e SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092 -v ${PWD}/logs:/logs -d robby300/jenkins-images:0.3'
-//                 }
+                     sh 'ssh -o StrictHostKeyChecking=no robert@192.168.199.128 docker run --network kafka-net -p 8081:8081 -e PORT=8081 -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres/robdb -e SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092 -e SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092 -v ${PWD}/logs:/logs -d robby300/jenkins-images:0.3'
+                 }
             }
         }
     }
