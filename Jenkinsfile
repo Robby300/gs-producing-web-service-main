@@ -22,7 +22,7 @@ pipeline {
         stage('stop and remove container') {
             steps {
                 sshagent(['server']) {
-                     sh 'ssh -o StrictHostKeyChecking=no robert@192.168.233.128 docker rm -f employee'
+                     sh 'ssh robert@192.168.233.128 docker rm -f employee'
                 }
             }
         }
@@ -40,7 +40,7 @@ pipeline {
                      -e SPRING_FLYWAY_PASSWORD=isa_3812 \
                      -e SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092 \
                      -e SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092 \
-                     -v ${PWD}/logs:/logs -d robby300/jenkins-images:0.3'''
+                     -d robby300/jenkins-images:0.3'''
                  }
             }
         }
