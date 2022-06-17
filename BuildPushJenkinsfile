@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('git') {
             steps {
-                git credentialsId: 'github-ssh-key', url: 'git@github.com:Robby300/gs-producing-web-service-main.git'
+                git credentialsId: 'github-ssh-key', url: 'git@github.com:Robby300/gs-producing-web-service-main.git', branch: 'master'
             }
         }
         stage ('build docker') {
