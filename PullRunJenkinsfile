@@ -5,7 +5,7 @@ pipeline {
         stage('deploy to server') {
             steps {
                 sshagent(['server']) {
-                     sh 'ssh robert@192.168.233.128 /home/robert/deploy.sh'
+                     sh 'ssh robert@192.168.233.128 bash /home/robert/deploy.sh'
                      /*sh 'ssh robert@192.168.233.128 docker rm -f employee'
                      sh '''ssh robert@192.168.233.128 \
                      docker run --name employee --network cloud -p 8080:8080 \
