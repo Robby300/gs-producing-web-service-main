@@ -29,7 +29,7 @@ pipeline {
         stage('deploy to server') {
             steps {
                 sshagent(['server']) {
-                     sh '''ssh -o StrictHostKeyChecking=no robert@192.168.233.128 \
+                     sh '''ssh robert@192.168.233.128 \
                      docker run --name employee --network cloud -p 8080:8080 \
                      -e PORT=8080 \
                      -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/robdb \
