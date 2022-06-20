@@ -23,33 +23,8 @@ sourceSets {
     }
 }
 
-def dbDataDriver = ''
-def dbDataUrl = ''
-def dbDataUser = ''
-def dbDataPassword = ''
-def dbDataLocation = ''
-def dbDataSchema = ''
 
 
-file("src/main/resources/flyway.properties").withReader {
-    Properties flywayProp = new Properties()
-    flywayProp.load(it)
-    dbDataDriver = "${flywayProp.driver}"
-    dbDataUrl = "${flywayProp.url}"
-    dbDataUser = "${flywayProp.user}"
-    dbDataPassword = "${flywayProp.password}"
-    dbDataLocation = "${flywayProp.locations}"
-    dbDataSchema = "${flywayProp.schemas}"
-}
-
-flyway {
-    locations = [dbDataLocation]
-    driver = dbDataDriver
-    url = dbDataUrl
-    user = dbDataUser
-    password = dbDataPassword
-    schemas = [dbDataSchema]
-}
 
 
 bootJar {
@@ -77,6 +52,7 @@ dependencies {
     implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
     implementation 'org.modelmapper:modelmapper:3.1.0'
     implementation 'org.postgresql:postgresql:42.3.6'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
