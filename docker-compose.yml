@@ -29,19 +29,19 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
 
-#  app:
-#    container_name: producing-web-service
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    image:  web-service-image
-#    networks:
-#      - cloud
-#    ports:
-#      - ${PORT}:8080
-#    depends_on:
-#      - db
-#      - kafka
+  app:
+    container_name: producing-web-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image:  web-service-image
+    networks:
+      - cloud
+    ports:
+      - ${PORT}:8080
+    depends_on:
+      - db
+      - kafka
 #    environment:
 #      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
 #      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
