@@ -8,6 +8,7 @@ pipeline {
                      sh 'ssh robert@192.168.233.128 bash deploy.sh'
                 }*/
                                 sshagent(['server']) {
+                                     sh 'docker rm -f employee'
                                      sh '''ssh robert@192.168.233.128 \
                                      docker run --name employee --network cloud -p 8080:8080 \
                                      -e PORT=8080 \
