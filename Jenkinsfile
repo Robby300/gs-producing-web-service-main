@@ -23,6 +23,8 @@ pipeline {
             steps {
                 sshagent(['server']) {
                      sh 'ssh robert@192.168.233.128 docker rm -f employee'
+
+                    sh 'ssh robert@192.168.233.128 echo 'connection''
                 }
             }
         }
