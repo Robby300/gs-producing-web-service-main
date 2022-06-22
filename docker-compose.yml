@@ -42,15 +42,21 @@ services:
     depends_on:
       - db
       - kafka
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
-#      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-#      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-#      SPRING_FLYWAY_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
-#      SPRING_FLYWAY_USER: ${POSTGRES_USER}
-#      SPRING_FLYWAY_PASSWORD: ${POSTGRES_PASSWORD}
-#      SPRING_KAFKA_CONSUMER_BOOTSTRAP-SERVERS: kafka:9092
-#      SPRING_KAFKA_PRODUCER_BOOTSTRAP-SERVERS: kafka:9092
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 512M
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_FLYWAY_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      SPRING_FLYWAY_USER: ${POSTGRES_USER}
+      SPRING_FLYWAY_PASSWORD: ${POSTGRES_PASSWORD}
+      SPRING_KAFKA_CONSUMER_BOOTSTRAP-SERVERS: kafka:9092
+      SPRING_KAFKA_PRODUCER_BOOTSTRAP-SERVERS: kafka:9092
 
   db:
     image: postgres:latest
