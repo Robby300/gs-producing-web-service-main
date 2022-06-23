@@ -28,7 +28,7 @@ pipeline {
         }
         stage('deploy to server') {
             steps {
-                sshagent(['server']) {
+                sshagenrmt(['server']) {
                      sh '''ssh robert@192.168.233.131 \
                      docker run --name employee --network cloud -p 8080:8080 \
                      -e PORT=8080 \
