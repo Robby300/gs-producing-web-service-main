@@ -1,7 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.7'
+    id 'org.springframework.boot' version '2.4.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id "org.flywaydb.flyway" version "7.15.0"
+    id 'com.google.cloud.tools.jib' version '3.0.0'
     id 'java'
 }
 
@@ -12,6 +13,7 @@ sourceCompatibility = "11"
 repositories {
     mavenLocal()
     mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
 }
 
 // tag::xsd[]
@@ -23,16 +25,23 @@ sourceSets {
     }
 }
 
-
-
-
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.0"
+    }
+}
 
 bootJar {
     archiveBaseName = 'gs-producing-web-service'
     archiveVersion = '0.1.0'
 }
 
-// tag::dependencies[]
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.RELEASE"
+    }
+}
+
 dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -68,17 +77,20 @@ dependencies {
     implementation 'com.lowagie:itext:4.2.2'
     implementation 'org.modelmapper:modelmapper:2.4.4'
 
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:3.1.3'
+
 }
 
-task dockerComposeUpLocal(type: Exec) {
-    group = "quick-start"
-    commandLine 'docker-compose', '-f', 'docker-compose.yml', 'up', '--build', '-d'
-    sleep(2000)
-}
-task quickStart(type: GradleBuild) {
-    group = "quick-start"
-    tasks = ['clean', 'bootJar', 'dockerComposeUpLocal', 'flywayClean', 'flywayMigrate']
-}
+
+//task dockerComposeUpLocal(type: Exec) {
+//    group = "quick-start"
+//    commandLine 'docker-compose', '-f', 'docker-compose.yml', 'up', '--build', '-d'
+//    sleep(2000)
+//}
+//task quickStart(type: GradleBuild) {
+//    group = "quick-start"
+//    tasks = ['clean', 'bootJar', 'dockerComposeUpLocal', 'flywayClean', 'flywayMigrate']
+//}
 
 //test {
 //    useJUnitPlatform()
