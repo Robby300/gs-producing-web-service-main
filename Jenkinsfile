@@ -22,14 +22,14 @@ pipeline {
         stage('stop and remove container') {
             steps {
                 sshagent(['server']) {
-                     sh 'ssh robert@192.168.233.128 docker rm -f employee'
+                     sh 'ssh robert@192.168.233.131 docker rm -f employee'
                 }
             }
         }
         stage('deploy to server') {
             steps {
                 sshagent(['server']) {
-                     sh '''ssh robert@192.168.233.128 \
+                     sh '''ssh robert@192.168.233.131 \
                      docker run --name employee --network cloud -p 8080:8080 \
                      -e PORT=8080 \
                      -e SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/robdb \
