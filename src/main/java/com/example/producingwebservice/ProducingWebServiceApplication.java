@@ -10,7 +10,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableEurekaClient
 public class ProducingWebServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProducingWebServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProducingWebServiceApplication.class, args);
+
+    }
 }
