@@ -42,6 +42,7 @@ services:
     depends_on:
       - db
       - kafka
+      - eureka
     deploy:
       resources:
         limits:
@@ -49,6 +50,7 @@ services:
         reservations:
           memory: 512M
     environment:
+      SPRING_APPLICATION_NAME: employee
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
@@ -57,6 +59,8 @@ services:
       SPRING_FLYWAY_PASSWORD: ${POSTGRES_PASSWORD}
       SPRING_KAFKA_CONSUMER_BOOTSTRAP-SERVERS: kafka:9092
       SPRING_KAFKA_PRODUCER_BOOTSTRAP-SERVERS: kafka:9092
+#      EUREKA_HOST: http://eureka:8761/eureka/
+#      EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE: http://eureka:8761/eureka
 
   db:
     image: postgres:latest
@@ -69,6 +73,14 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  eureka:
+    image: springcloud/eureka:latest
+    container_name: eureka
+    networks:
+    - cloud
+    ports:
+      - "8761:8761"
 
 networks:
   cloud:
