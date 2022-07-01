@@ -52,7 +52,7 @@ services:
       - EUREKA_HOST=http://eureka:8761/eureka/
 
   employee:
-    image: producing-web-service:0.0.1-SNAPSHOT
+    image: robby300/employee
 #    networks:
 #      - cloud
 
