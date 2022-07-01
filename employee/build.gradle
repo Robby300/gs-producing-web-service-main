@@ -15,7 +15,7 @@ plugins {
 group 'org.example'
 version 'unspecified'
 
-jib.to.image = 'Robby300/employee'
+jib.to.image = 'robby300/employee'
 
 repositories {
     mavenLocal()

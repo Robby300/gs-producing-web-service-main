@@ -8,7 +8,7 @@ plugins {
 group 'org.example'
 version 'unspecified'
 
-jib.to.image = 'Robby300/eureka'
+jib.to.image = 'robby300/eureka'
 
 repositories {
     mavenCentral()
