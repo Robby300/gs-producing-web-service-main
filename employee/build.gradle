@@ -12,9 +12,8 @@ plugins {
     id 'java'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "11"
+group 'org.example'
+version 'unspecified'
 
 repositories {
     mavenLocal()
@@ -34,13 +33,6 @@ ext {
 //        }
 //    }
 //}
-
-
-
-bootJar {
-    archiveBaseName = 'gs-producing-web-service'
-    archiveVersion = '0.1.0'
-}
 
 dependencies {
 
