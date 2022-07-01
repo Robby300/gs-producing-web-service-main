@@ -8,6 +8,8 @@ plugins {
 group 'org.example'
 version 'unspecified'
 
+jib.to.image = 'Robby300/balance'
+
 repositories {
     mavenCentral()
 }
