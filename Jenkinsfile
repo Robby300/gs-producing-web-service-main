@@ -7,38 +7,13 @@ pipeline {
                 git credentialsId: 'github-ssh-key', url: 'git@github.com:Robby300/gs-producing-web-service-main.git'
             }
         }
-//         stage ('build containers') {
-//             steps {
-// //                 sh './balance/gradlew jibDockerBuild --image robby300/balance'
-//                 sh './gradlew jibDockerBuild'
-// //                 sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
-//             }
-//         }
-
-
-//         }        stage ('build docker') {
-//             steps {
-//                 sh 'docker build -t robby300/jenkins-images:0.3 .'
-//             }
-//         }
-        stage('jib') {
-            jib {
-             from {
-                it.image = "openjdk:11-alpine"
-                }
-             to {
-                it.image = "Robby300/${project.name}"
-                 }
+        stage ('build containers') {
+            steps {
+//                 sh './balance/gradlew jibDockerBuild --image robby300/balance'
+                sh './gradlew jib --image Robby300/${project.name}'
+//                 sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
             }
         }
-            jib {
-            from {
-                it.image = "openjdk:11-alpine"
-            }
-            to {
-                it.image = "Robby300/${project.name}"
-                }
-            }
 
          stage('push to DockerHub') {
             steps{
