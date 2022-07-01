@@ -9,8 +9,9 @@ pipeline {
         }
         stage ('build containers') {
             steps {
-
-                sh './gradlew jibDockerBuild --image robby300/employee'
+                sh './balance/gradlew jibDockerBuild --image robby300/balance'
+                sh './employee/gradlew jibDockerBuild --image robby300/employee'
+                sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
             }
         }
 //         }        stage ('build docker') {
@@ -46,7 +47,7 @@ pipeline {
                      -e SPRING_FLYWAY_PASSWORD=isa_3812 \
                      -e SPRING_KAFKA_CONSUMER_BOOTSTRAP_SERVERS=kafka:9092 \
                      -e SPRING_KAFKA_PRODUCER_BOOTSTRAP_SERVERS=kafka:9092 \
-                     -d robby300/jenkins-images:0.3'''
+                     -d robby300/employee'''
                  }
             }
         }
