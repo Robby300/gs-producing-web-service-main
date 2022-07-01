@@ -1,0 +1,23 @@
+plugins {
+
+    id "com.google.cloud.tools.jib" version "3.2.1"
+    id 'java'
+}
+
+group 'org.example'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+ext {
+    set('springCloudVersion', "2021.0.3")
+}
+dependencies {
+
+}
+
+
+test {
+    useJUnitPlatform()
+}
