@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('build containers') {
             steps {
-                sh 'docker ./gradlew jib -t robby300/jenkins-images:0.3 .'
+                sh './gradlew jib -t robby300/jenkins-images:0.3 .'
             }
         }
 //         }        stage ('build docker') {
