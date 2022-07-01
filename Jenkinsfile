@@ -21,7 +21,17 @@ pipeline {
 //                 sh 'docker build -t robby300/jenkins-images:0.3 .'
 //             }
 //         }
-        jib {
+        stage('jib') {
+            jib {
+             from {
+                it.image = "openjdk:11-alpine"
+                }
+             to {
+                it.image = "Robby300/${project.name}"
+                 }
+            }
+        }
+            jib {
             from {
                 it.image = "openjdk:11-alpine"
             }
