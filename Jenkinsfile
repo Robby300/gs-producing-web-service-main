@@ -11,6 +11,7 @@ pipeline {
             steps {
                 sh 'docker ./gradlew jib -t robby300/jenkins-images:0.3 .'
             }
+        }
 //         }        stage ('build docker') {
 //             steps {
 //                 sh 'docker build -t robby300/jenkins-images:0.3 .'
