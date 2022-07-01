@@ -14,25 +14,30 @@ pipeline {
 // //                 sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
 //             }
 //         }
+
+
 //         }        stage ('build docker') {
 //             steps {
 //                 sh 'docker build -t robby300/jenkins-images:0.3 .'
 //             }
 //         }
+        jib {
+            from {
+                it.image = "openjdk:11-alpine"
+            }
+            to {
+                it.image = "Robby300/${project.name}"
+                }
+            }
+
          stage('push to DockerHub') {
             steps{
                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                  sh 'docker push ./gradlew jibDockerBuild'
+                  sh 'docker push employee'
                }
             }
          }
-//          }         stage('push to DockerHub') {
-//             steps{
-//                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-//                   sh 'docker push employee'
-//                }
-//             }
-//          }
+
         stage('stop and remove container') {
             steps {
                 sshagent(['server']) {
