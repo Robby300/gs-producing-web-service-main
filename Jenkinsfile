@@ -27,7 +27,7 @@ pipeline {
         stage('deploy to server') {
             steps {
                 sshagent(['server']) {
-                     sh 'ssh robert@192.168.233.131 bash deploy-compose''
+                     sh 'ssh robert@192.168.233.131 bash deploy-compose'
                  }
             }
         }
