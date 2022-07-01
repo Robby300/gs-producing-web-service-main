@@ -9,9 +9,9 @@ pipeline {
         }
         stage ('build containers') {
             steps {
-                sh './balance/gradlew jibDockerBuild --image robby300/balance'
+//                 sh './balance/gradlew jibDockerBuild --image robby300/balance'
                 sh './employee/gradlew jibDockerBuild --image robby300/employee'
-                sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
+//                 sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
             }
         }
 //         }        stage ('build docker') {
@@ -22,7 +22,7 @@ pipeline {
          stage('push to DockerHub') {
             steps{
                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                  sh 'docker push robby300/employee'
+                  sh 'docker push robby300/employee employee'
                }
             }
          }
