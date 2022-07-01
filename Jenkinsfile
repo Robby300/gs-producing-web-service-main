@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('build containers') {
             steps {
-                sh './gradlew jib -t robby300/jenkins-images:0.3 .'
+                sh '.employee/gradlew jib -t robby300/employee:0.3 .'
             }
         }
 //         }        stage ('build docker') {
@@ -20,7 +20,7 @@ pipeline {
          stage('push to DockerHub') {
             steps{
                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                  sh 'docker push robby300/jenkins-images:0.3'
+                  sh 'docker push robby300/employee:0.3'
                }
             }
          }
