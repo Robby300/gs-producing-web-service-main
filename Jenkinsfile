@@ -17,13 +17,13 @@ pipeline {
             }
         }
 
-        stage('stop and remove container') {
-            steps {
-                sshagent(['server']) {
-                     sh 'ssh robert@192.168.233.131 docker rm -f employee'
-                }
-            }
-        }
+//         stage('stop and remove container') {
+//             steps {
+//                 sshagent(['server']) {
+//                      sh 'ssh robert@192.168.233.131 docker rm -f employee'
+//                 }
+//             }
+//         }
         stage('deploy to server') {
             steps {
                 sshagent(['server']) {
