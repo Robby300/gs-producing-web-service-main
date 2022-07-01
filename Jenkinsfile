@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('build containers') {
             steps {
-                sh '.employee/gradlew jib -t robby300/employee:0.3 .'
+                sh './employee/gradlew jib -t robby300/employee:0.3 .'
             }
         }
 //         }        stage ('build docker') {
