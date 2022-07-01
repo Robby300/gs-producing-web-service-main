@@ -7,7 +7,7 @@ pipeline {
                 git credentialsId: 'github-ssh-key', url: 'git@github.com:Robby300/gs-producing-web-service-main.git'
             }
         }
-        stage ('build containers') {
+        stage ('build containers and push to DockerHub') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
 //                 sh './balance/gradlew jibDockerBuild --image robby300/balance'
@@ -16,14 +16,6 @@ pipeline {
                 }
             }
         }
-
-         stage('push to DockerHub') {
-            steps{
-               withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                  sh 'docker push robby300/employee'
-               }
-            }
-         }
 
         stage('stop and remove container') {
             steps {
