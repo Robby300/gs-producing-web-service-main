@@ -10,7 +10,7 @@ pipeline {
         stage ('build containers') {
             steps {
 
-                sh './gradlew jibDockerBuild'
+                sh './gradlew jibDockerBuild --image robby300/.'
             }
         }
 //         }        stage ('build docker') {
