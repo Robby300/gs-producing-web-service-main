@@ -9,9 +9,11 @@ pipeline {
         }
         stage ('build containers') {
             steps {
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
 //                 sh './balance/gradlew jibDockerBuild --image robby300/balance'
-                sh './gradlew jib'
+                    sh './gradlew jib'
 //                 sh './eureka/gradlew jibDockerBuild --image robby300/eureka'
+                }
             }
         }
 
