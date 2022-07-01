@@ -22,10 +22,17 @@ pipeline {
          stage('push to DockerHub') {
             steps{
                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                  sh 'docker push employee'
+                  sh 'docker push ./gradlew jibDockerBuild'
                }
             }
          }
+//          }         stage('push to DockerHub') {
+//             steps{
+//                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+//                   sh 'docker push employee'
+//                }
+//             }
+//          }
         stage('stop and remove container') {
             steps {
                 sshagent(['server']) {
