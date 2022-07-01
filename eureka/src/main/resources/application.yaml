@@ -1,0 +1,11 @@
+server:
+  port: 8761
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      #  if you add properties like above, replication will not be happened.
+      #  Because eureka checks url of service-url and compare it with hostname of itself.
+      #  if it is url for itself, this node will be excluded for replica nodes
+      defaultZone: ${EUREKA_HOST:http://localhost:8761/eureka/}

@@ -1,5 +1,5 @@
 FROM gradle:latest AS GRADLE_BUILD
-COPY ./ /usr/local/app
+COPY .. /usr/local/app
 WORKDIR /usr/local/app
 RUN sh gradlew clean build
 
