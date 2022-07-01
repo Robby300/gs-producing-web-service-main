@@ -7,17 +7,11 @@ pipeline {
                 git credentialsId: 'github-ssh-key', url: 'git@github.com:Robby300/gs-producing-web-service-main.git'
             }
         }
-        stage ('build docker') {
+        stage ('build containers and push to DockerHub') {
             steps {
-                sh 'docker build -t robby300/jenkins-images:0.3 .'
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh './gradlew jib'
+                }
             }
         }
-         stage('push to DockerHub') {
-            steps{
-               withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                  sh 'docker push robby300/jenkins-images:0.3'
-               }
-            }
-         }
-    }
 }
