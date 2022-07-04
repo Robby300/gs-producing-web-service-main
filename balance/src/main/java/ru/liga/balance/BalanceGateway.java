@@ -16,13 +16,13 @@ public class BalanceGateway {
     }
 
     @Configuration
-    public class SpringCloudConfig {
+    public class SpringCloudConfig { //todo вынести в отдельный файл
 
         @Bean
         public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
             return builder.routes()
                     .route(r -> r.path("/**")
-                            .uri("lb://EMPLOYEE")).build();
+                            .uri("lb://EMPLOYEE")).build(); //todo в проперти
         }
 
     }
