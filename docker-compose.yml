@@ -43,7 +43,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   eureka:
-    image: eureka
+    image: robby300/eureka
 #    networks:
 #      - cloud
     ports:
@@ -53,6 +53,10 @@ services:
 
   employee:
     image: robby300/employee
+    deploy:
+      resources:
+        limits:
+          memory: 512M
 #    networks:
 #      - cloud
 
@@ -70,7 +74,7 @@ services:
       - SPRING_KAFKA_PRODUCER_BOOTSTRAP-SERVERS=kafka:9092
 
   balance:
-    image: balance
+    image: robby300/balance
 #    networks:
 #      - cloud
     ports:

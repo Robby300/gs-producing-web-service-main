@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sshagent(['server']) {
                     withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                        sh 'ssh robert@192.168.233.131 bash deploy-compose'
+                        sh 'ssh robert@192.168.233.131 bash docker-compose up -f --scale employee=3'
                     }
                 }
             }
