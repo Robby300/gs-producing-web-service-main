@@ -58,14 +58,14 @@ public class PdfReportGenerator {
     }
 
     private static List getListOfEmployeeTasks(EmployeeDto employeeDto) {
-        List listOfEmployeeTasks = new List(); //todo переменные так лучше не называть. Это как String string // done
+        List employeeTasks = new List(); //todo переменные так лучше не называть. Это как String string // done
         Set<Task> tasks = employeeDto.getTasks();
-        listOfEmployeeTasks.setListSymbol(new Chunk(TASK));
-        listOfEmployeeTasks.setNumbered(true);
+        employeeTasks.setListSymbol(new Chunk(TASK));
+        employeeTasks.setNumbered(true);
         for (Task task : tasks) {
-            listOfEmployeeTasks.add(task.toString());
+            employeeTasks.add(task.toString());
         }
-        return listOfEmployeeTasks;
+        return employeeTasks;
     }
 
     private static Paragraph getParagraph(String content, int fontSize) {
