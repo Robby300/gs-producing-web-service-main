@@ -24,25 +24,4 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ProducingWebServiceApplicationIntegrationTests {
-//
-////    private final Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-//
-//    @LocalServerPort
-//    private int port = 0;
-//
-////    @BeforeEach
-////    public void init() throws Exception {
-////        marshaller.setPackagesToScan(ClassUtils.getPackageName(GetEmployeeDetailsResponse.class));
-////        marshaller.afterPropertiesSet();
-////    }
-//
-//    @Test
-//    public void testSendAndReceive() {
-///*        WebServiceTemplate ws = new WebServiceTemplate(marshaller);
-//        GetEmployeeDetailsResponse response = new GetEmployeeDetailsResponse();
-//        response.getEmployeeDetails().setName("Ivan");
-//
-//        assertThat(ws.marshalSendAndReceive("http://localhost:"
-//                + port + "/ws", response) != null).isTrue();*/
-//    }
 }

@@ -47,7 +47,7 @@ services:
 #    networks:
 #      - cloud
     ports:
-      - 8761:8761
+      - "8761:8761"
     environment:
       - EUREKA_HOST=http://eureka:8761/eureka/
 
@@ -78,7 +78,7 @@ services:
 #    networks:
 #      - cloud
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
       - EUREKA_HOST=http://eureka:8761/eureka/
 
