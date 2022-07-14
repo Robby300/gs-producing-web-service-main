@@ -10,7 +10,7 @@ pipeline {
         stage ('build containers and push to DockerHub') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh './gradlew jib.to.image = 'robby300/employee:0.0.1''
+                    sh './gradlew jib.to.image = robby300/employee:0.0.1'
                 }
             }
         }
