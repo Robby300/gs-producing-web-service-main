@@ -8,7 +8,7 @@ eureka:
     instance-id: balance-instance
 spring:
   application:
-    name: balance
+    name: api-gateway
   cloud:
     gateway:
       discovery:
