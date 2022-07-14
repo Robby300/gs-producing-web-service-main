@@ -5,7 +5,7 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_HOST:http://localhost:8761/eureka/}
   instance:
-    instance-id: balance-instance
+    instance-id: api-gateway
 spring:
   application:
     name: api-gateway
