@@ -62,9 +62,7 @@ public class PdfReportGenerator {
         Set<Task> tasks = employeeDto.getTasks();
         employeeTasks.setListSymbol(new Chunk(TASK));
         employeeTasks.setNumbered(true);
-        for (Task task : tasks) {
-            employeeTasks.add(task.toString());
-        }
+        tasks.stream().map(Task::toString).forEach(employeeTasks::add);
         return employeeTasks;
     }
 
