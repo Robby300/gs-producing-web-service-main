@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         NUMBER_OF_PODS = "3"
+        EMPLOYEE_VERSION = "0.0.1"
     }
 
     stages {
@@ -9,7 +10,7 @@ pipeline {
             steps {
                 sshagent(['server']) {
                     withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                        sh 'ssh robert@192.168.233.131 docker-compose up --force-recreate -d --scale employee=${NUMBER_OF_PODS}'
+                        sh 'ssh robert@192.168.233.131 docker-compose up --force-recreate -d --scale employee=${NUMBER_OF_PODS} -e EMPLOYEE_VERSION=${EMPLOYEE_VERSION}'
                     }
                 }
             }
