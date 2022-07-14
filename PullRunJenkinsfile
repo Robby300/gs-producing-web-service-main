@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sshagent(['server']) {
                     withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                        sh 'ssh robert@192.168.233.131 echo EMPLOYEE_VERSION=${EMPLOYEE_VERSION} \>>  .env'
+                        sh 'ssh robert@192.168.233.131 echo "EMPLOYEE_VERSION=${EMPLOYEE_VERSION}" >> .env'
                         sh 'ssh robert@192.168.233.131 docker-compose up --force-recreate -d --scale employee=${NUMBER_OF_PODS}'
                     }
                 }
