@@ -1,4 +1,2 @@
-include 'api-gateway'
 include 'employee'
-include 'eureka'
 
