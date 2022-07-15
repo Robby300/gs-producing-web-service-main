@@ -10,8 +10,8 @@ pipeline {
             steps {
                 sshagent(['server']) {
                     withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                        sh "ssh robert@192.168.233.131 echo EMPLOYEE_VERSION=${EMPLOYEE_VERSION} >> .env"
-                        sh 'ssh robert@192.168.233.131 docker-compose up --force-recreate -d --scale employee=${NUMBER_OF_PODS}'
+
+                        sh 'ssh robert@192.168.233.131 docker compose run -e EMPLOYEE_VERSION=${EMPLOYEE_VERSION} --force-recreate -d --scale employee=${NUMBER_OF_PODS}'
                     }
                 }
             }
@@ -29,14 +29,14 @@ pipeline {
         aborted {
             withCredentials([string(credentialsId: 'botToken', variable: 'TOKEN'), string(credentialsId: 'chatId', variable: 'CHAT_ID')]) {
                 sh  ("""
-                    curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC *Branch*: ${env.GIT_BRANCH} *Build* : `Aborted` *Published* = `Aborted`'
+                    curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC *Branch*: ${env.GIT_BRANCH} *Build* : `Aborted` *Published* = `ABORTED`'
                 """)
             }
         }
         failure {
             withCredentials([string(credentialsId: 'botToken', variable: 'TOKEN'), string(credentialsId: 'chatId', variable: 'CHAT_ID')]) {
                 sh  ("""
-                    curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC  *Branch*: ${env.GIT_BRANCH} *Build* : `not OK` *Published* = `No`'
+                    curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${CHAT_ID} -d parse_mode=markdown -d text='*${env.JOB_NAME}* : POC  *Branch*: ${env.GIT_BRANCH} *Build* : `not OK` *Published* = `NO`'
                 """)
             }
         }
