@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         NUMBER_OF_PODS = "3"
-        EMPLOYEE_VERSION = "0.0.1"
+        EMPLOYEE_VERSION = "0.0.2"
     }
 
     stages {
