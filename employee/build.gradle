@@ -52,13 +52,16 @@ dependencies {
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
-    // https://mvnrepository.com/artifact/com.lowagie/itext
+    // https://mvnrepository.com/artifact/com.low   agie/itext
     implementation 'com.lowagie:itext:4.2.2'
     implementation 'org.modelmapper:modelmapper:2.4.4'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+//    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+//    implementation 'io.swagger.core.v3:swagger-annotations:3.0.0'
+//    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
 }
 
 dependencyManagement {
