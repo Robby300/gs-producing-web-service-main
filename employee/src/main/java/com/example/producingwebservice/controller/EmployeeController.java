@@ -1,5 +1,6 @@
 package com.example.producingwebservice.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
@@ -16,6 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1.0/employees")
+@SecurityRequirement(name = "bearerAuth")
 //@Api()
 public class EmployeeController {
 
