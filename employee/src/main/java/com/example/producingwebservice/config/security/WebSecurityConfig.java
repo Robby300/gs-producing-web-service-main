@@ -24,6 +24,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtRequestFilter jwtRequestFilter;
     private final PasswordEncoder passwordEncoder;
 
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/server/swagger-ui.html",
+            "/api/auth/**",
+
+            "/login",
+            "/registration"
+    };
+
     public WebSecurityConfig(JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
                              UserService jwtUserDetailsService,
                              JwtRequestFilter jwtRequestFilter,
@@ -49,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/login", "/registration", "/swagger-ui/")
+                    .antMatchers(AUTH_WHITELIST)
                     .permitAll()
                     .anyRequest()
                     .authenticated()

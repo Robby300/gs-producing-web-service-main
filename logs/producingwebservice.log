@@ -1,29 +1,29 @@
-2022-06-27 16:55:45 INFO  c.e.p.ProducingWebServiceApplication - Starting ProducingWebServiceApplication using Java 11.0.12 on robert-Nitro with PID 175801 (/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main started by robert in /home/robert/IdeaProjects/gs-producing-web-service-main) 
-2022-06-27 16:55:45 INFO  c.e.p.ProducingWebServiceApplication - No active profile set, falling back to 1 default profile: "default" 
-2022-06-27 16:55:45 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.3.Final 
-2022-06-27 16:55:46 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
-2022-06-27 16:55:46 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 3 JPA repository interfaces. 
-2022-06-27 16:55:46 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=6c096618-2f29-37da-a8b1-6176030f61e3 
-2022-06-27 16:55:46 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$b7d21ca8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
-2022-06-27 16:55:46 INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0] 
-2022-06-27 16:55:46 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http) 
-2022-06-27 16:55:46 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"] 
-2022-06-27 16:55:46 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
-2022-06-27 16:55:46 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64] 
-2022-06-27 16:55:46 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
-2022-06-27 16:55:46 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1285 ms 
-2022-06-27 16:55:47 ERROR o.s.b.w.e.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtRequestFilter' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/config/security/JwtRequestFilter.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/service/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#2506b881' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#2506b881': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2022-07-22 14:40:53 INFO  c.e.p.ProducingWebServiceApplication - Starting ProducingWebServiceApplication using Java 11.0.12 on robert-Nitro with PID 232953 (/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main started by robert in /home/robert/IdeaProjects/gs-producing-web-service-main) 
+2022-07-22 14:40:53 INFO  c.e.p.ProducingWebServiceApplication - No active profile set, falling back to 1 default profile: "default" 
+2022-07-22 14:40:53 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.3.Final 
+2022-07-22 14:40:54 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+2022-07-22 14:40:54 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 3 JPA repository interfaces. 
+2022-07-22 14:40:54 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=05ce8003-2b0c-3913-bb44-2eb3334c0b97 
+2022-07-22 14:40:54 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$e6566e88] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
+2022-07-22 14:40:54 INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0] 
+2022-07-22 14:40:54 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http) 
+2022-07-22 14:40:54 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"] 
+2022-07-22 14:40:54 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
+2022-07-22 14:40:54 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64] 
+2022-07-22 14:40:54 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
+2022-07-22 14:40:54 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1530 ms 
+2022-07-22 14:40:55 ERROR o.s.b.w.e.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtRequestFilter' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/config/security/JwtRequestFilter.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/service/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#7cc2c551' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#7cc2c551': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
  
-2022-06-27 16:55:47 INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat] 
-2022-06-27 16:55:47 WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat 
-2022-06-27 16:55:47 INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+2022-07-22 14:40:55 INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat] 
+2022-07-22 14:40:55 WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat 
+2022-07-22 14:40:55 INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled. 
-2022-06-27 16:55:47 ERROR o.s.boot.SpringApplication - Application run failed 
+2022-07-22 14:40:55 ERROR o.s.boot.SpringApplication - Application run failed 
 org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
@@ -33,7 +33,7 @@ org.springframework.context.ApplicationContextException: Unable to start web ser
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.example.producingwebservice.ProducingWebServiceApplication.main(ProducingWebServiceApplication.java:13)
+	at com.example.producingwebservice.ProducingWebServiceApplication.main(ProducingWebServiceApplication.java:15)
 Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
@@ -42,11 +42,11 @@ Caused by: org.springframework.boot.web.server.WebServerException: Unable to sta
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:184)
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
 	... 8 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtRequestFilter' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/config/security/JwtRequestFilter.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/service/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#2506b881' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#2506b881': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtRequestFilter' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/config/security/JwtRequestFilter.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/service/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#7cc2c551' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#7cc2c551': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
 
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
@@ -91,11 +91,11 @@ Message    : Подсоединение по адресу localhost:5432 отк�
 	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
 	... 13 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/service/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#2506b881' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#2506b881': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'userServiceImpl' defined in file [/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main/com/example/producingwebservice/service/UserServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#7cc2c551' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#7cc2c551': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
 
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
@@ -113,11 +113,11 @@ Message    : Подсоединение по адресу localhost:5432 отк�
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 54 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#2506b881' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#2506b881': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.example.producingwebservice.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot create inner bean '(inner bean)#7cc2c551' of type [org.springframework.orm.jpa.SharedEntityManagerCreator] while setting bean property 'entityManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#7cc2c551': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
 
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:389)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:134)
@@ -135,11 +135,11 @@ Message    : Подсоединение по адресу localhost:5432 отк�
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 68 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#2506b881': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name '(inner bean)#7cc2c551': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
 
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:342)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
@@ -151,11 +151,11 @@ Message    : Подсоединение по адресу localhost:5432 отк�
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:374)
 	... 82 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Invocation of init method failed; nested exception is org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
 
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
@@ -168,11 +168,11 @@ Message    : Подсоединение по адресу localhost:5432 отк�
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:330)
 	... 90 common frames omitted
-Caused by: org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Caused by: org.flywaydb.core.internal.exception.FlywaySqlException: Unable to obtain connection from database: Ошибка при попытке подсоединения.
+----------------------------------------------------------------------------
 SQL State  : 08001
 Error Code : 0
-Message    : Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
+Message    : Ошибка при попытке подсоединения.
 
 	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:67)
 	at org.flywaydb.core.internal.jdbc.JdbcConnectionFactory.<init>(JdbcConnectionFactory.java:70)
@@ -182,8 +182,8 @@ Message    : Подсоединение по адресу localhost:5432 отк�
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
 	... 99 common frames omitted
-Caused by: org.postgresql.util.PSQLException: Подсоединение по адресу localhost:5432 отклонено. Проверьте что хост и порт указаны правильно и что postmaster принимает TCP/IP-подсоединения.
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:319)
+Caused by: org.postgresql.util.PSQLException: Ошибка при попытке подсоединения.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:331)
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
 	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
 	at org.postgresql.Driver.makeConnection(Driver.java:402)
@@ -193,11 +193,8 @@ Caused by: org.postgresql.util.PSQLException: Подсоединение по а
 	at org.springframework.jdbc.datasource.AbstractDriverBasedDataSource.getConnection(AbstractDriverBasedDataSource.java:169)
 	at org.flywaydb.core.internal.jdbc.JdbcUtils.openConnection(JdbcUtils.java:52)
 	... 105 common frames omitted
-Caused by: java.net.ConnectException: В соединении отказано (Connection refused)
-	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
-	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
-	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+Caused by: java.net.UnknownHostException: postgres
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:220)
 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
 	at java.base/java.net.Socket.connect(Socket.java:609)
 	at org.postgresql.core.PGStream.createSocket(PGStream.java:241)
@@ -205,1051 +202,3 @@ Caused by: java.net.ConnectException: В соединении отказано (
 	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:109)
 	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
 	... 113 common frames omitted
-2022-06-27 16:57:11 INFO  c.e.p.ProducingWebServiceApplication - Starting ProducingWebServiceApplication using Java 11.0.12 on robert-Nitro with PID 177024 (/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main started by robert in /home/robert/IdeaProjects/gs-producing-web-service-main) 
-2022-06-27 16:57:11 INFO  c.e.p.ProducingWebServiceApplication - No active profile set, falling back to 1 default profile: "default" 
-2022-06-27 16:57:11 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.3.Final 
-2022-06-27 16:57:11 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
-2022-06-27 16:57:11 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 3 JPA repository interfaces. 
-2022-06-27 16:57:12 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=6c096618-2f29-37da-a8b1-6176030f61e3 
-2022-06-27 16:57:12 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$c80c63a6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
-2022-06-27 16:57:12 INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0] 
-2022-06-27 16:57:12 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http) 
-2022-06-27 16:57:12 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"] 
-2022-06-27 16:57:12 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
-2022-06-27 16:57:12 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64] 
-2022-06-27 16:57:12 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
-2022-06-27 16:57:12 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1234 ms 
-2022-06-27 16:57:12 INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 7.15.0 by Redgate 
-2022-06-27 16:57:12 INFO  o.f.c.i.d.base.BaseDatabaseType - Database: jdbc:postgresql://localhost:5432/robdb (PostgreSQL 14.4) 
-2022-06-27 16:57:12 WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: PostgreSQL 14.4 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 13. 
-2022-06-27 16:57:12 INFO  o.f.c.internal.database.base.Schema - Creating schema "employee_db" ... 
-2022-06-27 16:57:12 INFO  o.f.c.i.s.JdbcTableSchemaHistory - Creating Schema History table "employee_db"."flyway_schema_history" ... 
-2022-06-27 16:57:12 INFO  o.f.core.internal.command.DbMigrate - Current version of schema "employee_db": null 
-2022-06-27 16:57:12 INFO  o.f.core.internal.command.DbMigrate - Migrating schema "employee_db" to version "1.1 - create db" 
-2022-06-27 16:57:12 WARN  o.f.c.i.s.DefaultSqlScriptExecutor - DB: schema "employee_db" already exists, skipping (SQL State: 42P06 - Error Code: 0) 
-2022-06-27 16:57:12 INFO  o.f.core.internal.command.DbMigrate - Migrating schema "employee_db" to version "1.2 - insert employees" 
-2022-06-27 16:57:12 INFO  o.f.core.internal.command.DbMigrate - Successfully applied 2 migrations to schema "employee_db", now at version v1.2 (execution time 00:00.063s) 
-2022-06-27 16:57:12 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting... 
-2022-06-27 16:57:13 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed. 
-2022-06-27 16:57:13 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default] 
-2022-06-27 16:57:13 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final 
-2022-06-27 16:57:13 INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
-2022-06-27 16:57:13 INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect 
-2022-06-27 16:57:13 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
-2022-06-27 16:57:13 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default' 
-2022-06-27 16:57:14 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
-2022-06-27 16:57:14 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@28521ed5, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b06c388, org.springframework.security.web.context.SecurityContextPersistenceFilter@1e5190bd, org.springframework.security.web.header.HeaderWriterFilter@553d828a, org.springframework.security.web.authentication.logout.LogoutFilter@41831611, com.example.producingwebservice.config.security.JwtRequestFilter@2d2afc39, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5add7380, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@105cdf61, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c9bed65, org.springframework.security.web.session.SessionManagementFilter@4505015b, org.springframework.security.web.access.ExceptionTranslationFilter@3ce2c5f6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6eb332d1] 
-2022-06-27 16:57:14 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
-2022-06-27 16:57:14 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
-2022-06-27 16:57:14 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
-2022-06-27 16:57:14 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
-2022-06-27 16:57:14 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 16:57:15 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
-2022-06-27 16:57:15 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
-2022-06-27 16:57:15 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
-2022-06-27 16:57:15 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1656331035257 with initial instances count: 0 
-2022-06-27 16:57:15 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application EMPLOYEE with eureka with status UP 
-2022-06-27 16:57:15 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1656331035262, current=UP, previous=STARTING] 
-2022-06-27 16:57:15 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/webservice-2fe668ea-f48f-4f53-bdce-ea56ac176a5e: registering service... 
-2022-06-27 16:57:15 INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
-	allow.auto.create.topics = true
-	auto.commit.interval.ms = 5000
-	auto.offset.reset = earliest
-	bootstrap.servers = [localhost:29092]
-	check.crcs = true
-	client.dns.lookup = use_all_dns_ips
-	client.id = consumer-group_id-1
-	client.rack = 
-	connections.max.idle.ms = 540000
-	default.api.timeout.ms = 60000
-	enable.auto.commit = false
-	exclude.internal.topics = true
-	fetch.max.bytes = 52428800
-	fetch.max.wait.ms = 500
-	fetch.min.bytes = 1
-	group.id = group_id
-	group.instance.id = null
-	heartbeat.interval.ms = 3000
-	interceptor.classes = []
-	internal.leave.group.on.close = true
-	internal.throw.on.fetch.stable.offset.unsupported = false
-	isolation.level = read_uncommitted
-	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
-	max.partition.fetch.bytes = 1048576
-	max.poll.interval.ms = 300000
-	max.poll.records = 500
-	metadata.max.age.ms = 300000
-	metric.reporters = []
-	metrics.num.samples = 2
-	metrics.recording.level = INFO
-	metrics.sample.window.ms = 30000
-	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
-	receive.buffer.bytes = 65536
-	reconnect.backoff.max.ms = 1000
-	reconnect.backoff.ms = 50
-	request.timeout.ms = 30000
-	retry.backoff.ms = 100
-	sasl.client.callback.handler.class = null
-	sasl.jaas.config = null
-	sasl.kerberos.kinit.cmd = /usr/bin/kinit
-	sasl.kerberos.min.time.before.relogin = 60000
-	sasl.kerberos.service.name = null
-	sasl.kerberos.ticket.renew.jitter = 0.05
-	sasl.kerberos.ticket.renew.window.factor = 0.8
-	sasl.login.callback.handler.class = null
-	sasl.login.class = null
-	sasl.login.connect.timeout.ms = null
-	sasl.login.read.timeout.ms = null
-	sasl.login.refresh.buffer.seconds = 300
-	sasl.login.refresh.min.period.seconds = 60
-	sasl.login.refresh.window.factor = 0.8
-	sasl.login.refresh.window.jitter = 0.05
-	sasl.login.retry.backoff.max.ms = 10000
-	sasl.login.retry.backoff.ms = 100
-	sasl.mechanism = GSSAPI
-	sasl.oauthbearer.clock.skew.seconds = 30
-	sasl.oauthbearer.expected.audience = null
-	sasl.oauthbearer.expected.issuer = null
-	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
-	sasl.oauthbearer.jwks.endpoint.url = null
-	sasl.oauthbearer.scope.claim.name = scope
-	sasl.oauthbearer.sub.claim.name = sub
-	sasl.oauthbearer.token.endpoint.url = null
-	security.protocol = PLAINTEXT
-	security.providers = null
-	send.buffer.bytes = 131072
-	session.timeout.ms = 45000
-	socket.connection.setup.timeout.max.ms = 30000
-	socket.connection.setup.timeout.ms = 10000
-	ssl.cipher.suites = null
-	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
-	ssl.endpoint.identification.algorithm = https
-	ssl.engine.factory.class = null
-	ssl.key.password = null
-	ssl.keymanager.algorithm = SunX509
-	ssl.keystore.certificate.chain = null
-	ssl.keystore.key = null
-	ssl.keystore.location = null
-	ssl.keystore.password = null
-	ssl.keystore.type = JKS
-	ssl.protocol = TLSv1.3
-	ssl.provider = null
-	ssl.secure.random.implementation = null
-	ssl.trustmanager.algorithm = PKIX
-	ssl.truststore.certificates = null
-	ssl.truststore.location = null
-	ssl.truststore.password = null
-	ssl.truststore.type = JKS
-	value.deserializer = class com.example.producingwebservice.support.EmployeeDeserializer
- 
-2022-06-27 16:57:15 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/webservice-2fe668ea-f48f-4f53-bdce-ea56ac176a5e - registration status: 204 
-2022-06-27 16:57:15 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.1.1 
-2022-06-27 16:57:15 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: 97671528ba54a138 
-2022-06-27 16:57:15 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1656331035349 
-2022-06-27 16:57:15 INFO  o.a.k.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group_id-1, groupId=group_id] Subscribed to topic(s): saveAll 
-2022-06-27 16:57:15 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"] 
-2022-06-27 16:57:15 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path '' 
-2022-06-27 16:57:15 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8081 
-2022-06-27 16:57:15 INFO  c.e.p.ProducingWebServiceApplication - Started ProducingWebServiceApplication in 4.413 seconds (JVM running for 4.849) 
-2022-06-27 16:57:15 WARN  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-group_id-1, groupId=group_id] Error while fetching metadata with correlation id 2 : {saveAll=LEADER_NOT_AVAILABLE} 
-2022-06-27 16:57:15 INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group_id-1, groupId=group_id] Cluster ID: DTdws4SuSk-FsGXFkFEjVw 
-2022-06-27 16:57:15 WARN  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-group_id-1, groupId=group_id] Error while fetching metadata with correlation id 4 : {saveAll=LEADER_NOT_AVAILABLE} 
-2022-06-27 16:57:15 WARN  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-group_id-1, groupId=group_id] Error while fetching metadata with correlation id 6 : {saveAll=LEADER_NOT_AVAILABLE} 
-2022-06-27 16:57:15 INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting the last seen epoch of partition saveAll-0 to 0 since the associated topicId changed from null to rVcsunLrSuykgjhE_JfwZg 
-2022-06-27 16:57:16 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Discovered group coordinator localhost:29092 (id: 2147483646 rack: null) 
-2022-06-27 16:57:16 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] (Re-)joining group 
-2022-06-27 16:57:16 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: need to re-join with the given member-id 
-2022-06-27 16:57:16 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] (Re-)joining group 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Successfully joined group with generation Generation{generationId=1, memberId='consumer-group_id-1-0de81b38-e983-41eb-988e-7b36e839a5a7', protocol='range'} 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Finished assignment for group at generation 1: {consumer-group_id-1-0de81b38-e983-41eb-988e-7b36e839a5a7=Assignment(partitions=[saveAll-0])} 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Successfully synced group in generation Generation{generationId=1, memberId='consumer-group_id-1-0de81b38-e983-41eb-988e-7b36e839a5a7', protocol='range'} 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Notifying assignor about the new Assignment(partitions=[saveAll-0]) 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Adding newly assigned partitions: saveAll-0 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Found no committed offset for partition saveAll-0 
-2022-06-27 16:57:19 INFO  o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting offset for partition saveAll-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:29092 (id: 1 rack: null)], epoch=0}}. 
-2022-06-27 16:57:19 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: partitions assigned: [saveAll-0] 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 16:57:45 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
-2022-06-27 16:58:14 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application EMPLOYEE with eureka with status DOWN 
-2022-06-27 16:58:14 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1656331094575, current=DOWN, previous=UP] 
-2022-06-27 16:58:14 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/webservice-2fe668ea-f48f-4f53-bdce-ea56ac176a5e: registering service... 
-2022-06-27 16:58:14 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/webservice-2fe668ea-f48f-4f53-bdce-ea56ac176a5e - registration status: 204 
-2022-06-27 16:58:14 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Revoke previously assigned partitions saveAll-0 
-2022-06-27 16:58:14 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: partitions revoked: [saveAll-0] 
-2022-06-27 16:58:14 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Member consumer-group_id-1-0de81b38-e983-41eb-988e-7b36e839a5a7 sending LeaveGroup request to coordinator localhost:29092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics 
-2022-06-27 16:58:14 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting generation due to: consumer pro-actively leaving the group 
-2022-06-27 16:58:14 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: consumer pro-actively leaving the group 
-2022-06-27 16:58:14 INFO  o.a.k.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group_id-1, groupId=group_id] Unsubscribed all topics or patterns and assigned partitions 
-2022-06-27 16:58:14 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting generation due to: consumer pro-actively leaving the group 
-2022-06-27 16:58:14 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: consumer pro-actively leaving the group 
-2022-06-27 16:58:14 INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed 
-2022-06-27 16:58:14 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter 
-2022-06-27 16:58:14 INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed 
-2022-06-27 16:58:14 INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-group_id-1 unregistered 
-2022-06-27 16:58:14 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: Consumer stopped 
-2022-06-27 16:58:14 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default' 
-2022-06-27 16:58:14 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated... 
-2022-06-27 16:58:14 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed. 
-2022-06-27 16:58:14 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ... 
-2022-06-27 16:58:17 WARN  c.n.discovery.TimedSupervisorTask - task supervisor shutting down, can't accept the task 
-2022-06-27 16:58:17 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ... 
-2022-06-27 16:58:17 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/webservice-2fe668ea-f48f-4f53-bdce-ea56ac176a5e - deregister  status: 200 
-2022-06-27 16:58:17 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient 
-2022-06-27 17:00:22 INFO  c.e.p.ProducingWebServiceApplication - Starting ProducingWebServiceApplication using Java 11.0.12 on robert-Nitro with PID 177789 (/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main started by robert in /home/robert/IdeaProjects/gs-producing-web-service-main) 
-2022-06-27 17:00:22 INFO  c.e.p.ProducingWebServiceApplication - No active profile set, falling back to 1 default profile: "default" 
-2022-06-27 17:00:22 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.3.Final 
-2022-06-27 17:00:23 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
-2022-06-27 17:00:23 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces. 
-2022-06-27 17:00:23 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=6c096618-2f29-37da-a8b1-6176030f61e3 
-2022-06-27 17:00:23 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$f4c4fde0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
-2022-06-27 17:00:23 INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0] 
-2022-06-27 17:00:23 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http) 
-2022-06-27 17:00:23 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"] 
-2022-06-27 17:00:23 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
-2022-06-27 17:00:23 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64] 
-2022-06-27 17:00:24 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
-2022-06-27 17:00:24 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1241 ms 
-2022-06-27 17:00:24 INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 7.15.0 by Redgate 
-2022-06-27 17:00:24 INFO  o.f.c.i.d.base.BaseDatabaseType - Database: jdbc:postgresql://localhost:5432/robdb (PostgreSQL 14.4) 
-2022-06-27 17:00:24 WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: PostgreSQL 14.4 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 13. 
-2022-06-27 17:00:24 INFO  o.f.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.014s) 
-2022-06-27 17:00:24 INFO  o.f.core.internal.command.DbMigrate - Current version of schema "employee_db": 1.2 
-2022-06-27 17:00:24 INFO  o.f.core.internal.command.DbMigrate - Schema "employee_db" is up to date. No migration necessary. 
-2022-06-27 17:00:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting... 
-2022-06-27 17:00:24 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed. 
-2022-06-27 17:00:24 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default] 
-2022-06-27 17:00:24 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final 
-2022-06-27 17:00:24 INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
-2022-06-27 17:00:24 INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect 
-2022-06-27 17:00:25 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
-2022-06-27 17:00:25 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default' 
-2022-06-27 17:00:25 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
-2022-06-27 17:00:25 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@58d4fe33, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1952ad9d, org.springframework.security.web.context.SecurityContextPersistenceFilter@3333245e, org.springframework.security.web.header.HeaderWriterFilter@75882ac2, org.springframework.security.web.authentication.logout.LogoutFilter@629fe84, com.example.producingwebservice.config.security.JwtRequestFilter@9fd3b61, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@551725e4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35198da3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71c74011, org.springframework.security.web.session.SessionManagementFilter@2210af14, org.springframework.security.web.access.ExceptionTranslationFilter@1e366f0f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@72115c48] 
-2022-06-27 17:00:25 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
-2022-06-27 17:00:26 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
-2022-06-27 17:00:26 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
-2022-06-27 17:00:26 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 17:00:26 INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on GET request for "http://localhost:8761/eureka/apps/": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8761/eureka/apps/": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getApplicationsInternal(RestTemplateEurekaHttpClient.java:145)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getApplications(RestTemplateEurekaHttpClient.java:135)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
-	at com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1101)
-	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:1014)
-	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:441)
-	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:283)
-	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:279)
-	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:66)
-	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:295)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:374)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:376)
-	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:127)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:115)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
-	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:485)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$EnhancerBySpringCGLIB$$d0ac60f1.getEurekaClient(<generated>)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:54)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:38)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:83)
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
-	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
-	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
-	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
-	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.example.producingwebservice.ProducingWebServiceApplication.main(ProducingWebServiceApplication.java:13)
-Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
-	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
-	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
-	... 68 more
-Caused by: java.net.ConnectException: В соединении отказано (Connection refused)
-	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
-	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
-	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.base/java.net.Socket.connect(Socket.java:609)
-	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
-	... 81 more
- 
-2022-06-27 17:00:26 WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on GET request for "http://localhost:8761/eureka/apps/": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c - was unable to refresh its cache! This periodic background refresh will be retried in 30 seconds. status = Cannot execute request on any known server stacktrace = com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$6.execute(EurekaHttpClientDecorator.java:137)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getApplications(EurekaHttpClientDecorator.java:134)
-	at com.netflix.discovery.DiscoveryClient.getAndStoreFullRegistry(DiscoveryClient.java:1101)
-	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:1014)
-	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:441)
-	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:283)
-	at com.netflix.discovery.DiscoveryClient.<init>(DiscoveryClient.java:279)
-	at org.springframework.cloud.netflix.eureka.CloudEurekaClient.<init>(CloudEurekaClient.java:66)
-	at org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration$RefreshableEurekaClientConfiguration.eurekaClient(EurekaClientAutoConfiguration.java:295)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$1(AbstractBeanFactory.java:374)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.getBean(GenericScope.java:376)
-	at org.springframework.cloud.context.scope.GenericScope.get(GenericScope.java:179)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:371)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
-	at org.springframework.aop.target.SimpleBeanTargetSource.getTarget(SimpleBeanTargetSource.java:35)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getTargetObject(EurekaRegistration.java:127)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration.getEurekaClient(EurekaRegistration.java:115)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:282)
-	at org.springframework.cloud.context.scope.GenericScope$LockedScopedProxyFactoryBean.invoke(GenericScope.java:485)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration$$EnhancerBySpringCGLIB$$d0ac60f1.getEurekaClient(<generated>)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.maybeInitializeClient(EurekaServiceRegistry.java:54)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry.register(EurekaServiceRegistry.java:38)
-	at org.springframework.cloud.netflix.eureka.serviceregistry.EurekaAutoServiceRegistration.start(EurekaAutoServiceRegistration.java:83)
-	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
-	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
-	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
-	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
-	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at com.example.producingwebservice.ProducingWebServiceApplication.main(ProducingWebServiceApplication.java:13)
- 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Initial registry fetch from primary servers failed 
-2022-06-27 17:00:26 WARN  c.netflix.discovery.DiscoveryClient - Using default backup registry implementation which does not do anything. 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Initial registry fetch from backup servers failed 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
-2022-06-27 17:00:26 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1656331226467 with initial instances count: 0 
-2022-06-27 17:00:26 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application EMPLOYEE with eureka with status UP 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1656331226472, current=UP, previous=STARTING] 
-2022-06-27 17:00:26 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c: registering service... 
-2022-06-27 17:00:26 INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
-	allow.auto.create.topics = true
-	auto.commit.interval.ms = 5000
-	auto.offset.reset = earliest
-	bootstrap.servers = [localhost:29092]
-	check.crcs = true
-	client.dns.lookup = use_all_dns_ips
-	client.id = consumer-group_id-1
-	client.rack = 
-	connections.max.idle.ms = 540000
-	default.api.timeout.ms = 60000
-	enable.auto.commit = false
-	exclude.internal.topics = true
-	fetch.max.bytes = 52428800
-	fetch.max.wait.ms = 500
-	fetch.min.bytes = 1
-	group.id = group_id
-	group.instance.id = null
-	heartbeat.interval.ms = 3000
-	interceptor.classes = []
-	internal.leave.group.on.close = true
-	internal.throw.on.fetch.stable.offset.unsupported = false
-	isolation.level = read_uncommitted
-	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
-	max.partition.fetch.bytes = 1048576
-	max.poll.interval.ms = 300000
-	max.poll.records = 500
-	metadata.max.age.ms = 300000
-	metric.reporters = []
-	metrics.num.samples = 2
-	metrics.recording.level = INFO
-	metrics.sample.window.ms = 30000
-	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
-	receive.buffer.bytes = 65536
-	reconnect.backoff.max.ms = 1000
-	reconnect.backoff.ms = 50
-	request.timeout.ms = 30000
-	retry.backoff.ms = 100
-	sasl.client.callback.handler.class = null
-	sasl.jaas.config = null
-	sasl.kerberos.kinit.cmd = /usr/bin/kinit
-	sasl.kerberos.min.time.before.relogin = 60000
-	sasl.kerberos.service.name = null
-	sasl.kerberos.ticket.renew.jitter = 0.05
-	sasl.kerberos.ticket.renew.window.factor = 0.8
-	sasl.login.callback.handler.class = null
-	sasl.login.class = null
-	sasl.login.connect.timeout.ms = null
-	sasl.login.read.timeout.ms = null
-	sasl.login.refresh.buffer.seconds = 300
-	sasl.login.refresh.min.period.seconds = 60
-	sasl.login.refresh.window.factor = 0.8
-	sasl.login.refresh.window.jitter = 0.05
-	sasl.login.retry.backoff.max.ms = 10000
-	sasl.login.retry.backoff.ms = 100
-	sasl.mechanism = GSSAPI
-	sasl.oauthbearer.clock.skew.seconds = 30
-	sasl.oauthbearer.expected.audience = null
-	sasl.oauthbearer.expected.issuer = null
-	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
-	sasl.oauthbearer.jwks.endpoint.url = null
-	sasl.oauthbearer.scope.claim.name = scope
-	sasl.oauthbearer.sub.claim.name = sub
-	sasl.oauthbearer.token.endpoint.url = null
-	security.protocol = PLAINTEXT
-	security.providers = null
-	send.buffer.bytes = 131072
-	session.timeout.ms = 45000
-	socket.connection.setup.timeout.max.ms = 30000
-	socket.connection.setup.timeout.ms = 10000
-	ssl.cipher.suites = null
-	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
-	ssl.endpoint.identification.algorithm = https
-	ssl.engine.factory.class = null
-	ssl.key.password = null
-	ssl.keymanager.algorithm = SunX509
-	ssl.keystore.certificate.chain = null
-	ssl.keystore.key = null
-	ssl.keystore.location = null
-	ssl.keystore.password = null
-	ssl.keystore.type = JKS
-	ssl.protocol = TLSv1.3
-	ssl.provider = null
-	ssl.secure.random.implementation = null
-	ssl.trustmanager.algorithm = PKIX
-	ssl.truststore.certificates = null
-	ssl.truststore.location = null
-	ssl.truststore.password = null
-	ssl.truststore.type = JKS
-	value.deserializer = class com.example.producingwebservice.support.EmployeeDeserializer
- 
-2022-06-27 17:00:26 INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on POST request for "http://localhost:8761/eureka/apps/EMPLOYEE": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/EMPLOYEE": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
-	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
-	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
-	... 22 more
-Caused by: java.net.ConnectException: В соединении отказано (Connection refused)
-	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
-	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
-	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.base/java.net.Socket.connect(Socket.java:609)
-	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
-	... 35 more
- 
-2022-06-27 17:00:26 WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/EMPLOYEE": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) 
-2022-06-27 17:00:26 WARN  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c - registration failed Cannot execute request on any known server 
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-2022-06-27 17:00:26 WARN  c.n.discovery.InstanceInfoReplicator - There was a problem with the instance info replicator 
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
-	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:876)
-	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:121)
-	at com.netflix.discovery.InstanceInfoReplicator$1.run(InstanceInfoReplicator.java:101)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-2022-06-27 17:00:26 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.1.1 
-2022-06-27 17:00:26 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: 97671528ba54a138 
-2022-06-27 17:00:26 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1656331226555 
-2022-06-27 17:00:26 INFO  o.a.k.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group_id-1, groupId=group_id] Subscribed to topic(s): saveAll 
-2022-06-27 17:00:26 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"] 
-2022-06-27 17:00:26 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path '' 
-2022-06-27 17:00:26 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8081 
-2022-06-27 17:00:26 INFO  c.e.p.ProducingWebServiceApplication - Started ProducingWebServiceApplication in 4.194 seconds (JVM running for 4.639) 
-2022-06-27 17:00:26 INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting the last seen epoch of partition saveAll-0 to 0 since the associated topicId changed from null to rVcsunLrSuykgjhE_JfwZg 
-2022-06-27 17:00:26 INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group_id-1, groupId=group_id] Cluster ID: DTdws4SuSk-FsGXFkFEjVw 
-2022-06-27 17:00:26 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Discovered group coordinator localhost:29092 (id: 2147483646 rack: null) 
-2022-06-27 17:00:26 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] (Re-)joining group 
-2022-06-27 17:00:26 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: need to re-join with the given member-id 
-2022-06-27 17:00:26 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] (Re-)joining group 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Successfully joined group with generation Generation{generationId=3, memberId='consumer-group_id-1-debcb807-9432-4628-9c75-98db36d548e9', protocol='range'} 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Finished assignment for group at generation 3: {consumer-group_id-1-debcb807-9432-4628-9c75-98db36d548e9=Assignment(partitions=[saveAll-0])} 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Successfully synced group in generation Generation{generationId=3, memberId='consumer-group_id-1-debcb807-9432-4628-9c75-98db36d548e9', protocol='range'} 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Notifying assignor about the new Assignment(partitions=[saveAll-0]) 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Adding newly assigned partitions: saveAll-0 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Found no committed offset for partition saveAll-0 
-2022-06-27 17:00:29 INFO  o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting offset for partition saveAll-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:29092 (id: 1 rack: null)], epoch=0}}. 
-2022-06-27 17:00:29 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: partitions assigned: [saveAll-0] 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c - Re-registering apps/EMPLOYEE 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c: registering service... 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
-2022-06-27 17:00:56 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c - registration status: 204 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 17:01:26 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
-2022-06-27 17:05:26 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:05:34 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application EMPLOYEE with eureka with status DOWN 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1656331534475, current=DOWN, previous=UP] 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c: registering service... 
-2022-06-27 17:05:34 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Revoke previously assigned partitions saveAll-0 
-2022-06-27 17:05:34 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: partitions revoked: [saveAll-0] 
-2022-06-27 17:05:34 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Member consumer-group_id-1-debcb807-9432-4628-9c75-98db36d548e9 sending LeaveGroup request to coordinator localhost:29092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics 
-2022-06-27 17:05:34 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting generation due to: consumer pro-actively leaving the group 
-2022-06-27 17:05:34 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: consumer pro-actively leaving the group 
-2022-06-27 17:05:34 INFO  o.a.k.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group_id-1, groupId=group_id] Unsubscribed all topics or patterns and assigned partitions 
-2022-06-27 17:05:34 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting generation due to: consumer pro-actively leaving the group 
-2022-06-27 17:05:34 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: consumer pro-actively leaving the group 
-2022-06-27 17:05:34 INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed 
-2022-06-27 17:05:34 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter 
-2022-06-27 17:05:34 INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed 
-2022-06-27 17:05:34 INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-group_id-1 unregistered 
-2022-06-27 17:05:34 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: Consumer stopped 
-2022-06-27 17:05:34 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default' 
-2022-06-27 17:05:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated... 
-2022-06-27 17:05:34 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed. 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ... 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c - registration status: 204 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ... 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-db37d3ae-5a09-46b2-a31e-13edab4cb70c - deregister  status: 200 
-2022-06-27 17:05:34 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient 
-2022-06-27 17:05:36 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.3.Final 
-2022-06-27 17:05:36 INFO  c.e.p.ProducingWebServiceApplication - Starting ProducingWebServiceApplication using Java 11.0.12 on robert-Nitro with PID 179448 (/home/robert/IdeaProjects/gs-producing-web-service-main/employee/build/classes/java/main started by robert in /home/robert/IdeaProjects/gs-producing-web-service-main) 
-2022-06-27 17:05:36 INFO  c.e.p.ProducingWebServiceApplication - No active profile set, falling back to 1 default profile: "default" 
-2022-06-27 17:05:37 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
-2022-06-27 17:05:37 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 3 JPA repository interfaces. 
-2022-06-27 17:05:37 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=6c096618-2f29-37da-a8b1-6176030f61e3 
-2022-06-27 17:05:37 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$29849ea0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying) 
-2022-06-27 17:05:38 INFO  o.s.w.s.a.s.AnnotationActionEndpointMapping - Supporting [WS-Addressing August 2004, WS-Addressing 1.0] 
-2022-06-27 17:05:38 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8081 (http) 
-2022-06-27 17:05:38 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"] 
-2022-06-27 17:05:38 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat] 
-2022-06-27 17:05:38 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.64] 
-2022-06-27 17:05:38 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext 
-2022-06-27 17:05:38 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1410 ms 
-2022-06-27 17:05:38 INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 7.15.0 by Redgate 
-2022-06-27 17:05:38 INFO  o.f.c.i.d.base.BaseDatabaseType - Database: jdbc:postgresql://localhost:5432/robdb (PostgreSQL 14.4) 
-2022-06-27 17:05:38 WARN  o.f.c.i.database.base.Database - Flyway upgrade recommended: PostgreSQL 14.4 is newer than this version of Flyway and support has not been tested. The latest supported version of PostgreSQL is 13. 
-2022-06-27 17:05:38 INFO  o.f.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.015s) 
-2022-06-27 17:05:38 INFO  o.f.core.internal.command.DbMigrate - Current version of schema "employee_db": 1.2 
-2022-06-27 17:05:38 INFO  o.f.core.internal.command.DbMigrate - Schema "employee_db" is up to date. No migration necessary. 
-2022-06-27 17:05:38 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting... 
-2022-06-27 17:05:38 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed. 
-2022-06-27 17:05:38 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default] 
-2022-06-27 17:05:38 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.9.Final 
-2022-06-27 17:05:38 INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
-2022-06-27 17:05:38 INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect 
-2022-06-27 17:05:39 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
-2022-06-27 17:05:39 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default' 
-2022-06-27 17:05:39 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
-2022-06-27 17:05:39 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@145f1f97, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58d4fe33, org.springframework.security.web.context.SecurityContextPersistenceFilter@14d6ede3, org.springframework.security.web.header.HeaderWriterFilter@586b78d7, org.springframework.security.web.authentication.logout.LogoutFilter@4e212f46, com.example.producingwebservice.config.security.JwtRequestFilter@5ca3acad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@147c4523, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32d46229, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1952ad9d, org.springframework.security.web.session.SessionManagementFilter@7c0b792e, org.springframework.security.web.access.ExceptionTranslationFilter@1bc1aa9e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@67d55a46] 
-2022-06-27 17:05:40 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate. 
-2022-06-27 17:05:40 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath. 
-2022-06-27 17:05:40 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1 
-2022-06-27 17:05:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30 
-2022-06-27 17:05:40 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1656331540753 with initial instances count: 0 
-2022-06-27 17:05:40 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application EMPLOYEE with eureka with status UP 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1656331540758, current=UP, previous=STARTING] 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80: registering service... 
-2022-06-27 17:05:40 INFO  o.a.k.c.consumer.ConsumerConfig - ConsumerConfig values: 
-	allow.auto.create.topics = true
-	auto.commit.interval.ms = 5000
-	auto.offset.reset = earliest
-	bootstrap.servers = [localhost:29092]
-	check.crcs = true
-	client.dns.lookup = use_all_dns_ips
-	client.id = consumer-group_id-1
-	client.rack = 
-	connections.max.idle.ms = 540000
-	default.api.timeout.ms = 60000
-	enable.auto.commit = false
-	exclude.internal.topics = true
-	fetch.max.bytes = 52428800
-	fetch.max.wait.ms = 500
-	fetch.min.bytes = 1
-	group.id = group_id
-	group.instance.id = null
-	heartbeat.interval.ms = 3000
-	interceptor.classes = []
-	internal.leave.group.on.close = true
-	internal.throw.on.fetch.stable.offset.unsupported = false
-	isolation.level = read_uncommitted
-	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
-	max.partition.fetch.bytes = 1048576
-	max.poll.interval.ms = 300000
-	max.poll.records = 500
-	metadata.max.age.ms = 300000
-	metric.reporters = []
-	metrics.num.samples = 2
-	metrics.recording.level = INFO
-	metrics.sample.window.ms = 30000
-	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
-	receive.buffer.bytes = 65536
-	reconnect.backoff.max.ms = 1000
-	reconnect.backoff.ms = 50
-	request.timeout.ms = 30000
-	retry.backoff.ms = 100
-	sasl.client.callback.handler.class = null
-	sasl.jaas.config = null
-	sasl.kerberos.kinit.cmd = /usr/bin/kinit
-	sasl.kerberos.min.time.before.relogin = 60000
-	sasl.kerberos.service.name = null
-	sasl.kerberos.ticket.renew.jitter = 0.05
-	sasl.kerberos.ticket.renew.window.factor = 0.8
-	sasl.login.callback.handler.class = null
-	sasl.login.class = null
-	sasl.login.connect.timeout.ms = null
-	sasl.login.read.timeout.ms = null
-	sasl.login.refresh.buffer.seconds = 300
-	sasl.login.refresh.min.period.seconds = 60
-	sasl.login.refresh.window.factor = 0.8
-	sasl.login.refresh.window.jitter = 0.05
-	sasl.login.retry.backoff.max.ms = 10000
-	sasl.login.retry.backoff.ms = 100
-	sasl.mechanism = GSSAPI
-	sasl.oauthbearer.clock.skew.seconds = 30
-	sasl.oauthbearer.expected.audience = null
-	sasl.oauthbearer.expected.issuer = null
-	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
-	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
-	sasl.oauthbearer.jwks.endpoint.url = null
-	sasl.oauthbearer.scope.claim.name = scope
-	sasl.oauthbearer.sub.claim.name = sub
-	sasl.oauthbearer.token.endpoint.url = null
-	security.protocol = PLAINTEXT
-	security.providers = null
-	send.buffer.bytes = 131072
-	session.timeout.ms = 45000
-	socket.connection.setup.timeout.max.ms = 30000
-	socket.connection.setup.timeout.ms = 10000
-	ssl.cipher.suites = null
-	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
-	ssl.endpoint.identification.algorithm = https
-	ssl.engine.factory.class = null
-	ssl.key.password = null
-	ssl.keymanager.algorithm = SunX509
-	ssl.keystore.certificate.chain = null
-	ssl.keystore.key = null
-	ssl.keystore.location = null
-	ssl.keystore.password = null
-	ssl.keystore.type = JKS
-	ssl.protocol = TLSv1.3
-	ssl.provider = null
-	ssl.secure.random.implementation = null
-	ssl.trustmanager.algorithm = PKIX
-	ssl.truststore.certificates = null
-	ssl.truststore.location = null
-	ssl.truststore.password = null
-	ssl.truststore.type = JKS
-	value.deserializer = class com.example.producingwebservice.support.EmployeeDeserializer
- 
-2022-06-27 17:05:40 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80 - registration status: 204 
-2022-06-27 17:05:40 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka version: 3.1.1 
-2022-06-27 17:05:40 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka commitId: 97671528ba54a138 
-2022-06-27 17:05:40 INFO  o.a.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1656331540840 
-2022-06-27 17:05:40 INFO  o.a.k.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group_id-1, groupId=group_id] Subscribed to topic(s): saveAll 
-2022-06-27 17:05:40 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"] 
-2022-06-27 17:05:40 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8081 (http) with context path '' 
-2022-06-27 17:05:40 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8081 
-2022-06-27 17:05:40 INFO  c.e.p.ProducingWebServiceApplication - Started ProducingWebServiceApplication in 4.381 seconds (JVM running for 4.829) 
-2022-06-27 17:05:41 INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting the last seen epoch of partition saveAll-0 to 0 since the associated topicId changed from null to rVcsunLrSuykgjhE_JfwZg 
-2022-06-27 17:05:41 INFO  org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-group_id-1, groupId=group_id] Cluster ID: DTdws4SuSk-FsGXFkFEjVw 
-2022-06-27 17:05:41 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Discovered group coordinator localhost:29092 (id: 2147483646 rack: null) 
-2022-06-27 17:05:41 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] (Re-)joining group 
-2022-06-27 17:05:41 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: need to re-join with the given member-id 
-2022-06-27 17:05:41 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] (Re-)joining group 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Successfully joined group with generation Generation{generationId=5, memberId='consumer-group_id-1-9d602c13-7f4e-4431-9e6b-dceb57a8a236', protocol='range'} 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Finished assignment for group at generation 5: {consumer-group_id-1-9d602c13-7f4e-4431-9e6b-dceb57a8a236=Assignment(partitions=[saveAll-0])} 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Successfully synced group in generation Generation{generationId=5, memberId='consumer-group_id-1-9d602c13-7f4e-4431-9e6b-dceb57a8a236', protocol='range'} 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Notifying assignor about the new Assignment(partitions=[saveAll-0]) 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Adding newly assigned partitions: saveAll-0 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Found no committed offset for partition saveAll-0 
-2022-06-27 17:05:44 INFO  o.a.k.c.c.i.SubscriptionState - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting offset for partition saveAll-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:29092 (id: 1 rack: null)], epoch=0}}. 
-2022-06-27 17:05:44 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: partitions assigned: [saveAll-0] 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: false 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server 
-2022-06-27 17:06:10 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200 
-2022-06-27 17:09:12 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet' 
-2022-06-27 17:09:12 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet' 
-2022-06-27 17:09:12 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms 
-2022-06-27 17:09:12 WARN  c.e.p.c.security.JwtRequestFilter - JWT Token does not begin with Bearer String 
-2022-06-27 17:09:20 ERROR c.e.p.c.security.JwtRequestFilter - JWT Token has expired io.jsonwebtoken.ExpiredJwtException: JWT expired at 2022-06-10T19:29:33Z. Current time: 2022-06-27T17:09:20Z, a difference of 1460387070 milliseconds.  Allowed clock skew: 0 milliseconds. 
-2022-06-27 17:09:20 INFO  c.e.p.c.JwtAuthenticationController - Processing POST request /login 
-2022-06-27 17:10:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:13:08 ERROR c.e.p.c.security.JwtRequestFilter - JWT Token has expired io.jsonwebtoken.ExpiredJwtException: JWT expired at 2022-06-10T19:29:33Z. Current time: 2022-06-27T17:13:08Z, a difference of 1460615422 milliseconds.  Allowed clock skew: 0 milliseconds. 
-2022-06-27 17:13:08 INFO  c.e.p.c.JwtAuthenticationController - Processing POST request /login 
-2022-06-27 17:14:41 INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=consumer-group_id-1, groupId=group_id] Node -1 disconnected. 
-2022-06-27 17:15:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:20:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:25:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:27:06 ERROR c.e.p.c.security.JwtRequestFilter - JWT Token has expired io.jsonwebtoken.ExpiredJwtException: JWT expired at 2022-06-10T19:29:33Z. Current time: 2022-06-27T17:27:06Z, a difference of 1461453669 milliseconds.  Allowed clock skew: 0 milliseconds. 
-2022-06-27 17:27:06 INFO  c.e.p.c.JwtAuthenticationController - Processing POST request /login 
-2022-06-27 17:27:47 ERROR c.e.p.c.security.JwtRequestFilter - JWT Token has expired io.jsonwebtoken.ExpiredJwtException: JWT expired at 2022-06-10T19:29:33Z. Current time: 2022-06-27T17:27:47Z, a difference of 1461494209 milliseconds.  Allowed clock skew: 0 milliseconds. 
-2022-06-27 17:27:47 INFO  c.e.p.c.JwtAuthenticationController - Processing POST request /login 
-2022-06-27 17:27:52 ERROR c.e.p.c.security.JwtRequestFilter - JWT Token has expired io.jsonwebtoken.ExpiredJwtException: JWT expired at 2022-06-10T19:29:33Z. Current time: 2022-06-27T17:27:52Z, a difference of 1461499623 milliseconds.  Allowed clock skew: 0 milliseconds. 
-2022-06-27 17:27:52 INFO  c.e.p.c.JwtAuthenticationController - Processing POST request /login 
-2022-06-27 17:30:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:35:40 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration 
-2022-06-27 17:36:43 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application EMPLOYEE with eureka with status DOWN 
-2022-06-27 17:36:43 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1656333403953, current=DOWN, previous=UP] 
-2022-06-27 17:36:43 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80: registering service... 
-2022-06-27 17:36:43 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80 - registration status: 204 
-2022-06-27 17:36:43 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Revoke previously assigned partitions saveAll-0 
-2022-06-27 17:36:43 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: partitions revoked: [saveAll-0] 
-2022-06-27 17:36:43 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Member consumer-group_id-1-9d602c13-7f4e-4431-9e6b-dceb57a8a236 sending LeaveGroup request to coordinator localhost:29092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics 
-2022-06-27 17:36:43 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting generation due to: consumer pro-actively leaving the group 
-2022-06-27 17:36:43 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: consumer pro-actively leaving the group 
-2022-06-27 17:36:43 INFO  o.a.k.clients.consumer.KafkaConsumer - [Consumer clientId=consumer-group_id-1, groupId=group_id] Unsubscribed all topics or patterns and assigned partitions 
-2022-06-27 17:36:43 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Resetting generation due to: consumer pro-actively leaving the group 
-2022-06-27 17:36:43 INFO  o.a.k.c.c.i.ConsumerCoordinator - [Consumer clientId=consumer-group_id-1, groupId=group_id] Request joining group due to: consumer pro-actively leaving the group 
-2022-06-27 17:36:43 INFO  o.a.kafka.common.metrics.Metrics - Metrics scheduler closed 
-2022-06-27 17:36:43 INFO  o.a.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter 
-2022-06-27 17:36:43 INFO  o.a.kafka.common.metrics.Metrics - Metrics reporters closed 
-2022-06-27 17:36:43 INFO  o.a.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-group_id-1 unregistered 
-2022-06-27 17:36:43 INFO  o.s.k.l.KafkaMessageListenerContainer - group_id: Consumer stopped 
-2022-06-27 17:36:43 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default' 
-2022-06-27 17:36:43 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated... 
-2022-06-27 17:36:43 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed. 
-2022-06-27 17:36:43 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ... 
-2022-06-27 17:36:46 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ... 
-2022-06-27 17:36:47 INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:197)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:190)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:213)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1163)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1156)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
-	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
-	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
-	... 39 more
-Caused by: java.net.ConnectException: В соединении отказано (Connection refused)
-	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
-	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
-	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.base/java.net.Socket.connect(Socket.java:609)
-	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
-	... 52 more
- 
-2022-06-27 17:36:47 WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) 
-2022-06-27 17:36:47 INFO  c.n.d.s.t.d.RedirectingEurekaHttpClient - Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:785)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:711)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:602)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:197)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:190)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:213)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1163)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1156)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-Caused by: org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
-	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
-	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
-	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
-	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
-	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
-	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
-	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
-	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:87)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:776)
-	... 40 more
-Caused by: java.net.ConnectException: В соединении отказано (Connection refused)
-	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
-	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
-	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
-	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.base/java.net.Socket.connect(Socket.java:609)
-	at org.apache.http.conn.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:75)
-	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
-	... 53 more
- 
-2022-06-27 17:36:47 WARN  c.n.d.s.t.d.RetryableEurekaHttpClient - Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80": Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused); nested exception is org.apache.http.conn.HttpHostConnectException: Connect to localhost:8761 [localhost/127.0.0.1] failed: В соединении отказано (Connection refused) 
-2022-06-27 17:36:47 ERROR c.netflix.discovery.DiscoveryClient - DiscoveryClient_EMPLOYEE/employee-d7297a38-5d13-478a-a46f-e68be7b8dc80 - de-registration failedCannot execute request on any known server 
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:77)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:972)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:948)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:347)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:177)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:197)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:190)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:390)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:213)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1163)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1156)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1106)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1075)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-2022-06-27 17:36:47 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient 

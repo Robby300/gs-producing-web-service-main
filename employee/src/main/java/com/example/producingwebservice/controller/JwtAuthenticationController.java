@@ -5,6 +5,8 @@ import com.example.producingwebservice.api.UserService;
 import com.example.producingwebservice.config.security.JwtTokenUtil;
 import com.example.producingwebservice.model.JwtRequest;
 import com.example.producingwebservice.model.JwtResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +24,7 @@ import java.util.Objects;
 @Slf4j
 @RestController
 @CrossOrigin
+@Tag(name = "Authentication controller")
 public class JwtAuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
@@ -36,6 +39,7 @@ public class JwtAuthenticationController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Login user")
     public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());

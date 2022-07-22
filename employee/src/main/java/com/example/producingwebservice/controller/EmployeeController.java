@@ -1,9 +1,10 @@
 package com.example.producingwebservice.controller;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
@@ -17,21 +18,20 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1.0/employees")
-@SecurityRequirement(name = "bearerAuth")
-//@Api()
+@Tag(name = "Employee controller")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
 
     @GetMapping()
-//    @ApiOperation("Find all employee")
+    @Operation(summary = "Find all employee")
     public List<EmployeeDto> findAll() {
         log.info("Find all employee");
         return employeeService.findAll();
     }
 
     @PostMapping()
-//    @ApiOperation("Save all employee")
+    @Operation(summary = "Save all employee")
     public ResponseEntity<List<EmployeeResponse>> saveAll(@RequestBody List<EmployeeDto> employeeDtos) {
         List<EmployeeResponse> employeeResponses = employeeService.saveAll(employeeDtos);
         log.info("save all employee = {}", employeeDtos);
@@ -39,21 +39,21 @@ public class EmployeeController {
     }
 
     @GetMapping("/{uuid}")
-//    @ApiOperation("Get employee by uuid")
+    @Operation(summary = "Get employee by uuid")
     public EmployeeDto getByUuid(@PathVariable("uuid") String uuid) {
         log.info("Get employee by uuid = {}", uuid);
         return employeeService.findByUuid(uuid);
     }
 
     @GetMapping("/{uuid}/pdf")
-//    @ApiOperation("Get employee PDF by uuid")
+    @Operation(summary = "Get employee PDF by uuid")
     public ResponseEntity<InputStreamResource> getPdfByUuid(@PathVariable("uuid") String uuid) {
         log.info("Get employee PDF by uuid = {}", uuid);
         return employeeService.getEmployeePdfResponseEntity(uuid);
     }
 
     @PutMapping("/{uuid}")
-//    @ApiOperation("Update employee by uuid")
+    @Operation(summary = "Update employee by uuid")
     public EmployeeResponse update(@PathVariable("uuid") String uuid,
                                    @RequestBody EmployeeDto employeeDto) {
         log.info("Update employee by uuid = {}", uuid);
@@ -61,14 +61,14 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{uuid}")
-//    @ApiOperation("Delete employee by uuid")
+    @Operation(summary = "Delete employee by uuid")
     public void delete(@PathVariable String uuid) {
         log.info("Delete employee by uuid = {}", uuid);
         employeeService.deleteByUuid(uuid);
     }
 
     @PutMapping("/{uuid}/task/{task_id}")
-//    @ApiOperation("Assign task by task_id to employee by uuid")
+    @Operation(summary = "Assign task by task_id to employee by uuid")
     public EmployeeResponse assignTask(@PathVariable("uuid") String uuid,
                                        @PathVariable("task_id") long taskId) {
         log.info("Assign task id = {} to employee by uuid = {}", taskId, uuid);
@@ -76,7 +76,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{uuid}/task/{task_id}")
-//    @ApiOperation("Unassign task by task_id to employee by uuid")
+    @Operation(summary = "Unassign task by task_id to employee by uuid")
     public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid,
                                          @PathVariable("task_id") long taskId) {
         log.info("Unassigned task id = {} to employee by uuid = {}", taskId, uuid);
