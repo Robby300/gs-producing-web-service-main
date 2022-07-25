@@ -63,7 +63,7 @@ services:
       - db
       - kafka
       - eureka
-      - -
+      - balance
     environment:
       - EUREKA_HOST=http://eureka:8761/eureka/
       - SPRING_APPLICATION_NAME=employee
