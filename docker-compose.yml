@@ -4,8 +4,6 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
-#    networks:
-#      - cloud
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -15,8 +13,6 @@ services:
   db:
     image: postgres:latest
     container_name: postgres
-#    networks:
-#      - cloud
     ports:
       - "5432:5432"
     environment:
@@ -28,8 +24,6 @@ services:
   kafka:
     image: confluentinc/cp-kafka:latest
     container_name: kafka
-#    networks:
-#      - cloud
     depends_on:
       - zookeeper
     ports:
@@ -44,8 +38,6 @@ services:
 
   eureka:
     image: robby300/eureka
-#    networks:
-#      - cloud
     ports:
       - "8761:8761"
     environment:
@@ -79,14 +71,7 @@ services:
 
   balance:
     image: robby300/balance
-#    networks:
-#      - cloud
     ports:
       - "8080:8080"
     environment:
       - EUREKA_HOST=http://eureka:8761/eureka/
-
-#  networks:
-#    cloud:
-##      driver: bridge
-#      external: true
