@@ -5,17 +5,19 @@ import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.containers.Network;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @UtilityClass
 public class TestContainers {
 
+    public static final Network TEST_NETWORK = Network.newNetwork();
     public static final PostgreSQLContainer<?> POSTGRES_CONTAINER =
-            new PostgreSQLContainer<>("postgres:14.4");
+            new PostgreSQLContainer<>("postgres:14.4").withNetwork(TEST_NETWORK);
 
     public static final KafkaContainer KAFKA_CONTAINER =
-            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"));
+            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.1")).withNetwork(TEST_NETWORK);
 
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
@@ -31,7 +33,9 @@ public class TestContainers {
                     "spring.datasource.password=" + POSTGRES_CONTAINER.getPassword(),
                     "spring.flyway.password=" + POSTGRES_CONTAINER.getPassword(),
 
-                    "spring.kafka.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers()
+                    "spring.kafka.consumer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers(),
+                    "spring.kafka.producer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers()
+
             ).applyTo(applicationContext);
         }
 

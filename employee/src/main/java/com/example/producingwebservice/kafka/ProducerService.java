@@ -20,6 +20,6 @@ public class ProducerService {
         log.info("The produce got employeeDto: {}", employeeDto);
         kafkaTemplate.send(topicAdd, employeeDto.getUuid(), employeeDto);
         kafkaTemplate.flush();
-        log.debug("Topic posted");
+        log.info("Topic posted");
     }
 }

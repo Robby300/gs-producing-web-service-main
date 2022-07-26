@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
         scripts = {
                 "/sql/delete_employee_tasks.sql",
                 "/sql/delete_tasks.sql",
-                "/sql/delete_employees.sql"
+                "/sql/delete_employees.sql",
 
-//                "/sql/insert_employees.sql",
-//                "/sql/insert_roles.sql",
-//                "/sql/insert_users.sql",
+                "/sql/insert_employees.sql",
+                "/sql/insert_tasks.sql",
+                "/sql/insert_employee_tasks.sql",
         })
 @ActiveProfiles("test")
 @SpringBootTest

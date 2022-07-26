@@ -1,13 +1,11 @@
 package com.example.producingwebservice.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(exclude = {"id"})
 public class TaskDto {
     private long id;

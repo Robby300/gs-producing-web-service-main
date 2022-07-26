@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class TaskListener {
+public class ConsumerListener {
 
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper = new ModelMapper();

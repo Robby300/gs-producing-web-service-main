@@ -10,6 +10,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"tasks"})
 @ToString(exclude = {"id", "uuid"})
 public class EmployeeDto {
     private long id;
