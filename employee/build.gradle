@@ -23,6 +23,7 @@ ext {
 
 dependencies {
 
+    implementation 'org.projectlombok:lombok:1.18.22'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
@@ -45,7 +46,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework:spring-aspects:5.2.3.RELEASE'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -58,6 +58,11 @@ dependencies {
 
     implementation 'org.springdoc:springdoc-openapi-hateoas:1.5.5'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:postgresql:1.17.3'
+    testImplementation 'org.testcontainers:kafka:1.17.3'
+
 
 }
 

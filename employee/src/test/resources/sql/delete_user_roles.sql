@@ -1,0 +1,1 @@
+DELETE FROM employee_db.user_role;
