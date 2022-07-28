@@ -57,6 +57,15 @@ public class EmployeeTestData {
                 Collections.emptySet());
     }
 
+    public static EmployeeDto getEmployeeDtoForDelete() {
+        return new EmployeeDto(null,
+                "forDeleteUUID",
+                "test employee for delete",
+                "155000",
+                DIRECTOR,
+                Collections.emptySet());
+    }
+
     public static List<EmployeeDto> getEmployeeDtosForSaveInService() {
         return List.of(
                 new EmployeeDto(null,

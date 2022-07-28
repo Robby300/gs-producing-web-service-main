@@ -111,11 +111,11 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 
     @Test
     void shouldDeleteByUuid() {
-        String fourthEmployeeUuid = getFourthEmployeeDto().getUuid();
-        EmployeeDto existedEmployee = employeeService.findByUuid(fourthEmployeeUuid);
+        String employeeForDeleteUuid = getEmployeeDtoForDelete().getUuid();
+        EmployeeDto existedEmployee = employeeService.findByUuid(employeeForDeleteUuid);
         assertThat(existedEmployee).isNotNull();
-        employeeService.deleteByUuid(fourthEmployeeUuid);
-        assertThatThrownBy(() -> employeeService.findByUuid(fourthEmployeeUuid))
+        employeeService.deleteByUuid(employeeForDeleteUuid);
+        assertThatThrownBy(() -> employeeService.findByUuid(employeeForDeleteUuid))
                 .isInstanceOf(EmployeeNotFoundException.class);
     }
 }

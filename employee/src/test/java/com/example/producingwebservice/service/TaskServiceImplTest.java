@@ -18,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @ActiveProfiles("test")
 class TaskServiceImplTest extends IntegrationTestBase {
 
+    public static final String UPDATED_DESCRIPTION = "updated task";
     private final TaskService taskService;
     private final TaskRepository taskRepository;
 
@@ -38,22 +39,22 @@ class TaskServiceImplTest extends IntegrationTestBase {
 
     @Test
     void findById() {
-        TaskDto foundTask = taskService.findById(16L);
-        assertThat(foundTask).isEqualTo(getFirstTask());
+        TaskDto foundTask = taskService.findById(1L);
+        assertThat(foundTask).isNotNull();
     }
 
     @Test
     void update() {
-        TaskDto taskForUpdate = taskService.findById(17L);
-        taskForUpdate.setDescription("updated task");
-        taskService.update(17L, taskForUpdate);
-        assertThat(taskService.findById(17L).getDescription()).isEqualTo("updated task");
+        TaskDto taskForUpdate = getThirdTask();
+        taskForUpdate.setDescription(UPDATED_DESCRIPTION);
+        taskService.update(1L, taskForUpdate);
+        assertThat(taskService.findById(1L).getDescription()).isEqualTo(UPDATED_DESCRIPTION);
     }
 
     @Test
     void deleteById() {
-        taskService.deleteById(18L);
-        assertThatThrownBy(() -> taskService.findById(18L)).isInstanceOf(TaskNotFoundException.class);
+        taskService.deleteById(2L);
+        assertThatThrownBy(() -> taskService.findById(2L)).isInstanceOf(TaskNotFoundException.class);
     }
 
     @Test
