@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class EmployeeChecker {
     public static final int MIN_NAME_LENGTH = 3;
-    public static final int MAX_NAME_LENGTH = 32;
+    public static final int MAX_NAME_LENGTH = 48;
     public static final String SALARY_FIELD = "salary ";
     public static final String NAME_FIELD = "name ";
     public static final String POSITION_FIELD = "position ";

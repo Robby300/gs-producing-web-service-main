@@ -19,8 +19,11 @@ import static com.example.producingwebservice.type.ResponseStatus.SUCCESS;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-public class EmployeeValidatorServiceImplTest {
+class EmployeeValidatorServiceImplTest {
 
+    public static final String SHORT_NAME = "Ab";
+    public static final String LONG_NAME = "Ahmed Ibn Hamid All Rasul Fatih Ali Babaevich Ibn Fadlan";
+    public static final String LOW_SALARY = "10000";
     MessageService messageService = new MessageService(new ResourceBundleMessageSource());
     private final EmployeeValidatorService employeeValidatorService =
             new EmployeeValidatorServiceImpl(messageService, new EmployeeChecker(new EmployeeNotValidMessageService(messageService)));
@@ -35,7 +38,16 @@ public class EmployeeValidatorServiceImplTest {
     @Test
     void shouldGetFailureStatusBecauseShortName() {
         EmployeeDto employeeDtoForValidate = getFirstEmployeeDto();
-        employeeDtoForValidate.setName("Iv");
+        employeeDtoForValidate.setName(SHORT_NAME);
+        EmployeeResponse validateResponse = employeeValidatorService.validate(employeeDtoForValidate);
+        assertThat(validateResponse.getResponseStatus()).isEqualTo(FAILURE);
+        assertThat(validateResponse.getPayLoad()).isEqualTo("validation.name.length");
+    }
+
+    @Test
+    void shouldGetFailureStatusBecauseLongName() {
+        EmployeeDto employeeDtoForValidate = getFirstEmployeeDto();
+        employeeDtoForValidate.setName(LONG_NAME);
         EmployeeResponse validateResponse = employeeValidatorService.validate(employeeDtoForValidate);
         assertThat(validateResponse.getResponseStatus()).isEqualTo(FAILURE);
         assertThat(validateResponse.getPayLoad()).isEqualTo("validation.name.length");
@@ -44,7 +56,7 @@ public class EmployeeValidatorServiceImplTest {
     @Test
     void shouldGetFailureStatusBecauseLowSalaryForEmployeePosition() {
         EmployeeDto employeeDtoForValidate = getFirstEmployeeDto();
-        employeeDtoForValidate.setSalary("10000");
+        employeeDtoForValidate.setSalary(LOW_SALARY);
         EmployeeResponse validateResponse = employeeValidatorService.validate(employeeDtoForValidate);
         assertThat(validateResponse.getResponseStatus()).isEqualTo(FAILURE);
         assertThat(validateResponse.getPayLoad()).isEqualTo("validation.position.salary");

@@ -10,7 +10,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 import java.util.Set;
 
-import static com.example.producingwebservice.testData.EmployeeTestData.getEmployeeDtoForSave;
+import static com.example.producingwebservice.testData.EmployeeTestData.getEmployeeDtoForSaveInController;
 import static com.example.producingwebservice.testData.TaskTestData.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -28,7 +28,7 @@ class EmployeeCheckerTest {
 
     @Test
     void shouldCheckSalaryByPosition() {
-        EmployeeDto employeeDtoForSave = getEmployeeDtoForSave();
+        EmployeeDto employeeDtoForSave = getEmployeeDtoForSaveInController();
         employeeDtoForSave.setSalary(ONE_MILLION_SALARY);
         String checkMessage = employeeChecker.checkSalaryByPosition(employeeDtoForSave);
         assertThat(checkMessage).isNotNull().isEqualTo("validation.position.salary");
@@ -36,7 +36,7 @@ class EmployeeCheckerTest {
 
     @Test
     void shouldCheckCountOfTasks() {
-        EmployeeDto employeeDtoForSave = getEmployeeDtoForSave();
+        EmployeeDto employeeDtoForSave = getEmployeeDtoForSaveInController();
         employeeDtoForSave.setTasks(Set.of(
                 modelMapper.map(getFirstTask(), Task.class),
                 modelMapper.map(getSecondTask(), Task.class),
@@ -47,7 +47,7 @@ class EmployeeCheckerTest {
 
     @Test
     void shouldCheckPositionByNull() {
-        EmployeeDto employeeDtoForSave = getEmployeeDtoForSave();
+        EmployeeDto employeeDtoForSave = getEmployeeDtoForSaveInController();
         employeeDtoForSave.setPosition(null);
         String checkMessage = employeeChecker.checkPositionByNull(employeeDtoForSave);
         assertThat(checkMessage).isNotNull().isEqualTo("position validation.not.null");
@@ -55,7 +55,7 @@ class EmployeeCheckerTest {
 
     @Test
     void shouldCheckNameLength() {
-        EmployeeDto employeeDtoForSave = getEmployeeDtoForSave();
+        EmployeeDto employeeDtoForSave = getEmployeeDtoForSaveInController();
         employeeDtoForSave.setName(SHORT_NAME);
         String checkMessage = employeeChecker.checkNameLength(employeeDtoForSave);
         assertThat(checkMessage).isNotNull().isEqualTo("validation.name.length");
@@ -63,7 +63,7 @@ class EmployeeCheckerTest {
 
     @Test
     void shouldCheckSalary() {
-        EmployeeDto employeeDtoForSave = getEmployeeDtoForSave();
+        EmployeeDto employeeDtoForSave = getEmployeeDtoForSaveInController();
         employeeDtoForSave.setSalary(ZERO_SALARY);
         String checkMessage = employeeChecker.checkSalary(employeeDtoForSave);
         assertThat(checkMessage).isNotNull().isEqualTo("validation.salary.size");
@@ -71,7 +71,7 @@ class EmployeeCheckerTest {
 
     @Test
     void shouldCheckNameByNull() {
-        EmployeeDto employeeDtoForSave = getEmployeeDtoForSave();
+        EmployeeDto employeeDtoForSave = getEmployeeDtoForSaveInController();
         employeeDtoForSave.setName(null);
         String checkMessage = employeeChecker.checkNameByNull(employeeDtoForSave);
         assertThat(checkMessage).isNotNull().isEqualTo("name validation.not.null");

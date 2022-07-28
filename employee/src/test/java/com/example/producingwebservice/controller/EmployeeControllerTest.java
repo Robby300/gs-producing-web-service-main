@@ -1,6 +1,7 @@
 package com.example.producingwebservice.controller;
 
 import com.example.producingwebservice.IntegrationTestBase;
+import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.List;
 import static com.example.producingwebservice.testData.EmployeeTestData.*;
 import static com.example.producingwebservice.type.ResponseStatus.SUCCESS;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
 @SpringBootTest
@@ -24,6 +26,7 @@ class EmployeeControllerTest extends IntegrationTestBase {
     public static final String APPLICATION_PDF = "application/pdf";
     public static final int ZERO_INDEX = 0;
     public static final int FIRST_INDEX = 1;
+    public static final String ANOTHER_NAME = "Another Name";
     private final EmployeeController controller;
 
     @Autowired
@@ -63,17 +66,19 @@ class EmployeeControllerTest extends IntegrationTestBase {
 
     @Test
     void update() {
+        EmployeeDto employeeForSave = getEmployeeDtoForUpdateInController();
+        employeeForSave.setName(ANOTHER_NAME);
+        EmployeeResponse updateResponse = controller.update(employeeForSave.getUuid(), employeeForSave);
+        assertThat(updateResponse.getResponseStatus()).isEqualTo(SUCCESS);
     }
 
     @Test
     void delete() {
-    }
-
-    @Test
-    void assignTask() {
-    }
-
-    @Test
-    void unAssignTask() {
+        String employeeForDeleteUuid = getEmployeeDtoForDeleteInController().getUuid();
+        EmployeeDto existedEmployee = controller.getByUuid(employeeForDeleteUuid);
+        assertThat(existedEmployee).isNotNull();
+        controller.delete(employeeForDeleteUuid);
+        assertThatThrownBy(() -> controller.getByUuid(employeeForDeleteUuid))
+                .isInstanceOf(EmployeeNotFoundException.class);
     }
 }

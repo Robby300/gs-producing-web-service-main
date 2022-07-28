@@ -39,31 +39,74 @@ public class EmployeeTestData {
                 Collections.emptySet());
     }
 
-    public static EmployeeDto getFourthEmployeeDto() {
+    public static EmployeeDto getEmployeeDtoForDeleteInService() {
         return new EmployeeDto(null,
-                "fourthUUID",
-                "fourth test employee",
-                "55000",
-                WORKER,
-                Collections.emptySet());
-    }
-
-    public static EmployeeDto getEmployeeDtoForSave() {
-        return new EmployeeDto(null,
-                "forSaveUUID",
-                "forSave test employee",
-                "55000",
-                WORKER,
-                Collections.emptySet());
-    }
-
-    public static EmployeeDto getEmployeeDtoForDelete() {
-        return new EmployeeDto(null,
-                "forDeleteUUID",
-                "test employee for delete",
+                "serviceDeleteUUID",
+                "test employee for delete in service",
                 "155000",
                 DIRECTOR,
                 Collections.emptySet());
+    }
+
+    public static EmployeeDto getEmployeeDtoForDeleteInController() {
+        return new EmployeeDto(null,
+                "controllerDeleteUUID",
+                "test employee for delete in controller",
+                "105000",
+                MANAGER,
+                Collections.emptySet());
+    }
+
+    public static EmployeeDto getEmployeeDtoForUpdateInService() {
+        return new EmployeeDto(null,
+                "serviceUpdateUUID",
+                "test employee for update in service",
+                "105000",
+                MANAGER,
+                Collections.emptySet());
+    }
+
+    public static EmployeeDto getEmployeeDtoForUpdateInController() {
+        return new EmployeeDto(null,
+                "controllerUpdateUUID",
+                "test employee for update in controller",
+                "55000",
+                WORKER,
+                Collections.emptySet());
+    }
+
+    public static EmployeeDto getEmployeeDtoForSaveInService() {
+        return new EmployeeDto(null,
+                "serviceSaveUUID",
+                "test employee for save in service",
+                "105000",
+                MANAGER,
+                Collections.emptySet());
+    }
+
+    public static EmployeeDto getEmployeeDtoForSaveInController() {
+        return new EmployeeDto(null,
+                "controllerSaveUUID",
+                "test employee for save in controller",
+                "55000",
+                WORKER,
+                Collections.emptySet());
+    }
+
+    public static List<EmployeeDto> getEmployeeDtosForSaveInController() {
+        return List.of(
+                new EmployeeDto(null,
+                        "seventhUUID",
+                        "seventh test employee",
+                        "55000",
+                        WORKER,
+                        Collections.emptySet()),
+                new EmployeeDto(null,
+                        "eighthUUID",
+                        "eighth test employee",
+                        "55000",
+                        WORKER,
+                        Collections.emptySet()));
     }
 
     public static List<EmployeeDto> getEmployeeDtosForSaveInService() {
@@ -82,19 +125,5 @@ public class EmployeeTestData {
                         Collections.emptySet()));
     }
 
-    public static List<EmployeeDto> getEmployeeDtosForSaveInController() {
-        return List.of(
-                new EmployeeDto(null,
-                        "seventhUUID",
-                        "seventh test employee",
-                        "55000",
-                        WORKER,
-                        Collections.emptySet()),
-                new EmployeeDto(null,
-                        "eighthUUID",
-                        "eighth test employee",
-                        "55000",
-                        WORKER,
-                        Collections.emptySet()));
-    }
+
 }

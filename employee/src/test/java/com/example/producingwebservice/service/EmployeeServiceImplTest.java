@@ -63,7 +63,7 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 
     @Test
     void shouldGetSuccessStatusWhenValidSave() {
-        EmployeeResponse saveResponse = employeeService.save(getEmployeeDtoForSave());
+        EmployeeResponse saveResponse = employeeService.save(getEmployeeDtoForSaveInService());
         assertThat(saveResponse.getResponseStatus()).isEqualTo(SUCCESS);
     }
 
@@ -82,26 +82,26 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 
     @Test
     void shouldGetSuccessStatusWhenValidUpdate() {
-        EmployeeDto employeeForSave = getFourthEmployeeDto();
-        employeeForSave.setName(NAME);
-        employeeForSave.setPosition(WORKER);
-        employeeForSave.setSalary(SALARY);
-        EmployeeResponse updateResponse = employeeService.update(employeeForSave.getUuid(), employeeForSave);
+        EmployeeDto employeeForUpdate = getEmployeeDtoForUpdateInService();
+        employeeForUpdate.setName(NAME);
+        employeeForUpdate.setPosition(WORKER);
+        employeeForUpdate.setSalary(SALARY);
+        EmployeeResponse updateResponse = employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
         assertThat(updateResponse.getResponseStatus()).isEqualTo(SUCCESS);
     }
 
     @Test
     void shouldGetFailureStatusWhenUpdateWithWrongSalary() {
-        EmployeeDto employeeForSave = getFourthEmployeeDto();
-        employeeForSave.setPosition(WORKER);
-        employeeForSave.setSalary(LOW_SALARY);
-        EmployeeResponse updateResponse = employeeService.update(employeeForSave.getUuid(), employeeForSave);
+        EmployeeDto employeeForUpdate = getEmployeeDtoForUpdateInService();
+        employeeForUpdate.setPosition(WORKER);
+        employeeForUpdate.setSalary(LOW_SALARY);
+        EmployeeResponse updateResponse = employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
         assertThat(updateResponse.getResponseStatus()).isEqualTo(FAILURE);
     }
 
     @Test
     void shouldGetFailureStatusWhenUpdateWithShortName() {
-        EmployeeDto employeeForUpdate = getFourthEmployeeDto();
+        EmployeeDto employeeForUpdate = getEmployeeDtoForUpdateInService();
         employeeForUpdate.setName(SHORT_NAME);
         EmployeeResponse updateResponse = employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
         assertThat(updateResponse.getResponseStatus()).isEqualTo(FAILURE);
@@ -111,7 +111,7 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 
     @Test
     void shouldDeleteByUuid() {
-        String employeeForDeleteUuid = getEmployeeDtoForDelete().getUuid();
+        String employeeForDeleteUuid = getEmployeeDtoForDeleteInService().getUuid();
         EmployeeDto existedEmployee = employeeService.findByUuid(employeeForDeleteUuid);
         assertThat(existedEmployee).isNotNull();
         employeeService.deleteByUuid(employeeForDeleteUuid);
