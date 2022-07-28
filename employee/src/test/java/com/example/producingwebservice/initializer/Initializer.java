@@ -1,5 +1,6 @@
 package com.example.producingwebservice.initializer;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,7 +15,7 @@ public class Initializer implements ApplicationContextInitializer<ConfigurableAp
     }
 
     @Override
-    public void initialize(ConfigurableApplicationContext applicationContext) {
+    public void initialize(@NotNull ConfigurableApplicationContext applicationContext) {
         TestPropertyValues.of(
                 "eureka.client.register-with-eureka=false",
 

@@ -1,7 +1,6 @@
 package com.example.producingwebservice.testData;
 
 import com.example.producingwebservice.model.EmployeeDto;
-import org.modelmapper.ModelMapper;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,8 +8,6 @@ import java.util.List;
 import static com.example.producingwebservice.type.Position.*;
 
 public class EmployeeTestData {
-
-    private static final ModelMapper modelMapper = new ModelMapper();
 
     public static EmployeeDto getFirstEmployeeDto() {
         return new EmployeeDto(null,

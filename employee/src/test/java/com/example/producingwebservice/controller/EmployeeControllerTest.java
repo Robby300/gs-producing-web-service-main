@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.producingwebservice.testData.EmployeeTestData.*;
 import static com.example.producingwebservice.type.ResponseStatus.SUCCESS;
@@ -46,7 +47,7 @@ class EmployeeControllerTest extends IntegrationTestBase {
     @Test
     void saveAll() {
         ResponseEntity<List<EmployeeResponse>> listResponseEntity = controller.saveAll(getEmployeeDtosForSaveInController());
-        assertThat(listResponseEntity.getBody().get(ZERO_INDEX).getResponseStatus()).isEqualTo(SUCCESS);
+        assertThat(Objects.requireNonNull(listResponseEntity.getBody()).get(ZERO_INDEX).getResponseStatus()).isEqualTo(SUCCESS);
         assertThat(listResponseEntity.getBody().get(FIRST_INDEX).getResponseStatus()).isEqualTo(SUCCESS);
     }
 
@@ -60,7 +61,7 @@ class EmployeeControllerTest extends IntegrationTestBase {
     void getPdfByUuid() {
         ResponseEntity<InputStreamResource> employeePdfResponseEntity =
                 controller.getPdfByUuid(getThirdEmployeeDto().getUuid());
-        String contentType = employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE).get(ZERO_INDEX);
+        String contentType = Objects.requireNonNull(employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE)).get(ZERO_INDEX);
         assertThat(contentType).isEqualTo(APPLICATION_PDF);
     }
 

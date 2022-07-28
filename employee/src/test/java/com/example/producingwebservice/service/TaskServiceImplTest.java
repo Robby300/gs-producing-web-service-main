@@ -4,7 +4,6 @@ import com.example.producingwebservice.IntegrationTestBase;
 import com.example.producingwebservice.api.TaskService;
 import com.example.producingwebservice.exception.TaskNotFoundException;
 import com.example.producingwebservice.model.TaskDto;
-import com.example.producingwebservice.repository.TaskRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,12 +19,10 @@ class TaskServiceImplTest extends IntegrationTestBase {
 
     public static final String UPDATED_DESCRIPTION = "updated task";
     private final TaskService taskService;
-    private final TaskRepository taskRepository;
 
     @Autowired
-    TaskServiceImplTest(TaskService taskService, TaskRepository taskRepository) {
+    TaskServiceImplTest(TaskService taskService) {
         this.taskService = taskService;
-        this.taskRepository = taskRepository;
     }
 
     @Test

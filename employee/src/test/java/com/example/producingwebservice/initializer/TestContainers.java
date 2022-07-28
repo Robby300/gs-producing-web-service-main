@@ -11,5 +11,7 @@ public class TestContainers {
             new PostgreSQLContainer<>("postgres:latest").withReuse(true);
 
     public static final KafkaContainer KAFKA_CONTAINER =
-            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest")).withNetwork(null).withReuse(true);
+            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
+                    .withNetwork(null)
+                    .withReuse(true);
 }

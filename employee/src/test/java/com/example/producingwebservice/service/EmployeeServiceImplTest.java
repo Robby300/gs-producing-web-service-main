@@ -5,9 +5,7 @@ import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
-import com.example.producingwebservice.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
@@ -34,14 +32,10 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
     public static final String SALARY = "51000";
     public static final String NAME = "Ivan";
     private final EmployeeService employeeService;
-    private final EmployeeRepository employeeRepository;
-
-    ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
-    EmployeeServiceImplTest(EmployeeService employeeService, EmployeeRepository employeeRepository) {
+    EmployeeServiceImplTest(EmployeeService employeeService) {
         this.employeeService = employeeService;
-        this.employeeRepository = employeeRepository;
     }
 
     @Test
