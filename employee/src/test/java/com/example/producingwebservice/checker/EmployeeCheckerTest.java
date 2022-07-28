@@ -65,8 +65,9 @@ class EmployeeCheckerTest {
                 .isEqualTo("name validation.not.null");
     }
 
+    @Test
     void shouldCheckLongName() {
-        String checkMessage = employeeChecker.checkNameByNull(getEmployeeDtoWithLongName());
+        String checkMessage = employeeChecker.checkNameLength(getEmployeeDtoWithLongName());
         assertThat(checkMessage)
                 .isNotNull()
                 .isEqualTo("validation.name.length");
