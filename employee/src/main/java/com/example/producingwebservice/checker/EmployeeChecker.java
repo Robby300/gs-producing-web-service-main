@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 public class EmployeeChecker {
     public static final int MIN_NAME_LENGTH = 3;
     public static final int MAX_NAME_LENGTH = 32;
-    public static final String SALARY_FIELD = "Salary";
-    public static final String NAME_FIELD = "name";
-    public static final String POSITION_FIELD = "Position";
+    public static final String SALARY_FIELD = "salary ";
+    public static final String NAME_FIELD = "name ";
+    public static final String POSITION_FIELD = "position ";
     private final EmployeeNotValidMessageService employeeNotValidMessageService;
 
     public String checkSalaryByPosition(EmployeeDto employeeDto) {

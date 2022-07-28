@@ -1,9 +1,6 @@
 package com.example.producingwebservice.initializer;
 
 import lombok.experimental.UtilityClass;
-import org.springframework.boot.test.util.TestPropertyValues;
-import org.springframework.context.ApplicationContextInitializer;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -14,34 +11,8 @@ public class TestContainers {
 
     public static final Network TEST_NETWORK = Network.newNetwork();
     public static final PostgreSQLContainer<?> POSTGRES_CONTAINER =
-            new PostgreSQLContainer<>("postgres:14.4").withNetwork(TEST_NETWORK);
+            new PostgreSQLContainer<>("postgres:latest").withNetwork(TEST_NETWORK);
 
     public static final KafkaContainer KAFKA_CONTAINER =
-            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.1")).withNetwork(TEST_NETWORK);
-
-    public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-
-        @Override
-        public void initialize(ConfigurableApplicationContext applicationContext) {
-            TestPropertyValues.of(
-                    "spring.datasource.url=" + POSTGRES_CONTAINER.getJdbcUrl(),
-                    "spring.flyway.url=" + POSTGRES_CONTAINER.getJdbcUrl(),
-
-                    "spring.datasource.username=" + POSTGRES_CONTAINER.getUsername(),
-                    "spring.flyway.user=" + POSTGRES_CONTAINER.getUsername(),
-
-                    "spring.datasource.password=" + POSTGRES_CONTAINER.getPassword(),
-                    "spring.flyway.password=" + POSTGRES_CONTAINER.getPassword(),
-
-                    "spring.kafka.consumer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers(),
-                    "spring.kafka.producer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers()
-
-            ).applyTo(applicationContext);
-        }
-
-        public static void start() {
-            POSTGRES_CONTAINER.start();
-            KAFKA_CONTAINER.start();
-        }
-    }
+            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest")).withNetwork(TEST_NETWORK);
 }

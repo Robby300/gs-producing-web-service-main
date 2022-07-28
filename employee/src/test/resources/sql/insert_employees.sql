@@ -1,3 +1,7 @@
-INSERT INTO employee_db.employee (id, position, name, uuid, salary) VALUES (1, 'WORKER', 'first test employee', 'firstUUID', '55000');
-INSERT INTO employee_db.employee (id, position, name, uuid, salary) VALUES(2, 'MANAGER', 'second test employee', 'secondUUID', '105000');
-INSERT INTO employee_db.employee (id, position, name, uuid, salary) VALUES(3, 'DIRECTOR', 'third test employee', 'thirdUUID','155000');
+
+INSERT INTO employee_db.employee (position, name, uuid, salary) VALUES ('WORKER', 'first test employee', 'firstUUID', '55000');
+INSERT INTO employee_db.employee (position, name, uuid, salary) VALUES('MANAGER', 'second test employee', 'secondUUID', '105000');
+INSERT INTO employee_db.employee (position, name, uuid, salary) VALUES('DIRECTOR', 'third test employee', 'thirdUUID','155000');
+INSERT INTO employee_db.employee (position, name, uuid, salary) VALUES('DIRECTOR', 'fourth test employee', 'fourthUUID','155000');
+
+SELECT setval('employee_db.employee_id_seq', (SELECT MAX(id) FROM employee_db.employee));

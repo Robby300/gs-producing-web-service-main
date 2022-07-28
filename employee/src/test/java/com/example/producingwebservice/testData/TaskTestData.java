@@ -13,4 +13,8 @@ public class TaskTestData {
     public static TaskDto getThirdTask() {
         return new TaskDto(3L, "third test task");
     }
+
+    public static TaskDto getFourthTask() {
+        return new TaskDto(4L, "fourth test task");
+    }
 }

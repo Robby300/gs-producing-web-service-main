@@ -10,10 +10,10 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"tasks"})
+@EqualsAndHashCode(exclude = {"id", "tasks"})
 @ToString(exclude = {"id", "uuid"})
 public class EmployeeDto {
-    private long id;
+    private Long id;
     private String uuid;
     private String name;
     private String salary;
