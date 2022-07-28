@@ -3,7 +3,6 @@ package com.example.producingwebservice.checker;
 import com.example.producingwebservice.service.MessageService;
 import com.example.producingwebservice.service.validator.EmployeeNotValidMessageService;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 import static com.example.producingwebservice.testData.EmployeeTestData.*;
@@ -14,8 +13,6 @@ class EmployeeCheckerTest {
             new EmployeeNotValidMessageService(
                     new MessageService(
                             new ResourceBundleMessageSource())));
-
-    ModelMapper modelMapper = new ModelMapper();
 
     @Test
     void shouldCheckSalaryByPosition() {
