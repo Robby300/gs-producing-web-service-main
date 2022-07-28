@@ -2,19 +2,19 @@ create schema if not exists employee_db;
 
 create table employee_db.employee
 (
-    id       SERIAL,
+    employee_id       SERIAL,
     position varchar(255),
     name     varchar(255),
     uuid     varchar(255),
     salary   varchar(255),
-    primary key (id)
+    primary key (employee_id)
 );
 
 create table employee_db.task
 (
-    id          SERIAL,
+    task_id          SERIAL,
     description varchar(255),
-    primary key (id)
+    primary key (task_id)
 );
 
 create table employee_db.employee_tasks

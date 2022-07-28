@@ -7,7 +7,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = {"id"})
+@EqualsAndHashCode(exclude = {"id"})
 public class TaskDto {
-    private long id;
+    private Long id;
     private String description;
 }

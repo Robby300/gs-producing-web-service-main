@@ -13,7 +13,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @ToString(exclude = {"id"})
 public class UserDto {
-    private long id;
+    private Long id;
     private String username;
     private String password;
     private Set<Role> roles;

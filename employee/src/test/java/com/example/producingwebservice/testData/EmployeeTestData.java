@@ -57,9 +57,35 @@ public class EmployeeTestData {
                 Collections.emptySet());
     }
 
-    public static List<EmployeeDto> getEmployeeDtosForSave() {
+    public static List<EmployeeDto> getEmployeeDtosForSaveInService() {
         return List.of(
-                getFirstEmployeeDto(),
-                getSecondEmployeeDto());
+                new EmployeeDto(null,
+                        "fifthUUID",
+                        "fifth test employee",
+                        "55000",
+                        WORKER,
+                        Collections.emptySet()),
+                new EmployeeDto(null,
+                        "sixthUUID",
+                        "sixth test employee",
+                        "55000",
+                        WORKER,
+                        Collections.emptySet()));
+    }
+
+    public static List<EmployeeDto> getEmployeeDtosForSaveInController() {
+        return List.of(
+                new EmployeeDto(null,
+                        "seventhUUID",
+                        "seventh test employee",
+                        "55000",
+                        WORKER,
+                        Collections.emptySet()),
+                new EmployeeDto(null,
+                        "eighthUUID",
+                        "eighth test employee",
+                        "55000",
+                        WORKER,
+                        Collections.emptySet()));
     }
 }

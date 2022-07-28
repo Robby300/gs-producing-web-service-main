@@ -8,10 +8,14 @@ import static com.example.producingwebservice.initializer.TestContainers.KAFKA_C
 import static com.example.producingwebservice.initializer.TestContainers.POSTGRES_CONTAINER;
 
 public class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+    public static void start() {
+        POSTGRES_CONTAINER.start();
+        KAFKA_CONTAINER.start();
+    }
+
     @Override
     public void initialize(ConfigurableApplicationContext applicationContext) {
         TestPropertyValues.of(
-//                    "spring.flyway.enabled=false",
                 "eureka.client.register-with-eureka=false",
 
                 "spring.datasource.url=" + POSTGRES_CONTAINER.getJdbcUrl(),
@@ -27,10 +31,5 @@ public class Initializer implements ApplicationContextInitializer<ConfigurableAp
                 "spring.kafka.producer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers()
 
         ).applyTo(applicationContext);
-    }
-
-    public static void start() {
-        POSTGRES_CONTAINER.start();
-        KAFKA_CONTAINER.start();
     }
 }
