@@ -24,13 +24,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @ActiveProfiles("test")
 class EmployeeServiceImplTest extends IntegrationTestBase {
 
-    public static final String CONTENT_TYPE = "Content-Type";
-    public static final String APPLICATION_PDF = "application/pdf";
-    public static final int ZERO_INDEX = 0;
-    public static final String SHORT_NAME = "Iv";
-    public static final String LOW_SALARY = "40000";
-    public static final String SALARY = "51000";
-    public static final String NAME = "Ivan";
+
     private final EmployeeService employeeService;
 
     @Autowired
@@ -41,7 +35,7 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
     @Test
     void shouldGetEmployeePdfResponseEntity() {
         ResponseEntity<InputStreamResource> employeePdfResponseEntity =
-                employeeService.getEmployeePdfResponseEntity(getFirstEmployeeDto().getUuid());
+                employeeService.getEmployeePdfResponseEntity(getSecondEmployeeDto().getUuid());
         String contentType = Objects.requireNonNull(employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE)).get(ZERO_INDEX);
         assertThat(contentType).isEqualTo(APPLICATION_PDF);
     }
@@ -112,4 +106,12 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
         assertThatThrownBy(() -> employeeService.findByUuid(employeeForDeleteUuid))
                 .isInstanceOf(EmployeeNotFoundException.class);
     }
+
+    @Test
+    void shouldAssignTaskToEmployee() {
+        assertThat(employeeService.findByUuid(getFirstEmployeeDto().getUuid()).getTasks()).isEmpty();
+        EmployeeResponse employeeResponse = employeeService.assignTaskToEmployee(getFirstEmployeeDto().getUuid(), TASK_ID);
+        assertThat(employeeResponse.getResponseStatus()).isEqualTo(SUCCESS);
+    }
 }
+

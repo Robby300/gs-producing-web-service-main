@@ -16,8 +16,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
 class TaskServiceImplTest extends IntegrationTestBase {
-
-    public static final String UPDATED_DESCRIPTION = "updated task";
     private final TaskService taskService;
 
     @Autowired

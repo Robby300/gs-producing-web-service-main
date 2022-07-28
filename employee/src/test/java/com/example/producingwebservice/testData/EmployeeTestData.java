@@ -8,7 +8,16 @@ import java.util.List;
 import static com.example.producingwebservice.type.Position.*;
 
 public class EmployeeTestData {
-
+    public static final String ONE_MILLION_SALARY = "1000000";
+    public static final String ZERO_SALARY = "0";
+    public static final String SHORT_NAME = "ab";
+    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String APPLICATION_PDF = "application/pdf";
+    public static final int ZERO_INDEX = 0;
+    public static final String LOW_SALARY = "40000";
+    public static final String SALARY = "51000";
+    public static final String NAME = "Ivan";
+    public static final long TASK_ID = 1L;
     public static EmployeeDto getFirstEmployeeDto() {
         return new EmployeeDto(null,
                 "firstUUID",

@@ -5,7 +5,7 @@ import com.example.producingwebservice.model.TaskDto;
 import java.util.List;
 
 public class TaskTestData {
-
+    public static final String UPDATED_DESCRIPTION = "updated task";
     public static TaskDto getFirstTask() {
         return new TaskDto(null, "first test task");
     }

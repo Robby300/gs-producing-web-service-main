@@ -10,15 +10,12 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 
 import java.util.Set;
 
-import static com.example.producingwebservice.testData.EmployeeTestData.getEmployeeDtoForSaveInController;
+import static com.example.producingwebservice.testData.EmployeeTestData.*;
 import static com.example.producingwebservice.testData.TaskTestData.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class EmployeeCheckerTest {
 
-    public static final String ONE_MILLION_SALARY = "1000000";
-    public static final String ZERO_SALARY = "0";
-    public static final String SHORT_NAME = "ab";
     private final EmployeeChecker employeeChecker = new EmployeeChecker(
             new EmployeeNotValidMessageService(
                     new MessageService(
