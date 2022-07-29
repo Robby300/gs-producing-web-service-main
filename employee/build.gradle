@@ -98,14 +98,16 @@ spotless {
 		importOrder()
 		custom 'checkWildcardsInImports', {
 			def importWildcardRegex = it =~ /(import.*\*;)/
+			def packageLineRegex = it =~ /(package.*;)/
+
 			def classCode = String.valueOf(it)
+
 			if (importWildcardRegex.find()) {
-				def packageRegex = it =~ /(package.*;)/
-				if(packageRegex.find()) {
-					def className = classCode.subSequence(packageRegex.start(), packageRegex.end())
+				if(packageLineRegex.find()) {
+					def packageLine = classCode.subSequence(packageLineRegex.start(), packageLineRegex.end())
 					def wildcard = classCode.subSequence(importWildcardRegex.start(), importWildcardRegex.end())
 
-					println("found using wildcard \"" + wildcard + "\" in " + className)
+					println("found using wildcard \"" + wildcard + "\" in " + packageLine)
 				}
 			}
 		}
