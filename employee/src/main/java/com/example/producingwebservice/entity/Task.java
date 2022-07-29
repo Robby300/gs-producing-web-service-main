@@ -1,5 +1,6 @@
 package com.example.producingwebservice.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_id")
-    private Long id;
-    private String description;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "task_id")
+	private Long id;
 
-    @Override
-    public String toString() {
-        return "Description: " + description;
-    }
+	private String description;
+
+	@Override
+	public String toString() {
+		return "Description: " + description;
+	}
 }

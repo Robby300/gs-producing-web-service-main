@@ -12,14 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ProducerService {
-    private final KafkaTemplate<String, EmployeeDto> kafkaTemplate;
-    @Value("${topic.save}")
-    private String topicAdd;
+	private final KafkaTemplate<String, EmployeeDto> kafkaTemplate;
 
-    public void produce(EmployeeDto employeeDto) {
-        log.info("The produce got employeeDto: {}", employeeDto);
-        kafkaTemplate.send(topicAdd, employeeDto.getUuid(), employeeDto);
-        kafkaTemplate.flush();
-        log.info("Topic posted");
-    }
+	@Value("${topic.save}")
+	private String topicAdd;
+
+	public void produce(EmployeeDto employeeDto) {
+		log.info("The produce got employeeDto: {}", employeeDto);
+		kafkaTemplate.send(topicAdd, employeeDto.getUuid(), employeeDto);
+		kafkaTemplate.flush();
+		log.info("Topic posted");
+	}
 }

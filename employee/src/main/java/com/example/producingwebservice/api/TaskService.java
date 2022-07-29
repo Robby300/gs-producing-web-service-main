@@ -1,19 +1,20 @@
 package com.example.producingwebservice.api;
 
+
 import com.example.producingwebservice.model.TaskDto;
 
 import java.util.List;
 
 public interface TaskService {
-    List<TaskDto> findAll();
+	List<TaskDto> findAll();
 
-    TaskDto findById(Long id);
+	TaskDto findById(Long id);
 
-    TaskDto update(Long id, TaskDto taskDto);
+	TaskDto update(Long id, TaskDto taskDto);
 
-    void deleteById(Long id);
+	void deleteById(Long id);
 
-    TaskDto save(TaskDto taskDto);
+	TaskDto save(TaskDto taskDto);
 
-    List<TaskDto> saveAll(List<TaskDto> taskDtos);
+	List<TaskDto> saveAll(List<TaskDto> taskDtos);
 }

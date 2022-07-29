@@ -1,5 +1,6 @@
 package com.example.producingwebservice.model;
 
+
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmployeeResponse {
-    private ResponseStatus responseStatus;
-    private String message;
-    private String payLoad;
+	private ResponseStatus responseStatus;
+	private String message;
+	private String payLoad;
 }

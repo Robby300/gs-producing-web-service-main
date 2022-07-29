@@ -1,5 +1,6 @@
 package com.example.producingwebservice.entity;
 
+
 import com.example.producingwebservice.type.Position;
 import lombok.*;
 
@@ -12,28 +13,28 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Builder
-//@JsonIdentityInfo(
+// @JsonIdentityInfo(
 //        generator = ObjectIdGenerators.PropertyGenerator.class,
 //        property = "id"
-//)
+// )
 public class Employee {
-    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
-    private Long id;
-    private String uuid;
-    private String name;
-    private String salary;
+	@Id
+	//    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employee_id")
+	private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Position position;
+	private String uuid;
+	private String name;
+	private String salary;
 
-    @ManyToMany(cascade = CascadeType.DETACH)
-    @JoinTable(
-            name = "employee_tasks",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id")
-    )
-    private Set<Task> tasks;
+	@Enumerated(EnumType.STRING)
+	private Position position;
+
+	@ManyToMany(cascade = CascadeType.DETACH)
+	@JoinTable(
+			name = "employee_tasks",
+			joinColumns = @JoinColumn(name = "employee_id"),
+			inverseJoinColumns = @JoinColumn(name = "task_id"))
+	private Set<Task> tasks;
 }

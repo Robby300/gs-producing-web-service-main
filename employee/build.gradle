@@ -1,77 +1,103 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.1'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id "org.flywaydb.flyway" version "7.15.0"
-    id "com.google.cloud.tools.jib" version "3.2.1"
-    id 'java'
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id "org.flywaydb.flyway" version "7.15.0"
+	id "com.google.cloud.tools.jib" version "3.2.1"
+	id "com.diffplug.spotless" version "6.9.0"
+	id 'java'
 }
 
+apply plugin: "com.diffplug.spotless"
 group 'org.example'
 version 'unspecified'
 
 jib.to.image = 'robby300/employee'
 
 repositories {
-    mavenLocal()
-    mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
+	mavenLocal()
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://plugins.gradle.org/m2/' }
 }
 
 ext {
-    set('springCloudVersion', "2021.0.3")
+	set('springCloudVersion', "2021.0.3")
 }
 
 dependencies {
 
-    implementation 'org.projectlombok:lombok:1.18.22'
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	implementation 'org.projectlombok:lombok:1.18.22'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    implementation "org.slf4j:slf4j-api:1.7.26"
-    implementation "org.slf4j:log4j-over-slf4j:1.7.26"
-    implementation "org.slf4j:jcl-over-slf4j:1.7.26"
-    implementation "ch.qos.logback:logback-core:1.2.3"
-    implementation "ch.qos.logback:logback-classic:1.2.3"
+	implementation "org.slf4j:slf4j-api:1.7.26"
+	implementation "org.slf4j:log4j-over-slf4j:1.7.26"
+	implementation "org.slf4j:jcl-over-slf4j:1.7.26"
+	implementation "ch.qos.logback:logback-core:1.2.3"
+	implementation "ch.qos.logback:logback-classic:1.2.3"
 
-    implementation 'org.springframework.kafka:spring-kafka:2.8.6'
+	implementation 'org.springframework.kafka:spring-kafka:2.8.6'
 
-    implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
-    implementation "org.flywaydb:flyway-core:7.15.0"
+	implementation "org.flywaydb:flyway-gradle-plugin:7.15.0"
+	implementation "org.flywaydb:flyway-core:7.15.0"
 
-    implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
-    implementation 'org.modelmapper:modelmapper:3.1.0'
-    implementation 'org.postgresql:postgresql:42.3.6'
+	implementation 'org.hibernate:hibernate-validator:6.2.3.Final'
+	implementation 'org.modelmapper:modelmapper:3.1.0'
+	implementation 'org.postgresql:postgresql:42.3.6'
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-web-services'
-    implementation 'org.springframework:spring-aspects:5.2.3.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework:spring-aspects:5.2.3.RELEASE'
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'com.lowagie:itext:4.2.2'
-    implementation 'org.modelmapper:modelmapper:2.4.4'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'com.lowagie:itext:4.2.2'
+	implementation 'org.modelmapper:modelmapper:2.4.4'
 
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-    implementation 'org.springdoc:springdoc-openapi-hateoas:1.5.5'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+	implementation 'org.springdoc:springdoc-openapi-hateoas:1.5.5'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.testcontainers:postgresql:1.17.3'
-    testImplementation 'org.testcontainers:kafka:1.17.3'
+	implementation 'com.diffplug.spotless:spotless-plugin-gradle:6.9.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.testcontainers:postgresql:1.17.3'
+	testImplementation 'org.testcontainers:kafka:1.17.3'
 
 
 }
 
 dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 test {
-    useJUnitPlatform()
+	useJUnitPlatform()
+}
+
+spotless {
+	format 'misc', {
+		target '*.gradle', '*.md', '.gitignore', '*.java'
+
+		trimTrailingWhitespace()
+		indentWithTabs()
+		endWithNewline()
+	}
+	java {
+		googleJavaFormat('1.15.0')
+				.aosp()
+				.reflowLongStrings()
+				.groupArtifact('com.google.googlejavaformat:google-java-format')
+		trimTrailingWhitespace()
+		endWithNewline()
+		indentWithTabs()
+		removeUnusedImports()
+		importOrder()
+	}
 }

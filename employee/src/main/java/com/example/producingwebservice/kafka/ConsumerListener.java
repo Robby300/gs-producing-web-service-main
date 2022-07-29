@@ -1,5 +1,6 @@
 package com.example.producingwebservice.kafka;
 
+
 import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.repository.EmployeeRepository;
@@ -15,12 +16,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ConsumerListener {
 
-    private final EmployeeRepository employeeRepository;
-    private final ModelMapper modelMapper = new ModelMapper();
+	private final EmployeeRepository employeeRepository;
+	private final ModelMapper modelMapper = new ModelMapper();
 
-    @KafkaListener(topics = "${topic.save}")
-    public void executeTask(ConsumerRecord<String, EmployeeDto> task) {
-        log.info("TaskListener. Request: key - {}, value - {}", task.key(), task.value());
-        employeeRepository.save(modelMapper.map(task.value(), Employee.class));
-    }
+	@KafkaListener(topics = "${topic.save}")
+	public void executeTask(ConsumerRecord<String, EmployeeDto> task) {
+		log.info("TaskListener. Request: key - {}, value - {}", task.key(), task.value());
+		employeeRepository.save(modelMapper.map(task.value(), Employee.class));
+	}
 }

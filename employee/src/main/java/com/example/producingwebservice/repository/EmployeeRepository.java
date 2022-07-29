@@ -10,12 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
-    @Override
-    List<Employee> findAll();
+	@Override
+	List<Employee> findAll();
 
-    Optional<Employee> findEmployeeByUuid(String uuid);
+	Optional<Employee> findEmployeeByUuid(String uuid);
 
-    void deleteEmployeeByUuid(String uuid);
-
+	void deleteEmployeeByUuid(String uuid);
 }
-

@@ -26,42 +26,46 @@ import java.util.Objects;
 @CrossOrigin
 @Tag(name = "Authentication controller")
 public class JwtAuthenticationController {
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenUtil jwtTokenUtil;
-    private final UserService jwtInMemoryUserDetailsService;
+	private final AuthenticationManager authenticationManager;
+	private final JwtTokenUtil jwtTokenUtil;
+	private final UserService jwtInMemoryUserDetailsService;
 
-    public JwtAuthenticationController(AuthenticationManager authenticationManager,
-                                       JwtTokenUtil jwtTokenUtil,
-                                       UserService jwtInMemoryUserDetailsService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenUtil = jwtTokenUtil;
-        this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
-    }
+	public JwtAuthenticationController(
+			AuthenticationManager authenticationManager,
+			JwtTokenUtil jwtTokenUtil,
+			UserService jwtInMemoryUserDetailsService) {
+		this.authenticationManager = authenticationManager;
+		this.jwtTokenUtil = jwtTokenUtil;
+		this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
+	}
 
-    @PostMapping("/login")
-    @Operation(summary = "Login user")
-    public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
+	@PostMapping("/login")
+	@Operation(summary = "Login user")
+	public ResponseEntity<JwtResponse> createAuthenticationToken(
+			@RequestBody JwtRequest authenticationRequest) {
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = jwtInMemoryUserDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetails userDetails =
+				jwtInMemoryUserDetailsService.loadUserByUsername(
+						authenticationRequest.getUsername());
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
-        log.info("Processing POST request /login");
-        return ResponseEntity.ok(new JwtResponse(token));
-    }
+		final String token = jwtTokenUtil.generateToken(userDetails);
+		log.info("Processing POST request /login");
+		return ResponseEntity.ok(new JwtResponse(token));
+	}
 
-    private void authenticate(String username, String password) {
-        Objects.requireNonNull(username);
-        Objects.requireNonNull(password);
+	private void authenticate(String username, String password) {
+		Objects.requireNonNull(username);
+		Objects.requireNonNull(password);
 
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new IllegalArgumentException("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new IllegalArgumentException("INVALID_CREDENTIALS", e);
-        }
-    }
+		try {
+			authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(username, password));
+		} catch (DisabledException e) {
+			throw new IllegalArgumentException("USER_DISABLED", e);
+		} catch (BadCredentialsException e) {
+			throw new IllegalArgumentException("INVALID_CREDENTIALS", e);
+		}
+	}
 }

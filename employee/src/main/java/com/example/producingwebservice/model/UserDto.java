@@ -1,5 +1,6 @@
 package com.example.producingwebservice.model;
 
+
 import com.example.producingwebservice.type.Role;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ import java.util.Set;
 @RequiredArgsConstructor
 @ToString(exclude = {"id"})
 public class UserDto {
-    private Long id;
-    private String username;
-    private String password;
-    private Set<Role> roles;
+	private Long id;
+	private String username;
+	private String password;
+	private Set<Role> roles;
 }
