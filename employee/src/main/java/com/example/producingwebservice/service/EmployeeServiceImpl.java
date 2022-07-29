@@ -80,10 +80,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public EmployeeDto findByUuid(String uuid) {
-		Employee employee =
-				employeeRepository
-						.findEmployeeByUuid(uuid)
-						.orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
+		Employee employee = employeeRepository
+				.findEmployeeByUuid(uuid)
+				.orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
 		return modelMapper.map(employee, EmployeeDto.class);
 	}
 

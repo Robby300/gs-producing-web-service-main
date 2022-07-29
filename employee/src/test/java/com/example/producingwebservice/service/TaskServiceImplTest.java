@@ -46,8 +46,7 @@ class TaskServiceImplTest extends IntegrationTestBase {
 	@Test
 	void deleteById() {
 		taskService.deleteById(2L);
-		assertThatThrownBy(() -> taskService.findById(2L))
-				.isInstanceOf(TaskNotFoundException.class);
+		assertThatThrownBy(() -> taskService.findById(2L)).isInstanceOf(TaskNotFoundException.class);
 	}
 
 	@Test

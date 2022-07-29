@@ -24,10 +24,8 @@ public class Initializer implements ApplicationContextInitializer<ConfigurableAp
 						"spring.flyway.user=" + POSTGRES_CONTAINER.getUsername(),
 						"spring.datasource.password=" + POSTGRES_CONTAINER.getPassword(),
 						"spring.flyway.password=" + POSTGRES_CONTAINER.getPassword(),
-						"spring.kafka.consumer.bootstrap-servers="
-								+ KAFKA_CONTAINER.getBootstrapServers(),
-						"spring.kafka.producer.bootstrap-servers="
-								+ KAFKA_CONTAINER.getBootstrapServers())
+						"spring.kafka.consumer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers(),
+						"spring.kafka.producer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers())
 				.applyTo(applicationContext);
 	}
 }

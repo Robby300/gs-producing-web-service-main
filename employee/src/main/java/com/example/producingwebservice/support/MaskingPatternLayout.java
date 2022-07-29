@@ -14,18 +14,15 @@ import java.util.stream.IntStream;
 public class MaskingPatternLayout extends PatternLayout {
 
 	public static final char ASTERISK = '*';
-	private static final String PASSWORD_MASK_PATTERN =
-			"[\"']?password[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
+	private static final String PASSWORD_MASK_PATTERN = "[\"']?password[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
 	private static final String SALARY_MASK_PATTERN = "salary=(\\d+)";
-	private static final String JWT_MASK_PATTERN =
-			"[\"']?jwtToken[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
+	private static final String JWT_MASK_PATTERN = "[\"']?jwtToken[\"']?\\s*[:=]\\s*[\"']?(.*?)[\"',; ]";
 	private static final String DELIMITER = "|";
 	private static final int FIRST_MATCHER_INDEX = 1;
 	private final Pattern multilinePattern;
 
 	public MaskingPatternLayout() {
-		List<String> maskPatterns =
-				List.of(PASSWORD_MASK_PATTERN, SALARY_MASK_PATTERN, JWT_MASK_PATTERN);
+		List<String> maskPatterns = List.of(PASSWORD_MASK_PATTERN, SALARY_MASK_PATTERN, JWT_MASK_PATTERN);
 		multilinePattern = Pattern.compile(String.join(DELIMITER, maskPatterns), Pattern.MULTILINE);
 	}
 
@@ -36,8 +33,7 @@ public class MaskingPatternLayout extends PatternLayout {
 
 	private void maskGroup(StringBuilder maskBuilder, Matcher matcher, int group) {
 		if (matcher.group(group) != null) {
-			IntStream.range(matcher.start(group), matcher.end(group))
-					.forEach(i -> maskBuilder.setCharAt(i, ASTERISK));
+			IntStream.range(matcher.start(group), matcher.end(group)).forEach(i -> maskBuilder.setCharAt(i, ASTERISK));
 		}
 	}
 

@@ -9,10 +9,8 @@ import static com.example.producingwebservice.testData.EmployeeTestData.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class EmployeeCheckerTest {
-	private final EmployeeChecker employeeChecker =
-			new EmployeeChecker(
-					new EmployeeNotValidMessageService(
-							new MessageService(new ResourceBundleMessageSource())));
+	private final EmployeeChecker employeeChecker = new EmployeeChecker(
+			new EmployeeNotValidMessageService(new MessageService(new ResourceBundleMessageSource())));
 
 	@Test
 	void shouldCheckSalaryByPosition() {

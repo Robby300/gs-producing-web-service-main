@@ -31,10 +31,7 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public TaskDto findById(Long id) {
-		Task task =
-				taskRepository
-						.findById(id)
-						.orElseThrow(() -> new TaskNotFoundException(ID_NOT_FOUND_MESSAGE));
+		Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(ID_NOT_FOUND_MESSAGE));
 		return modelMapper.map(task, TaskDto.class);
 	}
 

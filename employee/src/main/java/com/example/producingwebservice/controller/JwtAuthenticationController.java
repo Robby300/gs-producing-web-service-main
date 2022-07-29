@@ -41,14 +41,12 @@ public class JwtAuthenticationController {
 
 	@PostMapping("/login")
 	@Operation(summary = "Login user")
-	public ResponseEntity<JwtResponse> createAuthenticationToken(
-			@RequestBody JwtRequest authenticationRequest) {
+	public ResponseEntity<JwtResponse> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
 
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
 		final UserDetails userDetails =
-				jwtInMemoryUserDetailsService.loadUserByUsername(
-						authenticationRequest.getUsername());
+				jwtInMemoryUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 		log.info("Processing POST request /login");
@@ -60,8 +58,7 @@ public class JwtAuthenticationController {
 		Objects.requireNonNull(password);
 
 		try {
-			authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(username, password));
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		} catch (DisabledException e) {
 			throw new IllegalArgumentException("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {

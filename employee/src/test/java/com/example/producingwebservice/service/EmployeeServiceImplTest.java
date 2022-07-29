@@ -33,19 +33,18 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 
 	@Test
 	void shouldGetEmployeePdfResponseEntity() {
-		ResponseEntity<InputStreamResource> employeePdfResponseEntity =
-				employeeService.getEmployeePdfResponseEntity(getSecondEmployeeDto().getUuid());
-		String contentType =
-				Objects.requireNonNull(employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE))
-						.get(ZERO_INDEX);
+		ResponseEntity<InputStreamResource> employeePdfResponseEntity = employeeService.getEmployeePdfResponseEntity(
+				getSecondEmployeeDto().getUuid());
+		String contentType = Objects.requireNonNull(
+						employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE))
+				.get(ZERO_INDEX);
 		assertThat(contentType).isEqualTo(APPLICATION_PDF);
 	}
 
 	@Test
 	void shouldFindAll() {
 		List<EmployeeDto> all = employeeService.findAll();
-		assertThat(all)
-				.contains(getFirstEmployeeDto(), getSecondEmployeeDto(), getThirdEmployeeDto());
+		assertThat(all).contains(getFirstEmployeeDto(), getSecondEmployeeDto(), getThirdEmployeeDto());
 	}
 
 	@Test
@@ -56,14 +55,14 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 
 	@Test
 	void ShouldFindByUuid() {
-		EmployeeDto foundByUuid = employeeService.findByUuid(getSecondEmployeeDto().getUuid());
+		EmployeeDto foundByUuid =
+				employeeService.findByUuid(getSecondEmployeeDto().getUuid());
 		assertThat(foundByUuid).isEqualTo(getSecondEmployeeDto());
 	}
 
 	@Test
 	void shouldSaveAll() {
-		List<EmployeeResponse> employeeResponses =
-				employeeService.saveAll(getEmployeeDtosForSaveInService());
+		List<EmployeeResponse> employeeResponses = employeeService.saveAll(getEmployeeDtosForSaveInService());
 		assertThat(employeeResponses.get(0).getResponseStatus()).isEqualTo(SUCCESS);
 		assertThat(employeeResponses.get(1).getResponseStatus()).isEqualTo(SUCCESS);
 	}
@@ -74,8 +73,7 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 		employeeForUpdate.setName(NAME);
 		employeeForUpdate.setPosition(WORKER);
 		employeeForUpdate.setSalary(SALARY);
-		EmployeeResponse updateResponse =
-				employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
+		EmployeeResponse updateResponse = employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
 		assertThat(updateResponse.getResponseStatus()).isEqualTo(SUCCESS);
 	}
 
@@ -84,8 +82,7 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 		EmployeeDto employeeForUpdate = getEmployeeDtoForUpdateInService();
 		employeeForUpdate.setPosition(WORKER);
 		employeeForUpdate.setSalary(LOW_SALARY);
-		EmployeeResponse updateResponse =
-				employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
+		EmployeeResponse updateResponse = employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
 		assertThat(updateResponse.getResponseStatus()).isEqualTo(FAILURE);
 	}
 
@@ -93,8 +90,7 @@ class EmployeeServiceImplTest extends IntegrationTestBase {
 	void shouldGetFailureStatusWhenUpdateWithShortName() {
 		EmployeeDto employeeForUpdate = getEmployeeDtoForUpdateInService();
 		employeeForUpdate.setName(SHORT_NAME);
-		EmployeeResponse updateResponse =
-				employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
+		EmployeeResponse updateResponse = employeeService.update(employeeForUpdate.getUuid(), employeeForUpdate);
 		assertThat(updateResponse.getResponseStatus()).isEqualTo(FAILURE);
 		EmployeeDto foundUpdatedEmployee = employeeService.findByUuid(employeeForUpdate.getUuid());
 		assertThat(foundUpdatedEmployee).isNotEqualTo(employeeForUpdate);

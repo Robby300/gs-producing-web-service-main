@@ -33,8 +33,7 @@ public class EmployeeController {
 
 	@PostMapping()
 	@Operation(summary = "Save all employee")
-	public ResponseEntity<List<EmployeeResponse>> saveAll(
-			@RequestBody List<EmployeeDto> employeeDtos) {
+	public ResponseEntity<List<EmployeeResponse>> saveAll(@RequestBody List<EmployeeDto> employeeDtos) {
 		List<EmployeeResponse> employeeResponses = employeeService.saveAll(employeeDtos);
 		log.info("save all employee = {}", employeeDtos);
 		return new ResponseEntity<>(employeeResponses, HttpStatus.CREATED);
@@ -56,8 +55,7 @@ public class EmployeeController {
 
 	@PutMapping("/{uuid}")
 	@Operation(summary = "Update employee by uuid")
-	public EmployeeResponse update(
-			@PathVariable("uuid") String uuid, @RequestBody EmployeeDto employeeDto) {
+	public EmployeeResponse update(@PathVariable("uuid") String uuid, @RequestBody EmployeeDto employeeDto) {
 		log.info("Update employee by uuid = {}", uuid);
 		return employeeService.update(uuid, employeeDto);
 	}
@@ -71,16 +69,14 @@ public class EmployeeController {
 
 	@PutMapping("/{uuid}/task/{task_id}")
 	@Operation(summary = "Assign task by task_id to employee by uuid")
-	public EmployeeResponse assignTask(
-			@PathVariable("uuid") String uuid, @PathVariable("task_id") long taskId) {
+	public EmployeeResponse assignTask(@PathVariable("uuid") String uuid, @PathVariable("task_id") long taskId) {
 		log.info("Assign task id = {} to employee by uuid = {}", taskId, uuid);
 		return employeeService.assignTaskToEmployee(uuid, taskId);
 	}
 
 	@DeleteMapping("/{uuid}/task/{task_id}")
 	@Operation(summary = "Unassign task by task_id to employee by uuid")
-	public EmployeeResponse unAssignTask(
-			@PathVariable("uuid") String uuid, @PathVariable("task_id") long taskId) {
+	public EmployeeResponse unAssignTask(@PathVariable("uuid") String uuid, @PathVariable("task_id") long taskId) {
 		log.info("Unassigned task id = {} to employee by uuid = {}", taskId, uuid);
 		return employeeService.unAssignTaskFromEmployee(uuid, taskId);
 	}

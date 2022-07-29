@@ -13,13 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Builder
-// @JsonIdentityInfo(
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "id"
-// )
 public class Employee {
 	@Id
-	//    @GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "employee_id")
 	private Long id;

@@ -38,18 +38,16 @@ class EmployeeControllerTest extends IntegrationTestBase {
 	@Test
 	void findAll() {
 		List<EmployeeDto> all = controller.findAll();
-		assertThat(all)
-				.contains(getFirstEmployeeDto(), getSecondEmployeeDto(), getThirdEmployeeDto());
+		assertThat(all).contains(getFirstEmployeeDto(), getSecondEmployeeDto(), getThirdEmployeeDto());
 	}
 
 	@Test
 	void saveAll() {
 		ResponseEntity<List<EmployeeResponse>> listResponseEntity =
 				controller.saveAll(getEmployeeDtosForSaveInController());
-		assertThat(
-						Objects.requireNonNull(listResponseEntity.getBody())
-								.get(ZERO_INDEX)
-								.getResponseStatus())
+		assertThat(Objects.requireNonNull(listResponseEntity.getBody())
+						.get(ZERO_INDEX)
+						.getResponseStatus())
 				.isEqualTo(SUCCESS);
 		assertThat(listResponseEntity.getBody().get(FIRST_INDEX).getResponseStatus())
 				.isEqualTo(SUCCESS);
@@ -65,9 +63,9 @@ class EmployeeControllerTest extends IntegrationTestBase {
 	void getPdfByUuid() {
 		ResponseEntity<InputStreamResource> employeePdfResponseEntity =
 				controller.getPdfByUuid(getThirdEmployeeDto().getUuid());
-		String contentType =
-				Objects.requireNonNull(employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE))
-						.get(ZERO_INDEX);
+		String contentType = Objects.requireNonNull(
+						employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE))
+				.get(ZERO_INDEX);
 		assertThat(contentType).isEqualTo(APPLICATION_PDF);
 	}
 
@@ -75,8 +73,7 @@ class EmployeeControllerTest extends IntegrationTestBase {
 	void update() {
 		EmployeeDto employeeForSave = getEmployeeDtoForUpdateInController();
 		employeeForSave.setName(ANOTHER_NAME);
-		EmployeeResponse updateResponse =
-				controller.update(employeeForSave.getUuid(), employeeForSave);
+		EmployeeResponse updateResponse = controller.update(employeeForSave.getUuid(), employeeForSave);
 		assertThat(updateResponse.getResponseStatus()).isEqualTo(SUCCESS);
 	}
 

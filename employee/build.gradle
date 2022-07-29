@@ -90,10 +90,7 @@ spotless {
 		endWithNewline()
 	}
 	java {
-		googleJavaFormat('1.15.0')
-				.aosp()
-				.reflowLongStrings()
-				.groupArtifact('com.google.googlejavaformat:google-java-format')
+		palantirJavaFormat('2.25.0')
 		trimTrailingWhitespace()
 		endWithNewline()
 		indentWithTabs()

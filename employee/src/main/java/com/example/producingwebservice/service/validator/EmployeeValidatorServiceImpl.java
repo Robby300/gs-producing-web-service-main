@@ -31,13 +31,11 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 		String validateFieldsMessage = validateFields(employeeDto);
 		if (validateFieldsMessage.isEmpty()) {
 			log.debug("Employee {} passed check", employeeDto);
-			return getResponseBuild(
-					employeeDto.toString(), ResponseStatus.SUCCESS, VALIDATION_EMPLOYEE_ACCEPTED);
+			return getResponseBuild(employeeDto.toString(), ResponseStatus.SUCCESS, VALIDATION_EMPLOYEE_ACCEPTED);
 		}
 
 		log.debug("Employee {} failed verification and will not be added", employeeDto);
-		return getResponseBuild(
-				validateFieldsMessage, ResponseStatus.FAILURE, VALIDATION_EMPLOYEE_NOT_VALID);
+		return getResponseBuild(validateFieldsMessage, ResponseStatus.FAILURE, VALIDATION_EMPLOYEE_NOT_VALID);
 	}
 
 	private String validateFields(EmployeeDto employeeDto) {
@@ -53,8 +51,7 @@ public class EmployeeValidatorServiceImpl implements EmployeeValidatorService {
 				.collect(Collectors.joining(SEPARATOR));
 	}
 
-	private EmployeeResponse getResponseBuild(
-			String payLoad, ResponseStatus status, String message) {
+	private EmployeeResponse getResponseBuild(String payLoad, ResponseStatus status, String message) {
 		return EmployeeResponse.builder()
 				.responseStatus(status)
 				.message(messageService.getMessage(message))

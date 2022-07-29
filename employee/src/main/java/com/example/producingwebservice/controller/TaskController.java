@@ -30,10 +30,7 @@ public class TaskController {
 	@PostMapping()
 	@Operation(summary = "Create all tasks")
 	public List<TaskDto> create(@RequestBody List<TaskDto> taskDtos) {
-		log.info(
-				"POST request received with parameter = {} to create new {} tasks",
-				taskDtos,
-				taskDtos.size());
+		log.info("POST request received with parameter = {} to create new {} tasks", taskDtos, taskDtos.size());
 		return taskService.saveAll(taskDtos);
 	}
 

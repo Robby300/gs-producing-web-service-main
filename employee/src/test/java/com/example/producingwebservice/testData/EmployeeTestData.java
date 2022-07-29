@@ -18,8 +18,7 @@ public class EmployeeTestData {
 	public static final String SHORT_NAME = "ab";
 	public static final String CONTENT_TYPE = "Content-Type";
 	public static final String APPLICATION_PDF = "application/pdf";
-	private static final String LONG_NAME =
-			"Ahmed Ibn Hamid All Rasul Fatih Ali Babaevich Ibn Fadlan";
+	private static final String LONG_NAME = "Ahmed Ibn Hamid All Rasul Fatih Ali Babaevich Ibn Fadlan";
 	public static final int ZERO_INDEX = 0;
 	public static final String LOW_SALARY = "40000";
 	public static final String SALARY = "51000";
@@ -28,67 +27,35 @@ public class EmployeeTestData {
 	private static final ModelMapper modelMapper = new ModelMapper();
 
 	public static EmployeeDto getFirstEmployeeDto() {
-		return getTestEmployee(
-				"firstUUID",
-				"first test employee",
-				"55000",
-				WORKER);
+		return getTestEmployee("firstUUID", "first test employee", "55000", WORKER);
 	}
 
 	public static EmployeeDto getSecondEmployeeDto() {
-		return getTestEmployee(
-				"secondUUID",
-				"second test employee",
-				"105000",
-				MANAGER);
+		return getTestEmployee("secondUUID", "second test employee", "105000", MANAGER);
 	}
 
 	public static EmployeeDto getThirdEmployeeDto() {
-		return getTestEmployee(
-				"thirdUUID",
-				"third test employee",
-				"155000",
-				DIRECTOR);
+		return getTestEmployee("thirdUUID", "third test employee", "155000", DIRECTOR);
 	}
 
 	public static EmployeeDto getEmployeeDtoForDeleteInService() {
-		return getTestEmployee(
-				"serviceDeleteUUID",
-				"test employee for delete in service",
-				"155000",
-				DIRECTOR);
+		return getTestEmployee("serviceDeleteUUID", "test employee for delete in service", "155000", DIRECTOR);
 	}
 
 	public static EmployeeDto getEmployeeDtoForDeleteInController() {
-		return getTestEmployee(
-				"controllerDeleteUUID",
-				"test employee for delete in controller",
-				"105000",
-				MANAGER);
+		return getTestEmployee("controllerDeleteUUID", "test employee for delete in controller", "105000", MANAGER);
 	}
 
 	public static EmployeeDto getEmployeeDtoForUpdateInService() {
-		return getTestEmployee(
-				"serviceUpdateUUID",
-				"test employee for update in service",
-				"105000",
-				MANAGER);
+		return getTestEmployee("serviceUpdateUUID", "test employee for update in service", "105000", MANAGER);
 	}
 
 	public static EmployeeDto getEmployeeDtoForUpdateInController() {
-		return getTestEmployee(
-				"controllerUpdateUUID",
-				"test employee for update in controller",
-				"55000",
-				WORKER);
+		return getTestEmployee("controllerUpdateUUID", "test employee for update in controller", "55000", WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoForSaveInService() {
-		return getTestEmployee(
-				"serviceSaveUUID",
-				"test employee for save in service",
-				"105000",
-				MANAGER);
+		return getTestEmployee("serviceSaveUUID", "test employee for save in service", "105000", MANAGER);
 	}
 
 	public static List<EmployeeDto> getEmployeeDtosForSaveInController() {
@@ -104,11 +71,7 @@ public class EmployeeTestData {
 	}
 
 	public static EmployeeDto getEmployeeDtoWithBigSalary() {
-		return getTestEmployee(
-				"bigSalaryUUID",
-				"test employee for check big salary",
-				ONE_MILLION_SALARY,
-				WORKER);
+		return getTestEmployee("bigSalaryUUID", "test employee for check big salary", ONE_MILLION_SALARY, WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithManyTasks() {
@@ -125,27 +88,15 @@ public class EmployeeTestData {
 	}
 
 	public static EmployeeDto getEmployeeDtoWithNullPosition() {
-		return getTestEmployee(
-				"nullPositionUUID",
-				"test employee with null position",
-				"55000",
-				null);
+		return getTestEmployee("nullPositionUUID", "test employee with null position", "55000", null);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithShortName() {
-		return getTestEmployee(
-				"shortNameUUID",
-				SHORT_NAME,
-				"55000",
-				WORKER);
+		return getTestEmployee("shortNameUUID", SHORT_NAME, "55000", WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithZeroSalary() {
-		return getTestEmployee(
-				"zeroSalaryUUID",
-				"test employee with zero salary",
-				ZERO_SALARY,
-				WORKER);
+		return getTestEmployee("zeroSalaryUUID", "test employee with zero salary", ZERO_SALARY, WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithNullName() {
@@ -156,8 +107,7 @@ public class EmployeeTestData {
 		return getTestEmployee("nullNameUUID", LONG_NAME, "55000", WORKER);
 	}
 
-	private static EmployeeDto getTestEmployee(
-			String uuid, String name, String salary, Position position) {
+	private static EmployeeDto getTestEmployee(String uuid, String name, String salary, Position position) {
 		return new EmployeeDto(null, uuid, name, salary, position, Collections.emptySet());
 	}
 }
