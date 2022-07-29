@@ -28,20 +28,35 @@ public class EmployeeTestData {
 	private static final ModelMapper modelMapper = new ModelMapper();
 
 	public static EmployeeDto getFirstEmployeeDto() {
-		return getTestEmployee("firstUUID", "first test employee", "55000", WORKER);
+		return getTestEmployee(
+				"firstUUID",
+				"first test employee",
+				"55000",
+				WORKER);
 	}
 
 	public static EmployeeDto getSecondEmployeeDto() {
-		return getTestEmployee("secondUUID", "second test employee", "105000", MANAGER);
+		return getTestEmployee(
+				"secondUUID",
+				"second test employee",
+				"105000",
+				MANAGER);
 	}
 
 	public static EmployeeDto getThirdEmployeeDto() {
-		return getTestEmployee("thirdUUID", "third test employee", "155000", DIRECTOR);
+		return getTestEmployee(
+				"thirdUUID",
+				"third test employee",
+				"155000",
+				DIRECTOR);
 	}
 
 	public static EmployeeDto getEmployeeDtoForDeleteInService() {
 		return getTestEmployee(
-				"serviceDeleteUUID", "test employee for delete in service", "155000", DIRECTOR);
+				"serviceDeleteUUID",
+				"test employee for delete in service",
+				"155000",
+				DIRECTOR);
 	}
 
 	public static EmployeeDto getEmployeeDtoForDeleteInController() {
@@ -54,17 +69,26 @@ public class EmployeeTestData {
 
 	public static EmployeeDto getEmployeeDtoForUpdateInService() {
 		return getTestEmployee(
-				"serviceUpdateUUID", "test employee for update in service", "105000", MANAGER);
+				"serviceUpdateUUID",
+				"test employee for update in service",
+				"105000",
+				MANAGER);
 	}
 
 	public static EmployeeDto getEmployeeDtoForUpdateInController() {
 		return getTestEmployee(
-				"controllerUpdateUUID", "test employee for update in controller", "55000", WORKER);
+				"controllerUpdateUUID",
+				"test employee for update in controller",
+				"55000",
+				WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoForSaveInService() {
 		return getTestEmployee(
-				"serviceSaveUUID", "test employee for save in service", "105000", MANAGER);
+				"serviceSaveUUID",
+				"test employee for save in service",
+				"105000",
+				MANAGER);
 	}
 
 	public static List<EmployeeDto> getEmployeeDtosForSaveInController() {
@@ -81,7 +105,10 @@ public class EmployeeTestData {
 
 	public static EmployeeDto getEmployeeDtoWithBigSalary() {
 		return getTestEmployee(
-				"bigSalaryUUID", "test employee for check big salary", ONE_MILLION_SALARY, WORKER);
+				"bigSalaryUUID",
+				"test employee for check big salary",
+				ONE_MILLION_SALARY,
+				WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithManyTasks() {
@@ -99,16 +126,26 @@ public class EmployeeTestData {
 
 	public static EmployeeDto getEmployeeDtoWithNullPosition() {
 		return getTestEmployee(
-				"nullPositionUUID", "test employee with null position", "55000", null);
+				"nullPositionUUID",
+				"test employee with null position",
+				"55000",
+				null);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithShortName() {
-		return getTestEmployee("shortNameUUID", SHORT_NAME, "55000", WORKER);
+		return getTestEmployee(
+				"shortNameUUID",
+				SHORT_NAME,
+				"55000",
+				WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithZeroSalary() {
 		return getTestEmployee(
-				"zeroSalaryUUID", "test employee with zero salary", ZERO_SALARY, WORKER);
+				"zeroSalaryUUID",
+				"test employee with zero salary",
+				ZERO_SALARY,
+				WORKER);
 	}
 
 	public static EmployeeDto getEmployeeDtoWithNullName() {
