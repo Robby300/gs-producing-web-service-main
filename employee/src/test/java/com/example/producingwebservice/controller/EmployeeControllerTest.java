@@ -46,8 +46,8 @@ class EmployeeControllerTest extends IntegrationTestBase {
 		ResponseEntity<List<EmployeeResponse>> listResponseEntity =
 				controller.saveAll(getEmployeeDtosForSaveInController());
 		assertThat(Objects.requireNonNull(listResponseEntity.getBody())
-						.get(ZERO_INDEX)
-						.getResponseStatus())
+				.get(ZERO_INDEX)
+				.getResponseStatus())
 				.isEqualTo(SUCCESS);
 		assertThat(listResponseEntity.getBody().get(FIRST_INDEX).getResponseStatus())
 				.isEqualTo(SUCCESS);
@@ -63,9 +63,7 @@ class EmployeeControllerTest extends IntegrationTestBase {
 	void getPdfByUuid() {
 		ResponseEntity<InputStreamResource> employeePdfResponseEntity =
 				controller.getPdfByUuid(getThirdEmployeeDto().getUuid());
-		String contentType = Objects.requireNonNull(
-						employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE))
-				.get(ZERO_INDEX);
+		String contentType = Objects.requireNonNull(employeePdfResponseEntity.getHeaders().get(CONTENT_TYPE)).get(ZERO_INDEX);
 		assertThat(contentType).isEqualTo(APPLICATION_PDF);
 	}
 
