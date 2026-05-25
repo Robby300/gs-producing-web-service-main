@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,7 +25,13 @@ public class WebSecurityConfig {
 	private final JwtRequestFilter jwtRequestFilter;
 	private final PasswordEncoder passwordEncoder;
 
-	private static final String[] AUTH_WHITELIST = {"/swagger-ui/**", "/login", "/logout", "/registration"};
+	private static final String[] AUTH_WHITELIST = {
+			"/swagger-ui/**",
+			"/login",
+			"/logout",
+			"/registration",
+			"/actuator/**"
+	};
 
 	public WebSecurityConfig(
 			JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,
@@ -53,7 +60,7 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
-			.csrf(csrf -> csrf.disable())
+			.csrf(AbstractHttpConfigurer::disable)
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers(AUTH_WHITELIST).permitAll()
 				.anyRequest().authenticated())

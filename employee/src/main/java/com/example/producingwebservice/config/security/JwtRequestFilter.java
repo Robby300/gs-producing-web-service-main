@@ -41,6 +41,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	}
 
 	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) {
+		String path = request.getRequestURI();
+		return path.startsWith("/actuator/") || path.startsWith("/swagger-ui/");
+	}
+
+	@Override
 	protected void doFilterInternal(
 			HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain chain)
 			throws ServletException, IOException {
