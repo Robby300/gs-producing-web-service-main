@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 	private final JwtRequestFilter jwtRequestFilter;
 	private final PasswordEncoder passwordEncoder;
 
-	private static final String[] AUTH_WHITELIST = {"/swagger-ui/**", "/login", "/registration"};
+	private static final String[] AUTH_WHITELIST = {"/swagger-ui/**", "/login", "/logout", "/registration"};
 
 	public WebSecurityConfig(
 			JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint,

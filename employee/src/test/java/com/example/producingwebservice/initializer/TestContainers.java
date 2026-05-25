@@ -1,5 +1,6 @@
 package com.example.producingwebservice.initializer;
 
+import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
@@ -12,6 +13,11 @@ public final class TestContainers {
 					DockerImageName.parse("confluentinc/cp-kafka:7.7.2"))
 			.withNetwork(null)
 			.withReuse(true);
+
+	public static final GenericContainer<?> REDIS_CONTAINER =
+			new GenericContainer<>(DockerImageName.parse("redis:7-alpine"))
+					.withExposedPorts(6379)
+					.withReuse(true);
 
 	private TestContainers() {}
 }

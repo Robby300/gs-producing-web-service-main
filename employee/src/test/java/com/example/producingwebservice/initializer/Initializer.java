@@ -7,11 +7,13 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import static com.example.producingwebservice.initializer.TestContainers.KAFKA_CONTAINER;
 import static com.example.producingwebservice.initializer.TestContainers.POSTGRES_CONTAINER;
+import static com.example.producingwebservice.initializer.TestContainers.REDIS_CONTAINER;
 
 public class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 	public static void start() {
 		POSTGRES_CONTAINER.start();
 		KAFKA_CONTAINER.start();
+		REDIS_CONTAINER.start();
 	}
 
 	@Override
@@ -25,7 +27,9 @@ public class Initializer implements ApplicationContextInitializer<ConfigurableAp
 						"spring.datasource.password=" + POSTGRES_CONTAINER.getPassword(),
 						"spring.flyway.password=" + POSTGRES_CONTAINER.getPassword(),
 						"spring.kafka.consumer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers(),
-						"spring.kafka.producer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers())
+						"spring.kafka.producer.bootstrap-servers=" + KAFKA_CONTAINER.getBootstrapServers(),
+						"spring.data.redis.host=" + REDIS_CONTAINER.getHost(),
+						"spring.data.redis.port=" + REDIS_CONTAINER.getMappedPort(6379))
 				.applyTo(applicationContext);
 	}
 }
