@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,8 @@ public class JwtTokenUtil {
 	private String secret;
 
 	private SecretKey getSigningKey() {
-		return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+		byte[] keyBytes = Base64.getDecoder().decode(secret);
+		return Keys.hmacShaKeyFor(keyBytes);
 	}
 
 	public String getUsernameFromToken(String token) {
