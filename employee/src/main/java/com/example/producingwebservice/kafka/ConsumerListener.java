@@ -3,14 +3,14 @@ package com.example.producingwebservice.kafka;
 import com.example.producingwebservice.entity.Employee;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.repository.EmployeeRepository;
+import io.micrometer.core.instrument.MeterRegistry;
+import java.time.Duration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-
-import java.time.Duration;
 
 @Slf4j
 @Service
@@ -21,6 +21,7 @@ public class ConsumerListener {
 	private static final long DEDUP_TTL_HOURS = 1;
 	private final EmployeeRepository employeeRepository;
 	private final StringRedisTemplate stringRedisTemplate;
+	private final MeterRegistry meterRegistry;
 
 	@KafkaListener(topics = "${topic.save}")
 	public void executeTask(ConsumerRecord<String, EmployeeDto> task) {
@@ -32,11 +33,13 @@ public class ConsumerListener {
 			Boolean firstTime = stringRedisTemplate.opsForValue()
 					.setIfAbsent(dedupKey, "processed", Duration.ofHours(DEDUP_TTL_HOURS));
 			if (Boolean.FALSE.equals(firstTime)) {
+				meterRegistry.counter("employee.kafka.messages", "status", "duplicate").increment();
 				log.warn("Duplicate message detected for UUID: {}", dto.getUuid());
 				return;
 			}
 		}
 
+		meterRegistry.counter("employee.kafka.messages", "status", "processed").increment();
 		Employee employee = new Employee(
 				null, dto.getUuid(), dto.getName(), dto.getSalary(),
 				dto.getPosition(), dto.getTasks());

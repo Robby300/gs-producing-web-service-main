@@ -1,18 +1,18 @@
 package com.example.producingwebservice.config.security;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 @Component
 @Order(1)
@@ -24,9 +24,11 @@ public class RateLimitFilter extends OncePerRequestFilter {
 	private static final long WINDOW_SECONDS = 60;
 
 	private final StringRedisTemplate stringRedisTemplate;
+	private final MeterRegistry meterRegistry;
 
-	public RateLimitFilter(StringRedisTemplate stringRedisTemplate) {
+	public RateLimitFilter(StringRedisTemplate stringRedisTemplate, MeterRegistry meterRegistry) {
 		this.stringRedisTemplate = stringRedisTemplate;
+		this.meterRegistry = meterRegistry;
 	}
 
 	@Override
@@ -40,11 +42,13 @@ public class RateLimitFilter extends OncePerRequestFilter {
 
 		if ("POST".equalsIgnoreCase(method) && "/login".equals(path)) {
 			if (isRateLimited("ratelimit:login:", request)) {
+				meterRegistry.counter("employee.ratelimit.blocked", "endpoint", "login").increment();
 				response.sendError(HttpStatus.TOO_MANY_REQUESTS.value(), "Too many login attempts");
 				return;
 			}
 		} else if ("POST".equalsIgnoreCase(method) && "/registration".equals(path)) {
 			if (isRateLimited("ratelimit:registration:", request)) {
+				meterRegistry.counter("employee.ratelimit.blocked", "endpoint", "registration").increment();
 				response.sendError(HttpStatus.TOO_MANY_REQUESTS.value(), "Too many registration attempts");
 				return;
 			}

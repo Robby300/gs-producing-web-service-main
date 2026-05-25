@@ -8,14 +8,14 @@ import com.example.producingwebservice.repository.TaskRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.micrometer.core.instrument.MeterRegistry;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,18 +29,21 @@ public class TaskServiceImpl implements TaskService {
 	private final TaskRepository taskRepository;
 	private final StringRedisTemplate stringRedisTemplate;
 	private final ObjectMapper objectMapper;
+	private final MeterRegistry meterRegistry;
 
 	@Override
 	public List<TaskDto> findAll() {
 		String cached = stringRedisTemplate.opsForValue().get(TASK_ALL_CACHE);
 		if (cached != null) {
 			try {
+				meterRegistry.counter("employee.cache.hits", "cache", "task").increment();
 				return objectMapper.readValue(cached, new TypeReference<List<TaskDto>>() {});
 			} catch (JsonProcessingException e) {
 				log.warn("Failed to deserialize cached task list", e);
 			}
 		}
 
+		meterRegistry.counter("employee.cache.misses", "cache", "task").increment();
 		List<TaskDto> result = taskRepository.findAll().stream()
 				.map(this::toDto)
 				.collect(Collectors.toList());
@@ -60,12 +63,14 @@ public class TaskServiceImpl implements TaskService {
 		String cached = stringRedisTemplate.opsForValue().get(TASK_CACHE_PREFIX + id);
 		if (cached != null) {
 			try {
+				meterRegistry.counter("employee.cache.hits", "cache", "task").increment();
 				return objectMapper.readValue(cached, TaskDto.class);
 			} catch (JsonProcessingException e) {
 				log.warn("Failed to deserialize cached task {}", id, e);
 			}
 		}
 
+		meterRegistry.counter("employee.cache.misses", "cache", "task").increment();
 		Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(ID_NOT_FOUND_MESSAGE));
 		TaskDto dto = toDto(task);
 

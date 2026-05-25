@@ -4,8 +4,12 @@ import com.example.producingwebservice.api.UserService;
 import com.example.producingwebservice.config.security.JwtTokenUtil;
 import com.example.producingwebservice.model.JwtRequest;
 import com.example.producingwebservice.model.JwtResponse;
+import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.time.Duration;
+import java.util.Date;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.Duration;
-import java.util.Date;
-import java.util.Objects;
-
 @Slf4j
 @RestController
 @CrossOrigin
@@ -33,16 +33,19 @@ public class JwtAuthenticationController {
 	private final JwtTokenUtil jwtTokenUtil;
 	private final UserService jwtInMemoryUserDetailsService;
 	private final StringRedisTemplate stringRedisTemplate;
+	private final MeterRegistry meterRegistry;
 
 	public JwtAuthenticationController(
 			AuthenticationManager authenticationManager,
 			JwtTokenUtil jwtTokenUtil,
 			UserService jwtInMemoryUserDetailsService,
-			StringRedisTemplate stringRedisTemplate) {
+			StringRedisTemplate stringRedisTemplate,
+			MeterRegistry meterRegistry) {
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenUtil = jwtTokenUtil;
 		this.jwtInMemoryUserDetailsService = jwtInMemoryUserDetailsService;
 		this.stringRedisTemplate = stringRedisTemplate;
+		this.meterRegistry = meterRegistry;
 	}
 
 	@PostMapping("/login")
@@ -55,6 +58,7 @@ public class JwtAuthenticationController {
 				jwtInMemoryUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
+		meterRegistry.counter("employee.login.total").increment();
 		log.info("Processing POST request /login");
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
@@ -80,6 +84,7 @@ public class JwtAuthenticationController {
 			log.warn("Failed to revoke token", e);
 			return ResponseEntity.badRequest().build();
 		}
+		meterRegistry.counter("employee.logout.total").increment();
 		return ResponseEntity.ok().build();
 	}
 

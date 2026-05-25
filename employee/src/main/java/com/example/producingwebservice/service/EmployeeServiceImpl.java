@@ -1,5 +1,7 @@
 package com.example.producingwebservice.service;
 
+import static com.example.producingwebservice.support.PdfReportGenerator.getEmployeePdfReport;
+
 import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.api.EmployeeValidatorService;
 import com.example.producingwebservice.api.TaskService;
@@ -15,23 +17,21 @@ import com.example.producingwebservice.type.ResponseStatus;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
-
+import io.micrometer.core.instrument.MeterRegistry;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
-import static com.example.producingwebservice.support.PdfReportGenerator.getEmployeePdfReport;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 @Service
 @RequiredArgsConstructor
@@ -51,8 +51,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private final EmployeeValidatorService employeeValidatorService;
 	private final StringRedisTemplate stringRedisTemplate;
 	private final ObjectMapper objectMapper;
+	private final MeterRegistry meterRegistry;
 
 	public ResponseEntity<InputStreamResource> getEmployeePdfResponseEntity(String uuid) {
+		meterRegistry.counter("employee.pdf.downloads").increment();
 		byte[] cachedPdf = getCachedPdf(uuid);
 		if (cachedPdf != null) {
 			return buildPdfResponse(new ByteArrayInputStream(cachedPdf));
@@ -79,12 +81,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String cached = stringRedisTemplate.opsForValue().get(EMPLOYEE_ALL_CACHE);
 		if (cached != null) {
 			try {
+				meterRegistry.counter("employee.cache.hits", "cache", "employee").increment();
 				return objectMapper.readValue(cached, new TypeReference<List<EmployeeDto>>() {});
 			} catch (JsonProcessingException e) {
 				log.warn("Failed to deserialize cached employee list", e);
 			}
 		}
 
+		meterRegistry.counter("employee.cache.misses", "cache", "employee").increment();
 		List<EmployeeDto> result = employeeRepository.findAll().stream()
 				.map(this::toDto)
 				.collect(Collectors.toList());
@@ -121,12 +125,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String cached = stringRedisTemplate.opsForValue().get(EMPLOYEE_CACHE_PREFIX + uuid);
 		if (cached != null) {
 			try {
+				meterRegistry.counter("employee.cache.hits", "cache", "employee").increment();
 				return objectMapper.readValue(cached, EmployeeDto.class);
 			} catch (JsonProcessingException e) {
 				log.warn("Failed to deserialize cached employee {}", uuid, e);
 			}
 		}
 
+		meterRegistry.counter("employee.cache.misses", "cache", "employee").increment();
 		Employee employee = employeeRepository
 				.findEmployeeByUuid(uuid)
 				.orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));

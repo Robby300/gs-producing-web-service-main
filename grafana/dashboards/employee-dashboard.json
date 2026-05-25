@@ -1,0 +1,132 @@
+{
+  "title": "Employee Service",
+  "uid": "employee-service",
+  "version": 1,
+  "tags": ["employee", "custom"],
+  "schemaVersion": 36,
+  "time": { "from": "now-15m", "to": "now" },
+  "timepicker": {},
+  "templating": {
+    "list": [
+      {
+        "name": "application",
+        "query": "label_values(application)",
+        "type": "query",
+        "datasource": "Prometheus",
+        "current": { "text": "employee", "value": "employee" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "title": "Authentication Rate",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "rate(employee_login_total{application=\"$application\"}[5m])",
+          "legendFormat": "Login"
+        },
+        {
+          "expr": "rate(employee_logout_total{application=\"$application\"}[5m])",
+          "legendFormat": "Logout"
+        },
+        {
+          "expr": "rate(employee_registration_total{application=\"$application\"}[5m])",
+          "legendFormat": "Registration"
+        }
+      ]
+    },
+    {
+      "title": "Cache Hit Rate",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 0 },
+      "targets": [
+        {
+          "expr": "rate(employee_cache_hits_total{application=\"$application\"}[5m])",
+          "legendFormat": "Hits - {{cache}}"
+        },
+        {
+          "expr": "rate(employee_cache_misses_total{application=\"$application\"}[5m])",
+          "legendFormat": "Misses - {{cache}}"
+        }
+      ]
+    },
+    {
+      "title": "Cache Hit Ratio",
+      "type": "stat",
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 0 },
+      "targets": [
+        {
+          "expr": "sum(rate(employee_cache_hits_total{application=\"$application\"}[5m])) / (sum(rate(employee_cache_hits_total{application=\"$application\"}[5m])) + sum(rate(employee_cache_misses_total{application=\"$application\"}[5m]))) * 100"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "color": { "mode": "thresholds" },
+          "thresholds": { "mode": "absolute", "steps": [
+            { "color": "red", "value": null },
+            { "color": "yellow", "value": 80 },
+            { "color": "green", "value": 95 }
+          ]}
+        }
+      }
+    },
+    {
+      "title": "PDF Downloads",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(employee_pdf_downloads_total{application=\"$application\"}[5m])",
+          "legendFormat": "PDF downloads"
+        }
+      ]
+    },
+    {
+      "title": "Rate Limited Requests",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(employee_ratelimit_blocked_total{application=\"$application\"}[5m])",
+          "legendFormat": "Blocked - {{endpoint}}"
+        }
+      ]
+    },
+    {
+      "title": "Kafka Messages",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 16, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(employee_kafka_messages_total{application=\"$application\"}[5m])",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "title": "Scheduler Locks",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "expr": "rate(employee_scheduler_locks_total{application=\"$application\"}[5m])",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "title": "Employee Created (Kafka)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 8, "x": 8, "y": 16 },
+      "targets": [
+        {
+          "expr": "rate(employee_kafka_messages_total{application=\"$application\", status=\"processed\"}[5m])",
+          "legendFormat": "Created via Kafka"
+        }
+      ]
+    }
+  ]
+}

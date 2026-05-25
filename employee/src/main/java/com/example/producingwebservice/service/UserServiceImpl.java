@@ -4,17 +4,16 @@ import com.example.producingwebservice.api.UserService;
 import com.example.producingwebservice.entity.User;
 import com.example.producingwebservice.model.UserDto;
 import com.example.producingwebservice.repository.UserRepository;
-import com.example.producingwebservice.type.Role;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.micrometer.core.instrument.MeterRegistry;
+import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -26,18 +25,21 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 	private final StringRedisTemplate stringRedisTemplate;
 	private final ObjectMapper objectMapper;
+	private final MeterRegistry meterRegistry;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		String cached = stringRedisTemplate.opsForValue().get(USER_CACHE_PREFIX + username);
 		if (cached != null) {
 			try {
+				meterRegistry.counter("employee.cache.hits", "cache", "user").increment();
 				return objectMapper.readValue(cached, User.class);
 			} catch (JsonProcessingException e) {
 				log.warn("Failed to deserialize cached user {}, fallback to DB", username, e);
 			}
 		}
 
+		meterRegistry.counter("employee.cache.misses", "cache", "user").increment();
 		User user = userRepository
 				.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException(NOT_FOUND_USER_WITH_USERNAME + username));

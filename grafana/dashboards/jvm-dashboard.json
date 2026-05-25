@@ -1,0 +1,104 @@
+{
+  "title": "JVM (Micrometer)",
+  "uid": "jvm-micrometer",
+  "version": 1,
+  "tags": ["jvm", "micrometer"],
+  "schemaVersion": 36,
+  "time": { "from": "now-15m", "to": "now" },
+  "timepicker": {},
+  "templating": {
+    "list": [
+      {
+        "name": "application",
+        "query": "label_values(application)",
+        "type": "query",
+        "datasource": "Prometheus",
+        "current": { "text": "employee", "value": "employee" }
+      },
+      {
+        "name": "instance",
+        "query": "label_values(jvm_memory_used_bytes{application=\"$application\"}, instance)",
+        "type": "query",
+        "datasource": "Prometheus",
+        "current": { "text": "", "value": "" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "title": "CPU Usage",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "process_cpu_usage{application=\"$application\"}",
+          "legendFormat": "CPU"
+        }
+      ]
+    },
+    {
+      "title": "JVM Memory",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "expr": "jvm_memory_used_bytes{application=\"$application\", area=\"heap\"}",
+          "legendFormat": "Heap - {{$instance}}"
+        },
+        {
+          "expr": "jvm_memory_used_bytes{application=\"$application\", area=\"nonheap\"}",
+          "legendFormat": "Non-Heap - {{$instance}}"
+        }
+      ]
+    },
+    {
+      "title": "GC Pause Time",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(jvm_gc_pause_seconds_sum{application=\"$application\"}[1m])",
+          "legendFormat": "GC pause - {{$instance}}"
+        }
+      ]
+    },
+    {
+      "title": "Threads",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        {
+          "expr": "jvm_threads_live_threads{application=\"$application\"}",
+          "legendFormat": "Live threads"
+        }
+      ]
+    },
+    {
+      "title": "Uptime",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 4, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "expr": "process_uptime_seconds{application=\"$application\"}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": { "mode": "none" }
+        }
+      }
+    },
+    {
+      "title": "File Descriptors",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 4, "y": 16 },
+      "targets": [
+        {
+          "expr": "process_files_open_count{application=\"$application\"}",
+          "legendFormat": "Open FD"
+        }
+      ]
+    }
+  ]
+}
