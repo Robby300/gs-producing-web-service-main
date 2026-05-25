@@ -1,18 +1,17 @@
-FROM gradle:latest AS GRADLE_BUILD
-COPY .. /usr/local/app
-WORKDIR /usr/local/app
-RUN sh gradlew clean build
+FROM eclipse-temurin:25-jdk-alpine AS builder
+WORKDIR /app
+COPY gradlew gradlew.bat ./
+COPY gradle gradle
+COPY settings.gradle ./
+COPY employee employee
+RUN ./gradlew :employee:build -x test
 
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:25-jre-alpine
 RUN mkdir -p /app/logs && \
-    chgrp -R 0 /app/logs && \
-    chmod -R g=u /app/logs
-
-COPY --from=GRADLE_BUILD /usr/local/app/build/libs/gs-producing-web-service-0.1.0.jar /app/app.jar
-
-EXPOSE 8080
-
-WORKDIR /app/
-
-CMD ["java","-jar","app.jar"]
-
+    addgroup -S app && \
+    adduser -S app -G app
+COPY --from=builder /app/employee/build/libs/employee-0.0.1.jar /app/app.jar
+EXPOSE 8081
+USER app
+WORKDIR /app
+CMD ["java", "-jar", "app.jar"]
