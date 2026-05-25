@@ -47,6 +47,8 @@ services:
 
   employee:
     image: robby300/employee
+    ports:
+      - "8081:8081"
     deploy:
       resources:
         limits:
