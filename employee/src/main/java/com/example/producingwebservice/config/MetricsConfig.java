@@ -14,14 +14,6 @@ public class MetricsConfig {
 
 	private final MeterRegistry meterRegistry;
 
-	@Bean
-	public MeterRegistryCustomizer<MeterRegistry> commonTags() {
-		return registry -> registry.config().commonTags(
-				"application", "employee",
-				"instance", UUID.randomUUID().toString().substring(0, 8)
-		);
-	}
-
 	@PostConstruct
 	public void registerCustomMetrics() {
 		meterRegistry.counter("employee.login.total");
@@ -42,5 +34,16 @@ public class MetricsConfig {
 
 		meterRegistry.counter("employee.scheduler.locks", "status", "acquired");
 		meterRegistry.counter("employee.scheduler.locks", "status", "skipped");
+	}
+
+	@Configuration
+	public static class CommonTagsConfig {
+		@Bean
+		public MeterRegistryCustomizer<MeterRegistry> commonTags() {
+			return registry -> registry.config().commonTags(
+					"application", "employee",
+					"instance", UUID.randomUUID().toString().substring(0, 8)
+			);
+		}
 	}
 }
