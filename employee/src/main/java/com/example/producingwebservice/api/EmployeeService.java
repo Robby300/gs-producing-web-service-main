@@ -3,10 +3,9 @@ package com.example.producingwebservice.api;
 
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
+import java.util.List;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
 
 public interface EmployeeService {
 	List<EmployeeDto> findAll();

@@ -1,12 +1,12 @@
 package com.example.producingwebservice.checker;
 
+import static com.example.producingwebservice.testData.EmployeeTestData.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import com.example.producingwebservice.service.MessageService;
 import com.example.producingwebservice.service.validator.EmployeeNotValidMessageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ResourceBundleMessageSource;
-
-import static com.example.producingwebservice.testData.EmployeeTestData.*;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class EmployeeCheckerTest {
 	private final EmployeeChecker employeeChecker = new EmployeeChecker(

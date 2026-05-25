@@ -1,11 +1,10 @@
 package com.example.producingwebservice.service;
 
 
+import java.util.Locale;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.support.ResourceBundleMessageSource;
-
-import java.util.Locale;
 
 @RequiredArgsConstructor
 public class MessageService {

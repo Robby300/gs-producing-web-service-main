@@ -1,23 +1,22 @@
 package com.example.producingwebservice.controller;
 
+import static com.example.producingwebservice.testData.EmployeeTestData.*;
+import static com.example.producingwebservice.type.ResponseStatus.SUCCESS;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import com.example.producingwebservice.IntegrationTestBase;
 import com.example.producingwebservice.exception.EmployeeNotFoundException;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
+import java.util.List;
+import java.util.Objects;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
-
-import java.util.List;
-import java.util.Objects;
-
-import static com.example.producingwebservice.testData.EmployeeTestData.*;
-import static com.example.producingwebservice.type.ResponseStatus.SUCCESS;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
 @SpringBootTest

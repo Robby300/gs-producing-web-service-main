@@ -2,7 +2,6 @@ package com.example.producingwebservice.api;
 
 
 import com.example.producingwebservice.model.TaskDto;
-
 import java.util.List;
 
 public interface TaskService {

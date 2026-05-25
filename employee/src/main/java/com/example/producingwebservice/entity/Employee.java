@@ -2,9 +2,8 @@ package com.example.producingwebservice.entity;
 
 import com.example.producingwebservice.type.Position;
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.Set;
+import lombok.*;
 
 @Getter
 @Setter

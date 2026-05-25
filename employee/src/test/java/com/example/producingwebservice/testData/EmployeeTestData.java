@@ -1,15 +1,14 @@
 package com.example.producingwebservice.testData;
 
+import static com.example.producingwebservice.testData.TaskTestData.*;
+import static com.example.producingwebservice.type.Position.*;
+
 import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.type.Position;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
-import static com.example.producingwebservice.testData.TaskTestData.*;
-import static com.example.producingwebservice.type.Position.*;
 
 public class EmployeeTestData {
 	public static final String ONE_MILLION_SALARY = "1000000";

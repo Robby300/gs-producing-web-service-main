@@ -1,13 +1,13 @@
 package com.example.producingwebservice.initializer;
 
+import static com.example.producingwebservice.initializer.TestContainers.KAFKA_CONTAINER;
+import static com.example.producingwebservice.initializer.TestContainers.POSTGRES_CONTAINER;
+import static com.example.producingwebservice.initializer.TestContainers.REDIS_CONTAINER;
+
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import static com.example.producingwebservice.initializer.TestContainers.KAFKA_CONTAINER;
-import static com.example.producingwebservice.initializer.TestContainers.POSTGRES_CONTAINER;
-import static com.example.producingwebservice.initializer.TestContainers.REDIS_CONTAINER;
 
 public class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 	public static void start() {

@@ -3,9 +3,8 @@ package com.example.producingwebservice.model;
 
 import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.type.Position;
-import lombok.*;
-
 import java.util.Set;
+import lombok.*;
 
 @Getter
 @Setter

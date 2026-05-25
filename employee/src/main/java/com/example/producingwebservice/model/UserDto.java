@@ -2,12 +2,11 @@ package com.example.producingwebservice.model;
 
 
 import com.example.producingwebservice.type.Role;
+import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.Set;
 
 @Setter
 @Getter

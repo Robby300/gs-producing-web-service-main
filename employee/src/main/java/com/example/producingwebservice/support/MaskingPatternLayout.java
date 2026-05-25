@@ -3,12 +3,11 @@ package com.example.producingwebservice.support;
 
 import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
+import org.springframework.stereotype.Component;
 
 @Component
 public class MaskingPatternLayout extends PatternLayout {

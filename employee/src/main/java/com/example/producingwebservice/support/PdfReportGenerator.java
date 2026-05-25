@@ -1,16 +1,15 @@
 package com.example.producingwebservice.support;
 
+import static com.lowagie.text.Element.ALIGN_CENTER;
+
 import com.example.producingwebservice.model.EmployeeDto;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static com.lowagie.text.Element.ALIGN_CENTER;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class PdfReportGenerator {

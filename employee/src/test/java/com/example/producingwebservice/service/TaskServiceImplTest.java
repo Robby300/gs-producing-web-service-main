@@ -1,18 +1,17 @@
 package com.example.producingwebservice.service;
 
+import static com.example.producingwebservice.testData.TaskTestData.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import com.example.producingwebservice.IntegrationTestBase;
 import com.example.producingwebservice.api.TaskService;
 import com.example.producingwebservice.exception.TaskNotFoundException;
 import com.example.producingwebservice.model.TaskDto;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
-
-import java.util.List;
-
-import static com.example.producingwebservice.testData.TaskTestData.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
 class TaskServiceImplTest extends IntegrationTestBase {
