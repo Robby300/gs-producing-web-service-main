@@ -27,6 +27,7 @@ public class WebSecurityConfig {
 
 	private static final String[] AUTH_WHITELIST = {
 			"/swagger-ui/**",
+			"/v3/api-docs/**",
 			"/login",
 			"/logout",
 			"/registration",
