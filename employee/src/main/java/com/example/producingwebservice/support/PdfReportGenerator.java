@@ -1,19 +1,16 @@
 package com.example.producingwebservice.support;
 
-import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.EmployeeDto;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfWriter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
-import static com.itextpdf.text.Element.ALIGN_CENTER;
-import static com.itextpdf.text.pdf.BaseFont.HELVETICA_BOLD;
+import static com.lowagie.text.Element.ALIGN_CENTER;
 
 @Slf4j
 public class PdfReportGenerator {
@@ -45,7 +42,7 @@ public class PdfReportGenerator {
 				document.add(getListOfEmployeeTasks(employeeDto));
 			}
 		} catch (DocumentException e) {
-			e.printStackTrace();
+			log.error("Error generating PDF", e);
 		} finally {
 			document.close();
 		}
@@ -57,16 +54,15 @@ public class PdfReportGenerator {
 	}
 
 	private static List getListOfEmployeeTasks(EmployeeDto employeeDto) {
-		List employeeTasks = new List(); // todo переменные так лучше не называть. Это как String string // done
-		Set<Task> tasks = employeeDto.getTasks();
+		List employeeTasks = new List();
 		employeeTasks.setListSymbol(new Chunk(TASK));
 		employeeTasks.setNumbered(true);
-		tasks.stream().map(Task::toString).forEach(employeeTasks::add);
+		employeeDto.getTasks().stream().map(Object::toString).forEach(employeeTasks::add);
 		return employeeTasks;
 	}
 
 	private static Paragraph getParagraph(String content, int fontSize) {
-		Font fontTitle = FontFactory.getFont(HELVETICA_BOLD);
+		Font fontTitle = new Font(Font.HELVETICA);
 		fontTitle.setSize(fontSize);
 		Paragraph paragraph = new Paragraph(content, fontTitle);
 		paragraph.setAlignment(ALIGN_CENTER);

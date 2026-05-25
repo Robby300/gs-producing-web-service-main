@@ -3,7 +3,6 @@ package com.example.producingwebservice.testData;
 import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.type.Position;
-import org.modelmapper.ModelMapper;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +23,6 @@ public class EmployeeTestData {
 	public static final String SALARY = "51000";
 	public static final String NAME = "Ivan";
 	public static final long TASK_ID = 1L;
-	private static final ModelMapper modelMapper = new ModelMapper();
 
 	public static EmployeeDto getFirstEmployeeDto() {
 		return getTestEmployee("firstUUID", "first test employee", "55000", WORKER);
@@ -82,9 +80,9 @@ public class EmployeeTestData {
 				"55000",
 				WORKER,
 				Set.of(
-						modelMapper.map(getFirstTask(), Task.class),
-						modelMapper.map(getSecondTask(), Task.class),
-						modelMapper.map(getThirdTask(), Task.class)));
+						toTask(getFirstTask()),
+						toTask(getSecondTask()),
+						toTask(getThirdTask())));
 	}
 
 	public static EmployeeDto getEmployeeDtoWithNullPosition() {
@@ -109,5 +107,9 @@ public class EmployeeTestData {
 
 	private static EmployeeDto getTestEmployee(String uuid, String name, String salary, Position position) {
 		return new EmployeeDto(null, uuid, name, salary, position, Collections.emptySet());
+	}
+
+	public static Task toTask(com.example.producingwebservice.model.TaskDto dto) {
+		return new Task(dto.getId(), dto.getDescription());
 	}
 }

@@ -14,8 +14,6 @@ import com.example.producingwebservice.repository.EmployeeRepository;
 import com.example.producingwebservice.type.ResponseStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -42,7 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private final TaskService taskService;
 	private final ProducerService producerService;
 	private final EmployeeValidatorService employeeValidatorService;
-	private final ModelMapper modelMapper = new ModelMapper();
 
 	public ResponseEntity<InputStreamResource> getEmployeePdfResponseEntity(String uuid) {
 		EmployeeDto foundEmployeeDto = findByUuid(uuid);
@@ -59,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<EmployeeDto> findAll() {
 		return employeeRepository.findAll().stream()
-				.map(employee -> modelMapper.map(employee, EmployeeDto.class))
+				.map(this::toDto)
 				.collect(Collectors.toList());
 	}
 
@@ -83,7 +80,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee employee = employeeRepository
 				.findEmployeeByUuid(uuid)
 				.orElseThrow(() -> new EmployeeNotFoundException(UUID_NOT_FOUND));
-		return modelMapper.map(employee, EmployeeDto.class);
+		return toDto(employee);
 	}
 
 	@Override
@@ -94,7 +91,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public EmployeeResponse update(String uuid, EmployeeDto employeeDto) {
 		EmployeeDto employeeDtoFromRepo = findByUuid(uuid);
-		BeanUtils.copyProperties(employeeDto, employeeDtoFromRepo, "id", "uuid");
+		employeeDtoFromRepo.setName(employeeDto.getName());
+		employeeDtoFromRepo.setSalary(employeeDto.getSalary());
+		employeeDtoFromRepo.setPosition(employeeDto.getPosition());
+		employeeDtoFromRepo.setTasks(employeeDto.getTasks());
 		log.info("Update employee = {}", employeeDtoFromRepo);
 		return save(employeeDtoFromRepo);
 	}
@@ -103,7 +103,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeResponse assignTaskToEmployee(String uuid, long taskId) {
 		EmployeeDto employeeDto = findByUuid(uuid);
 		TaskDto taskDto = taskService.findById(taskId);
-		employeeDto.getTasks().add(modelMapper.map(taskDto, Task.class));
+		employeeDto.getTasks().add(toEntity(taskDto));
 		return save(employeeDto);
 	}
 
@@ -111,7 +111,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeResponse unAssignTaskFromEmployee(String uuid, long taskId) {
 		EmployeeDto employeeDto = findByUuid(uuid);
 		TaskDto taskDto = taskService.findById(taskId);
-		employeeDto.getTasks().remove(modelMapper.map(taskDto, Task.class));
+		employeeDto.getTasks().remove(toEntity(taskDto));
 		return save(employeeDto);
 	}
 
@@ -119,5 +119,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if (employeeDto.getUuid() == null) {
 			employeeDto.setUuid(UUID.randomUUID().toString());
 		}
+	}
+
+	private EmployeeDto toDto(Employee employee) {
+		return new EmployeeDto(
+				employee.getId(),
+				employee.getUuid(),
+				employee.getName(),
+				employee.getSalary(),
+				employee.getPosition(),
+				employee.getTasks());
+	}
+
+	private Task toEntity(TaskDto dto) {
+		return new Task(dto.getId(), dto.getDescription());
 	}
 }

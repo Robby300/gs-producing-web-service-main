@@ -6,13 +6,14 @@ import com.example.producingwebservice.entity.Task;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
 import com.example.producingwebservice.service.MessageService;
+import com.example.producingwebservice.testData.EmployeeTestData;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 import java.util.Set;
 
 import static com.example.producingwebservice.testData.EmployeeTestData.getFirstEmployeeDto;
+import static com.example.producingwebservice.testData.EmployeeTestData.toTask;
 import static com.example.producingwebservice.testData.TaskTestData.*;
 import static com.example.producingwebservice.type.ResponseStatus.FAILURE;
 import static com.example.producingwebservice.type.ResponseStatus.SUCCESS;
@@ -26,7 +27,6 @@ class EmployeeValidatorServiceImplTest {
 	MessageService messageService = new MessageService(new ResourceBundleMessageSource());
 	private final EmployeeValidatorService employeeValidatorService = new EmployeeValidatorServiceImpl(
 			messageService, new EmployeeChecker(new EmployeeNotValidMessageService(messageService)));
-	ModelMapper modelMapper = new ModelMapper();
 
 	@Test
 	void shouldGetSuccessStatus() {
@@ -65,9 +65,9 @@ class EmployeeValidatorServiceImplTest {
 	void shouldGetFailureStatusBecauseManyTasksForEmployeePosition() {
 		EmployeeDto employeeDtoForValidate = getFirstEmployeeDto();
 		Set<Task> threeTasks = Set.of(
-				modelMapper.map(getFirstTask(), Task.class),
-				modelMapper.map(getSecondTask(), Task.class),
-				modelMapper.map(getThirdTask(), Task.class));
+				toTask(getFirstTask()),
+				toTask(getSecondTask()),
+				toTask(getThirdTask()));
 		employeeDtoForValidate.setTasks(threeTasks);
 
 		EmployeeResponse validateResponse = employeeValidatorService.validate(employeeDtoForValidate);
