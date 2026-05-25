@@ -73,6 +73,11 @@ test {
 	useJUnitPlatform()
 }
 
+tasks.register('buildDocker', Exec) {
+	workingDir = rootProject.projectDir
+	commandLine 'docker', 'build', '-t', 'robby300/employee', '-f', 'employee/Dockerfile', '.'
+}
+
 spotless {
 	format 'misc', {
 		target '*.gradle', '*.md', '.gitignore', '*.java'
