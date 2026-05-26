@@ -3,6 +3,7 @@ package com.example.producingwebservice.controller;
 import com.example.producingwebservice.api.TaskService;
 import com.example.producingwebservice.model.TaskDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("api/v1.0/tasks")
 @Tag(name = "Task controller")
+@SecurityRequirement(name = "bearerAuth")
 public class TaskController {
 
 	private final TaskService taskService;

@@ -9,7 +9,8 @@ RUN ./gradlew :employee:build -x test
 FROM eclipse-temurin:25-jre-alpine
 RUN mkdir -p /app/logs && \
     addgroup -S app && \
-    adduser -S app -G app
+    adduser -S app -G app && \
+    chown -R app:app /app/logs
 COPY --from=builder /app/employee/build/libs/employee-0.0.1.jar /app/app.jar
 EXPOSE 8081
 USER app

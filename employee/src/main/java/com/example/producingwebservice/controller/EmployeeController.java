@@ -4,6 +4,7 @@ import com.example.producingwebservice.api.EmployeeService;
 import com.example.producingwebservice.model.EmployeeDto;
 import com.example.producingwebservice.model.EmployeeResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("api/v1.0/employees")
 @Tag(name = "Employee controller")
+@SecurityRequirement(name = "bearerAuth")
 public class EmployeeController {
 
 	private final EmployeeService employeeService;

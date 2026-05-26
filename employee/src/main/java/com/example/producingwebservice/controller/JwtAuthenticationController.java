@@ -6,6 +6,7 @@ import com.example.producingwebservice.model.JwtRequest;
 import com.example.producingwebservice.model.JwtResponse;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.Duration;
 import java.util.Date;
@@ -65,6 +66,7 @@ public class JwtAuthenticationController {
 
 	@PostMapping("/logout")
 	@Operation(summary = "Logout user (revoke JWT token)")
+	@SecurityRequirement(name = "bearerAuth")
 	public ResponseEntity<Void> logout(@RequestHeader("Authorization") String authHeader) {
 		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 			return ResponseEntity.badRequest().build();
